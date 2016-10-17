@@ -1,0 +1,11 @@
+<div class="n-signup-area-bg" >
+<legend class="login-now lato-font">Sign Up</legend>
+<%= render partial: 'devise/registrations/form' %>
+<%= render 'devise/sessions/social_signin' %>
+</div>
+<span class="clearfix"></span>
+
+<div class="n-no-acc lato-font">
+Already have an account ?
+<%= link_to 'LOG IN', new_user_session_path %>
+</div>

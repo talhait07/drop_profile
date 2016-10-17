@@ -1,0 +1,4 @@
+<% if !@load_more %>
+$('#objective--rte').val('<%= @objective.objective %>');
+<% end %>
+$('#objective_suggestion').html('<%=j render partial: 'sample_objective' %>');

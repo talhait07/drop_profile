@@ -1,0 +1,32 @@
+<!-- BEGIN DIV #TESTIMONIALS -->
+<div class="testimonials" id="testimonials">
+
+  <div class="background-solid">
+
+    <div class="row">
+      <div class="wow bounceIn animated" data-wow-delay=".3s" data-wow-offset="150">
+      <% @top_users.each do |user| %>
+        <div class="col-md-2 col-lg-2 col-sm-4 col-xs-12 top-column">
+          <div>
+            <%= image_tag User.find(user).photo.url, alt: 'People', class: 'profile' %>
+            <em><%= user.full_name %><br/><i><%= Carmen::Country.coded(user.profile.country).try(:name) %></i></em>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="most-viewed-resumes text-center">
+        <h1 class="title wow fadeInLeft" data-wow-offset="100">Recommended <strong><%= t("#{site_name}.main_key") %>s</strong></h1>
+        <div class="container-other-download  wow bounceInLeft" data-wow-offset="100">
+          <a href="http://jobsflyer.com" class="learn"><i class="fa fa-search"></i> Search <%= t("#{site_name}.main_key") %></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- end of div .background-solid -->
+
+</div>
+<!-- END OF DIV #TESTIMONIALS -->

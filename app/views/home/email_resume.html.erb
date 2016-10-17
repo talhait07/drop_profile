@@ -1,0 +1,63 @@
+<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 n-area-bg" id="send_resume_by_email">
+  <legend class="login-now lato-font">Send this resume by email</legend>
+  <%= flash_message %>
+  <%= form_for current_profile.present? ? current_profile : User.new, {url: send_resume_by_email_path, method: :get, class: "form-horizontal"} do |f| %>
+    <div class="form-group">
+      <label for="inputEmail3" class="col-sm-2 control-label">From(*)</label>
+      <div class="col-sm-10">
+        <% if current_user.present? %>
+          <input type="email" name="email[sender]" value="<%= current_user.email %>" disabled>
+        <% else %>
+          <input type="email" name="email[sender]">
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputEmail3" class="col-sm-2 control-label">To(*)</label>
+      <div class="col-sm-10">
+        <input type="email" name="email[receiver]" >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputEmail3" class="col-sm-2 control-label">Subject(*)</label>
+      <div class="col-sm-10">
+        <input type="text" name="email[subject]" >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputEmail3" class="col-sm-2 control-label">Body(*)</label>
+      <div class="col-sm-10">
+        <textarea class="wysihtml5" rows="7" id="comment" name="email[body]" ><%= t("dropresume.email_body", :href => link_to(t("dropresume.resume").html_safe, current_user.present? ? profile_url(current_profile) : "")) %></textarea>
+      </div>
+    </div>
+
+    <div class="form-actions n-field lato-font pull-right">
+      <button type="submit" class="btn btn-primary">Send</button>
+    </div>
+  <% end %>
+</div>
+<span class="clearfix"></span>
+
+<style>
+  #send_resume_by_email{margin-top: 30px; margin-bottom: 30px;}
+  #send_resume_by_email input {
+    margin-bottom: 10px;
+  }
+  #send_resume_by_email input, #send_resume_by_email textarea {
+    width: 100%;
+  }
+  .wysihtml5-toolbar .btn-group, .btn-group-vertical{
+    display: inline-flex;
+  }
+  .wysihtml5-toolbar .dropdown-toggle {
+    margin-top: 0;
+  }
+  .wysihtml5-toolbar .btn-default {
+    padding: 4px 12px;
+  }
+
+</style>
+<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>

@@ -1,0 +1,12 @@
+$('#education-form-container').html('<%=j render partial: 'educations/form', locals: {education: @education} %>');
+$('#add-new-education').hide();
+
+$(".date-picker").datepicker({
+    dateFormat: "dd-mm-yy",
+    maxDate: 0,
+    changeMonth: true,
+    changeYear: true,
+    showOtherMonths: true,
+    selectOtherMonths: true
+});
+$("[rel='tooltip']").tooltip();

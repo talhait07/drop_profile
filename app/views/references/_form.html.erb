@@ -1,0 +1,52 @@
+<%# locals: {reference: Reference.new or Reference.find params[:id]} %>
+<%= form_for reference, remote: true, authenticity_token: true do |f| %>
+  <div class="field-areas">
+    <div class="form">
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :name, class: 'form-control pull-left fd-size', placeholder: 'Name', title: 'Name', rel: 'tooltip', required: true %>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :designation, class: 'form-control pull-right fd-size', placeholder: 'Designation', title: 'Designation', rel: 'tooltip', required: true %>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :company, class: 'form-control pull-left fd-size', placeholder: 'Company', title: 'Company', rel: 'tooltip', required: true %>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :location, class: 'form-control pull-right fd-size', placeholder: 'Location', title: 'Location', rel: 'tooltip', required: true %>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.email_field :email, class: 'form-control pull-left fd-size', placeholder: 'Email', title: 'Email', rel: 'tooltip', required: true %>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.phone_field :phone, class: 'form-control pull-right fd-size', placeholder: 'Phone Number', title: 'Phone Number', rel: 'tooltip', required: true %>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="btn-group pull-right center-xs mar-t20">
+        <%= button_tag type: 'submit', class: 'btn btn-large default-button' do %>
+            <i class="fa fa-floppy-o"></i> Save
+        <% end %>
+        <%= button_tag type: 'reset', class: 'btn btn-large default-button' do %>
+            <i class="fa fa-refresh"></i> Reset
+        <% end %>
+      </div>
+      <span class="clearfix"></span>
+    </div>
+  </div>
+<% end %>

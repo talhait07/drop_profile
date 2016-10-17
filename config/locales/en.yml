@@ -1,0 +1,46 @@
+en:
+  dropresume:
+    main_key: 'Resume'
+    main_keyword: 'resume'
+    site_name: 'dropresume'
+    title: 'Drop Resume |Free Resume Builder | Creative Resume Templates | Modern Resume Templates'
+    keywords: 'creative resume, creative resume template, modern resume templates, free resume templates, free resume builders, modern resume, optimal resume, drop resume'
+    description: 'drop resume is the unique platform to provide the creative resume template, modern resume template, optimal resumes and many other features for your career opportunities..'
+    header_logo: 'dropresume-logo.png'
+    logo: 'dropresume-logo.png'
+    small_logo: 'dropresume-small-logo.png'
+    email_body: "<p>To,</p>
+                 <p>The HR Department,</p>
+                 <p>Grey-yards Media Entertainment</p>
+                 <p>Dear Mr./Ms. [Last Name]</p>
+
+                 <p>I have recently come across your Sales Manager job posting on the (job portal). I would be interested in applying for this position.
+                 I have vast experience in sales, with more than ten years of experience in(ABC).</p>
+                 <p>Currently, I am employed as the Sales and Marketing Director in one of the leading Internet Media companies in the US.
+                 Please find enclosed my resume. My resume provides up-to-date information on my background and qualifications.</p>
+                 <p>I look forward to hearing from you.</p>
+
+                 <p>Thanks and Kind Regards,</p>
+                 <p>Your Sincerely,</p>
+                 <p>[Your signature]</p>
+                 <p>[Name]</p>
+                 <br>
+                 <p>Enclosed: %{href}</p>
+                 "
+    resume: 'resume <i class="fa fa-print"></i>'
+    home_main_title: "Drop Resume"
+  hubcv:
+    main_key: 'CV'
+    main_keyword: 'cv'
+    site_name: 'hubcv'
+    title: 'Hub CV |Free CV Builder | Creative CV Templates | Modern CV Templates'
+    keywords: 'creative cv, creative cv template, modern cv templates, free cv templates, free cv builders, modern cv, optimal cv, hubcv'
+    description: 'hubcv is the unique platform to provide the creative cv template, modern cv template, optimal cv and many other features for your career opportunities..'
+    header_logo: 'hubcv-logo.png'
+    logo: 'hubcv-logo.png'
+    small_logo: 'hubcv-small-logo.png'
+    email_body: "Please review my %{href} for more details."
+    resume: 'CV <i class="fa fa-print"></i>'
+    home_main_title: "Hub CV"
+  common:
+    unverified_email_message: 'Your email not verified yet. Please verify your email within address'

@@ -1,0 +1,45 @@
+<div class="container-fluid ds-bg">
+  <div class="container">
+    <%= flash_message %>
+    <%= devise_error_messages %>
+    <div class="col-lg-12 lg-sg">
+      <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 field-ares">
+        <h4 class="lin-signup">Change Password</h4>
+        <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal sign_in_form' } do |f| %>
+            <div class="control-group">
+              <%= f.label :password, nil, class: 'control-label' %>
+              <div class="controls">
+                <div class="input-prepend">
+                  <%= f.password_field :password, placeholder: 'New Password', required: true, size: 40 %>
+                </div>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <%= f.label :password_confirmation, nil, class: 'control-label' %>
+              <div class="controls">
+                <div class="input-prepend">
+                  <%= f.password_field :password_confirmation, placeholder: 'Confirm Password', required: true, size: 40 %>
+                </div>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <%= f.label :current_password, nil, class: 'control-label' %>
+              <div class="controls">
+                <div class="input-prepend">
+                  <%= f.password_field :current_password, placeholder: 'Current Password', required: true, size: 40, autocomplete: false %>
+                </div>
+              </div>
+            </div>
+
+            <br/>
+            <div class="form-actions pull-left">
+              <%= f.button 'Update', type: 'submit', class: 'btn btn-info-color pull-left' %>
+            </div>
+        <% end %>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>

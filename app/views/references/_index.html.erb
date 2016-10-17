@@ -1,0 +1,15 @@
+<div id="show_references">
+  <% if current_user.references.present? %>
+    <% current_user.references.each do |reference| %>
+      <%= render partial: 'references/reference_template', locals: { reference: reference } %>
+    <% end %>
+    <div class="btn-group center-xs mar-t20" id="add-new-reference">
+      <%= link_to new_reference_path, class: 'btn btn-large default-button', remote: true do %>
+        <i class="fa fa-plus-square"></i> Add New
+      <% end %>
+    </div>
+    <div id="reference-form-container" style="clear: both"></div>
+  <% else %>
+    <div id="reference-form-container" style="clear: both"><%= render partial: 'references/form', locals: {reference: Reference.new} %></div>
+  <% end %>
+</div>

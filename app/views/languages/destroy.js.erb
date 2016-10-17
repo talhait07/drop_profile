@@ -1,0 +1,9 @@
+$('#languages_tab').html('<%=j render partial: 'languages/index' %>');
+
+$('.raty-level-view').raty({
+    readOnly: true,
+    score: function() { return $(this).attr('data-level'); },
+    starHalf: '<%= asset_path('raty/star-half.png') %>',
+    starOff: '<%= asset_path('raty/star-off.png') %>',
+    starOn: '<%= asset_path('raty/star-on.png') %>'
+});

@@ -1,0 +1,206 @@
+<h1 class="title-line">
+  <span class="pre">MY</span> TEMPLATE <span class="here">HERE</span>
+</h1>
+<div class="border-btm"></div>
+<span class="clearfix"></span>
+
+<% if @current_template.present? %>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <div class="col-xs-11 col-lg-11 col-md-11 col-sm-11">
+        <div class="my-template">
+          <div class="caption blu-bdr" style="display: block;">
+            <!--<h4>MY TEMPLATE</h4>-->
+            <%= link_to 'javascript:void(0);', class: 'active-btn change-color-btn', data: {template_id: @current_template.id, colors: @current_template.color_codes.join(',')} do %>
+                <button type="button" class="btn btn-success btn-sm">Change Color</button>
+            <% end %>
+            <%#= image_tag 'active.png', alt: 'active', class: 'active-btn img-responsive', data: {template_id: @current_template.id, colors: @current_template.color_codes.join(',')} %>
+          </div>
+          <%= image_tag @current_template.image.url(:thumb), alt: '...' %>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% @my_templates.each do |template| %>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <!--<img style="" src="/uploads/template/image/7/thumb_cepheus.png" alt="" title="Image title,  Can be removed" class="image-thumbnail" data-src="/uploads/template/image/7/thumb_cepheus.png" data-width="450" data-height="500" height="93" width="150" border="0">-->
+      <div class="col-xs-11 col-lg-11 col-md-11 col-sm-12">
+        <div class="thumbnail" style="border: 1px solid #00f">
+          <div class="caption">
+            <p class="pr-del-btn">
+              <%= link_to remove_from_my_template_path(template), method: :delete,class: 'btn btn-warning btn-sm btn-clx', data: {confirm: 'Are you sure, you want to remove this template from your template list?'} do %>
+                <i class="fa fa-times"></i>
+              <% end %>
+            </p>
+            <div class="pr-ac-btn">
+              <div class="btn-group btn-group-sm " role="group" aria-label="...">
+                <%= link_to template, target: '_blank' do %>
+                  <%= button_tag 'PREVIEW', class: 'image-thumbnail btn btn-primary', data: { title: template.name, src: template.image.url(:thumb), width: 300, height: 200, price: 'Free' } %>
+                <% end %>
+                <%= link_to 'javascript:void(0);', class: 'active-btn', data: {template_id: template.id, colors: template.color_codes.join(',')} do %>
+                  <button type="button" class="btn btn-success">ACTIVE</button>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <%= image_tag template.image.url(:thumb), alt: '...', title: 'Image title,  Can be removed' %>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+  <div class="col-xs-11 col-lg-11 col-md-11 col-sm-11">
+    <div class="thumbnail">
+      <%= link_to templates_path do %>
+          <div class="caption"></div>
+          <%= image_tag "add-new-#{site_name}.png", alt: '...' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<span class="clearfix"></span>
+
+<div id="template_color_choose_modal" class="modal fade">
+  <div class="modal-dialog" style="width: 400px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title ch-title-ph">Choose a color for this template</h4>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="template_id" class="active-template-id">
+        <div class="template-colors"></div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary active-template-submit btn-sm">Active Template</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--template  customisation  modal-->
+
+<div id="template_customise" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title ch-title-ph"><i class="fa fa-cogs"></i>  Customise   your template  layout,</h4>
+      </div>
+      <div class="modal-body">
+
+                    <div id="connected">
+                   <div class="row" >
+
+
+                   <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                     <ul class="connected">
+                       <li title="Drag & Drop To Change Position"><i class="fa fa-arrows"></i> Objective</li>
+                       <li title="Drag & Drop To Change Position"><i class="fa fa-arrows"></i> Experience</li>
+                       <li title="Drag & Drop To Change Position"><i class="fa fa-arrows"></i> Education</li>
+                       <li title="Drag & Drop To Change Position"><i class="fa fa-arrows"></i> Skills</li>
+
+                     </ul>
+                   </div>
+                   <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                     <ul class="connected">
+                       <li title="Drag & Drop To Change Position"><i class="fa fa-arrows"></i> Languages</li>
+                       <li title="Drag & Drop To Change Position"><i class="fa fa-arrows"></i> Hobbies & Interest</li>
+                       <li title="Drag & Drop To Change Position"><i class="fa fa-arrows"></i> References</li>
+                     </ul>
+                   </div>
+
+
+                   </div>
+                    </div>
+
+
+      </div>
+      <div class="clearfix"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success   btn-sm">Save Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--template  customisation  modal-->
+
+
+<script>
+  function color_template(color, checked){
+      var is_checked = typeof checked !== 'undefined' ? checked : false;
+
+      return  '<div class="color-wrapper">' +
+              '<span style="background-color: #' + color + ';">&nbsp;</span>' +
+              '<input type="radio" name="color" value="' + color + '" id="color_' + color + '" ' + (is_checked ? 'checked' : '') + ' />' +
+              '<label for="color_' + color + '"><span></span></label>' +
+              '</div>';
+  }
+
+  $(document).ready(function(){
+      $(document).on('click', '.active-btn', function(){
+          var $template_color_choose_modal = $('#template_color_choose_modal');
+          var colors = $(this).data('colors').split(',');
+          var template_id = $(this).data('template-id');
+          $template_color_choose_modal.modal('show');
+
+          $template_color_choose_modal.on('shown.bs.modal', function() {
+              $('.active-template-id').val(template_id);
+              $('.template-colors').html('');
+              colors.map(function (color, index) {
+                  $('.template-colors').append(color_template(color, index==0));
+              });
+
+          });
+      });
+
+      $(document).on('click', '.active-template-submit', function () {
+          var template_id = $('.active-template-id').val();
+          var color = $('input[name="color"]:checked').val();
+          $.ajax({
+              url: 'templates/' + template_id + '/activate',
+              data: { color: color },
+              dataType: "json",
+              success: function () {
+                window.location.href = '<%= user_root_url %>';
+              },
+              error: function () {
+
+              }
+          });
+      });
+  });
+
+  $(window).ready(function () {
+      $('.image-thumbnails').mediaPreview({
+          loading_text: 'Loading, please wait...',
+          flvplayer: 'http://www.mewsoft.com/jquery/media-preview/flvplayer.swf',
+          offset: 20
+      });
+  });
+</script>
+
+
+
+<script>
+    $(function() {
+        $('.sortable').sortable();
+        $('.handles').sortable({
+            handle: 'span'
+        });
+        $('.connected').sortable({
+            connectWith: '.connected'
+        });
+        $('.exclude').sortable({
+            items: ':not(.disabled)'
+        });
+    });
+</script>

@@ -1,0 +1,7 @@
+$('.user-name').html('<%= current_user.first_name %>');
+$('#profile_facebook_link').val('<%= current_profile.facebook_link %>');
+$('#profile_twitter_link').val('<%= current_profile.twitter_link %>');
+$('#profile_linkedin_link').val('<%= current_profile.linkedin_link %>');
+$('#profile_google_plus_link').val('<%= current_profile.google_plus_link %>');
+$('#message_container').html('<%=j render partial: 'shared/flash_message' %>');
+$('html, body').animate({scrollTop: 0}, 500);

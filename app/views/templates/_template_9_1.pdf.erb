@@ -1,0 +1,301 @@
+<%# locals: {template: Template object, color: string} %>
+<% profile = @user.profile %>
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html><!--<![endif]-->
+<head>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <title><%= "Resume | #{@user.full_name}" %></title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="<%= "#{CONFIG[:cdn_server_url]}/template_9_1/css/style-#{color}.css" %>" type="text/css" rel="stylesheet"/>
+  <link href="<%= "#{CONFIG[:cdn_server_url]}/template_9_1/css/style-pdf.css" %>" type="text/css" rel="stylesheet"/>
+  <%= javascript_include_tag '//code.jquery.com/jquery-1.11.2.min.js', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js', 'data-turbolinks-track' => true %>
+</head>
+<body>
+<!--start header area-->
+<div class="container-fluid headder">
+  <div class="container">
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <div class="user_info">
+        <div class="col-md-4 col-sm-5 col-xs-12">
+          <div class="user_img">
+            <%= image_tag @user.profile_photo_link, alt: 'profile_image', class: 'img-circle' %>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-7 col-xs-12">
+          <div class="blank"></div>
+          <div class="user_name">
+            <h2><%= @user.full_name.capitalize %></h2>
+            <h4><%= profile.title.upcase %></h4>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!--<div class="col-lg-1 col-md-1"></div>-->
+    <div class="col-lg-5 col-md-5  col-sm-12 col-xs-12">
+      <div class="blank"></div>
+      <div class="row">
+        <div class="some_text">
+          <p><%= @user.overview.try(:objective) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end header area-->
+<!--start website email addrees area-->
+<section class="container-fluid email_area">
+  <div class="container">
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+      <div class="single_address">
+        <div class="icon float_left">
+          <%= image_tag "#{CONFIG[:cdn_server_url]}/#{template.formatted_file}/img/icon1.png", alt: 'glob', class: 'img-responsive' %>
+        </div>
+        <div class="name_address float_left">
+          <p>website</p>
+
+          <p><%= web_address profile %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+      <div class="single_address">
+        <div class="icon float_left">
+          <%= image_tag "#{CONFIG[:cdn_server_url]}/#{template.formatted_file}/img/icon2.png", alt: 'phone', class: 'img-responsive' %>
+        </div>
+        <div class="name_address float_left">
+          <p>mobile</p>
+
+          <p><%= profile.phone %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+      <div class="single_address">
+        <div class="icon float_left">
+          <%= image_tag "#{CONFIG[:cdn_server_url]}/#{template.formatted_file}/img/icon3.png", alt: 'message', class: 'img-responsive' %>
+        </div>
+        <div class="name_address float_left">
+          <p>email</p>
+
+          <p><%= @user.email %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+      <div class="single_address">
+        <div class="icon_top">
+          <i class="fa fa-home"></i>
+        </div>
+        <div class="name_address float_left">
+          <p>Address</p>
+
+          <p><%= @user.profile.location %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--end website email addrees area-->
+
+<!--start details information area-->
+<section class="container-fluid details_area">
+  <div class="container">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="row">
+        <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12">
+          <!--start Experience area-->
+          <% if @user.experiences.present? %>
+              <div class="employment_area">
+                <h2 class="title_name">Experience</h2>
+                <% @user.experiences.sort { |a, b| b.start_date <=> a.start_date }.each do |experience| %>
+                    <div class="single_company">
+                      <div class="col-md-3 col-sm-3 col-xs-5 data_box">
+                        <i class="fa fa-circle pull-left"></i>
+
+                        <p class="pull-left">
+                          <%= date_format experience.start_date, '%Y' %> -
+                          <%= experience.current? ? 'Current' : date_format(experience.end_date, '%Y') %>
+                        </p>
+                      </div>
+                      <div class="col-md-9 col-sm-9 col-xs-7">
+                        <div class="company_text">
+                          <h3><%= experience.company %></h3>
+                          <h4><%= experience.designation %></h4>
+
+                          <p><%= experience.description %></p>
+                        </div>
+                      </div>
+                    </div>
+                <% end %>
+              </div>
+          <% end %>
+          <!--end Experience area-->
+
+          <!--start Skills area-->
+          <% if @user.skills.present? %>
+              <div class="professional_skills">
+                <h2 class="title_name">Skills</h2>
+                <% @user.skills.each do |skill| %>
+                    <div class="single_skill row">
+                      <div class="col-md-4 col-sm-4 col-xs-12">
+                        <p><%= skill.name %></p>
+                      </div>
+                      <div class="col-md-8 col-sm-8 col-xs-12">
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<%= (skill.level || 0) * 20 %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= "#{(skill.level || 0) * 20}%" %>">
+                            <span class="sr-only"><%= "#{(skill.level || 0) * 20}%" %> Complete</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                <% end %>
+              </div>
+          <% end %>
+          <!--end Skills area-->
+
+          <!--start Hobbies area-->
+          <% if @user.hobbies_interests.present? %>
+              <div class="hobbies">
+                <h2 class="title_name">Hobbies &amp; Interest</h2>
+
+                <div class="badges">
+                  <% @user.hobbies_interests.each do |hobbies_interest| %>
+                      <span class="badge"><%= hobbies_interest.title %></span>
+                  <% end %>
+                </div>
+              </div>
+          <% end %>
+          <!--end Hobbies area-->
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <!--start Education area-->
+      <% if @user.educations.present? %>
+          <div class="education">
+            <h2 class="title_name">Education</h2>
+            <% @user.educations.each do |education| %>
+                <div class="row single_company">
+                  <div class="col-md-3 col-sm-3 col-xs-5 data_box">
+                    <i class="fa fa-circle pull-left"></i>
+
+                    <p class="pull-left">
+                      <%= date_format education.start_date, '%Y' %> -
+                      <%= education.current? ? 'Current' : date_format(education.end_date, '%Y') %>
+                    </p>
+                  </div>
+                  <div class="col-md-9 col-sm-9 col-xs-7">
+                    <div class="company_text">
+                      <h3><%= education.institute %></h3>
+                      <h4><%= education.major %></h4>
+
+                      <p><%= education.description %></p>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+      <% end %>
+      <!--end Education area-->
+
+      <!--start Language area-->
+      <% if @user.languages.present? %>
+          <div class="language">
+            <h2 class="title_name">Language</h2>
+            <% @user.languages.each do |language| %>
+                <div class="lang_one col-lg-4 col-md-4 col-sm-12 col-xs-8">
+                  <div class="single_language">
+                    <h3><%= language.name %></h3>
+                    <ul>
+                      <li class="ti_lagn">Speaking:</li>
+                      <% (1..language.speaking_level).each do %>
+                          <li><i class="fa fa-star"></i></li>
+                      <% end %>
+                      <% (1..(5-language.speaking_level)).each do %>
+                          <li><i class="fa fa-star-o"></i></li>
+                      <% end %>
+                    </ul>
+                    <ul>
+                      <li class="ti_lagn">Writing:</li>
+                      <% (1..language.writing_level).each do %>
+                          <li><i class="fa fa-star"></i></li>
+                      <% end %>
+                      <% (1..(5-language.writing_level)).each do %>
+                          <li><i class="fa fa-star-o"></i></li>
+                      <% end %>
+                    </ul>
+                    <ul>
+                      <li class="ti_lagn">Listening:</li>
+                      <% (1..language.listening_level).each do %>
+                          <li><i class="fa fa-star"></i></li>
+                      <% end %>
+                      <% (1..(5-language.listening_level)).each do %>
+                          <li><i class="fa fa-star-o"></i></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+      <% end %>
+      <!--end Language area-->
+
+      <!--start References area-->
+      <% if @user.references.present? %>
+          <div class="refference">
+            <div class="refference-box">
+              <h2 class="title_name">References</h2>
+              <% @user.references.each do |reference| %>
+                  <div class="reffer col-lg-6 col-sm-12  col-md-6 col-xs-12">
+                    <h4><%= reference.name %></h4>
+                    <h5 style="color: inherit;"><%= reference.company %></h5>
+                    <h5><%= reference.designation %></h5>
+                <span>
+                  <i class="fa fa-globe"></i>
+                  <%= reference.location %>
+                </span>
+                <span>
+                  <i class="fa fa-envelope-square"></i>
+                  <%= reference.email %>
+                </span>
+                <span>
+                  <i class="fa fa-phone"></i>
+                  <%= reference.phone %>
+                </span>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+      <% end %>
+      <!--end References area-->
+    </div>
+
+    <!--start footer area-->
+    <!--<div class="row">-->
+    <!--<div class="col-lg-12">-->
+    <!--<ul class="footer_part">-->
+    <!--<li><i class="fa fa-user"></i> <%#= @user.full_name %></li>-->
+    <!--<%# if profile.date_of_birth.present? %><li><i class="fa fa-calendar"></i> <%#= profile.date_of_birth.strftime('%m.%d.%Y') %></li><%# end %>-->
+    <!--<%# if profile.location.present? %><li><i class="fa fa-home"></i> <%#= profile.location %></li><%# end %>-->
+    <!--<%# if profile.web_link.present? %><li><i class="fa fa-globe"></i> <%#= web_address profile %></li><%# end %>-->
+    <!--<%# if profile.phone.present? %><li><i class="fa fa-mobile"></i> <%#= profile.phone %></li><%# end %>-->
+    <!--<li><i class="fa fa-envelope-o"></i><%#= @user.email %></li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--end footer area-->
+  </div>
+</section>
+</body>
+</html>

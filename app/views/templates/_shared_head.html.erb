@@ -1,0 +1,20 @@
+<%# locals: {template, color} %>
+<meta charset="utf-8"/>
+<%= tag :meta, property: 'viewport', content: 'width=device-width, initial-scale=1' %>
+<%= tag :meta, property: 'fb:app_id', content: CONFIG[:fb_app_id] %>
+<%= tag :meta, property: 'fb:app_id', content: CONFIG[:fb_app_id] %>
+<%= tag :meta, property: 'og:site_name', content: 'Dropresume' %>
+<%= tag :meta, property: 'og:type', content: 'dropresume:resume' %>
+<%= tag :meta, property: 'og:title', content: params[:controller] == 'templates' ? template.name : @user.full_name %>
+<%= tag :meta, property: 'og:url', content: profile_url(@user.profile) %>
+<%= tag :meta, property: 'og:image', content: full_url(params[:controller] == 'templates' ? template.image.url(:square) : @user.profile_photo_link(:large)) %>
+<%= tag :meta, property: 'og:description', content: "Drop resume - World's resume hub. Online free resume builder having lots of free resume templates." %>
+<title><%= "#{t("#{site_name}.main_key")} | #{params[:controller] == 'templates' ? template.name : @user.full_name}" %></title>
+<%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' %>
+<%= stylesheet_link_tag 'http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' %>
+<link href="<%= "#{CONFIG[:cdn_server_url]}/#{template.formatted_file}/css/style.css" %>" type="text/css" rel="stylesheet"/>
+<link href="<%= "#{CONFIG[:cdn_server_url]}/#{template.formatted_file}/css/style-#{color}.css" %>" type="text/css" rel="stylesheet"/>
+<link href="<%= "#{CONFIG[:cdn_server_url]}/shared_files/css/common-style.css" %>" type="text/css" rel="stylesheet"/>
+<%= javascript_include_tag '//code.jquery.com/jquery-1.11.2.min.js' %>
+<%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js' %>
+<%= favicon_link_tag "#{site_name}.ico" %>

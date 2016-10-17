@@ -1,0 +1,21 @@
+development:
+  host: "localhost:3000"
+  fb_app_id: "1456591877929410"
+  cdn_server_url: 'http://localhost/cdn_dropresume'
+  mandrill_username: 'rezabyte@gmail.com'
+  mandrill_api_key: 'KsZf6RtftMYp7D8rTks0PA'
+  mailchimp_api_key: 'a184f9a493e09235d45abbf96192291b-us7'
+  dropresume_subscribers_list_id: 'a2842b7f71'
+  hubcv_subscribers_list_id: 'a2842b7f71'
+staging:
+  host: "dropresume.rorlab.com"
+  fb_app_id: ""
+  cdn_server_url: 'http://cdn.rorlab.com/dropresume'
+  mandrill_username: 'tauhidul35@gmail.com'
+  mandrill_api_key: ''
+production:
+  host: "dropresume.com"
+  fb_app_id: ""
+  cdn_server_url: 'http://cdn.dropresume.com'
+  mandrill_username: 'tauhidul35@gmail.com'
+  mandrill_api_key: ''

@@ -1,0 +1,10 @@
+$('#skill-form-container').html('<%=j render partial: 'skills/form', locals: {skill: @skill} %>');
+$('#add-new-skill').hide();
+
+$('.raty-level-input').raty({
+    scoreName: function() { return $(this).attr('data-name'); },
+    starHalf: '<%= asset_path('raty/star-half.png') %>',
+    starOff: '<%= asset_path('raty/star-off.png') %>',
+    starOn: '<%= asset_path('raty/star-on.png') %>'
+});
+$("[rel='tooltip']").tooltip();

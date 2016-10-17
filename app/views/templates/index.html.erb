@@ -1,0 +1,214 @@
+<!--<div class="filter-search">
+  <div class="container">
+    <div class="col-lg-1" >
+      <ul class="nav nav-tabs filter-nav">-->
+<!--<li class="dropdown">-->
+<!--<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-bars"></i> Filter <i class="fa fa-angle-down"></i></a>-->
+<!--<ul class="dropdown-menu">-->
+<!--<li><a href="#">All</a></li>-->
+<!--<li><a href="#">Style</a></li>-->
+<!--<li><a href="#">Latest</a></li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--</ul>
+</div>
+</div>
+</div>-->
+
+<div class="container-fluid ds-bg">
+  <div class="container">
+
+
+    <!--<div class="col-lg-10  col-lg-offset-1 ">-->
+
+      <!--<form class="checkout-form">-->
+      <!--<div class="panel custom-panel">-->
+        <!--<div class="panel-heading drop-bg">-->
+
+
+          <!--<span>Cart Information </span>-->
+
+
+        <!--</div>-->
+        <!--<div class="panel-body  ">-->
+
+          <!--<div class="col-lg-12  clearfix">-->
+
+              <!--<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xs-6">-->
+
+                <!--<input type="text" class="form-control" id="email" placeholder="Enter email">-->
+              <!--</div>-->
+              <!--<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xs-6">-->
+
+                <!--<input type="text" class="form-control" id="email" placeholder="Enter text">-->
+              <!--</div>-->
+              <!--<span class="clearfix"></span>-->
+
+              <!--<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xs-6">-->
+
+                <!--<input type="text" class="form-control" id="email" placeholder="Enter text">-->
+              <!--</div>-->
+              <!--<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xs-6">-->
+
+                <!--<input type="text" class="form-control" id="email" placeholder="Enter text">-->
+              <!--</div>-->
+              <!--<span class="clearfix"></span>-->
+
+              <!--<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xs-6">-->
+
+                <!--<input type="text" class="form-control" id="email" placeholder="Enter text">-->
+              <!--</div>-->
+              <!--<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xs-6">-->
+
+                <!--<input type="text" class="form-control" id="email" placeholder="Enter text">-->
+              <!--</div>-->
+              <!--<span class="clearfix"></span>-->
+
+              <!--<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xs-6">-->
+
+                <!--<input type="text" class="form-control" id="email" placeholder="Enter text">-->
+              <!--</div>-->
+              <!--<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xs-6">-->
+
+                <!--<input type="text" class="form-control" id="email" placeholder="Enter text">-->
+              <!--</div>-->
+              <!--<span class="clearfix"></span>-->
+
+              <!--<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xs-6">-->
+
+                <!--<input type="text" class="form-control" id="email" placeholder="Enter text">-->
+              <!--</div>-->
+              <!--<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xs-6">-->
+
+                <!--<input type="text" class="form-control" id="email" placeholder="Enter text">-->
+              <!--</div>-->
+              <!--<span class="clearfix"></span>-->
+
+              <!--<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xs-6">-->
+
+                <!--<input type="text" class="form-control" id="email" placeholder="Enter text">-->
+              <!--</div>-->
+              <!--<div class="form-group col-lg-6 col-sm-6 col-md-6 col-xs-6">-->
+
+                <!--<input type="text" class="form-control" id="email" placeholder="Enter text">-->
+              <!--</div>-->
+              <!--<span class="clearfix"></span>-->
+
+          <!--</div>-->
+
+
+        <!--</div>-->
+      <!--</div>-->
+
+
+      <!--<div class="clearfix"></div>-->
+      <!--<div class="modal-footer cart-footer">-->
+
+        <!--<button type="button" class="btn btn-warning btn-sm">Add Text Here</button>-->
+        <!--<button type="submit" class="btn btn-success   btn-sm">Add Text Here</button>-->
+      <!--</div>-->
+<!--</form>-->
+
+    <!--</div>-->
+
+
+    <div class="col-lg-12">
+      <%#= link_to image_tag('banner.jpg', alt: '', class: 'img-responsive'), '', class: 'banner-top' %>
+      <h1 class="title-line cen">
+        <span class="pre">TEMPLATE</span> GALLERY
+      </h1>
+
+      <div class="center-bdr gl-sp">&nbsp;</div>
+
+      <% @templates.each do |template| %>
+          <div class="template-box col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="thumbnail  no-any for-img">
+              <div class="full-cp <%= my_template?(template) ? 'added-caption' : 'caption' %>">
+                <div class="pr-ac-btn" style="<%= 'width: 191px' if admin_signed_in? %>">
+                  <div class="btn-group btn-group-sm " role="group" aria-label="...">
+                    <% unless my_template? template %>
+                        <%= link_to template do %>
+                            <%= button_tag 'PREVIEW', class: 'image-thumbnail btn btn-primary', data: {title: template.name, src: template.image.url(:thumb), width: 300, height: 200, price: 'Free'} %>
+                        <% end %>
+                    <% end %>
+
+                    <% if admin_signed_in? %>
+                        <%= link_to edit_template_path(template) do %>
+                            <button type="button" class="btn btn-info"> EDIT</button>
+                        <% end %>
+                    <% end %>
+
+                <% if my_template? template %>
+                  <!--<div class="added-text">ADDED</div>-->
+                <% else %>
+                    <% template_ids = current_cart.line_items.map {|li| li.template_id } %>
+                    <% if template.price > 0 %>
+                        <%= form_tag(line_items_path, :method => "post", :remote => true) do %>
+                            <%= hidden_field_tag(:template_id, template.id) %>
+                            <%= submit_tag("Add to Cart") %>
+                        <% end %>
+                    <% else %>
+                        <%= link_to add_to_my_template_path(template.id), class: 'active-btn', data: {template_id: template.id, colors: template.color_codes.join(',')} do %>
+                            <button type="button" class="btn btn-success">&nbsp; &nbsp; ADD &nbsp; &nbsp;</button>
+                        <% end %>
+                    <% end %>
+
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <%= image_tag template.image.url(:thumb), alt: '', class: 'template_image' %>
+        </div>
+
+            <% if my_template? template %>
+                <div class="added-text">ADDED</div>
+            <% end %>
+
+            <div class="tem-info">
+              <div class="cv-name col-lg-12">
+                <div class="cv-color">
+                  <% template.color_codes.each do |color| %>
+                      <i class="fa fa-circle" style="color: <%= "##{color}" %>"></i>
+                  <% end %>
+                </div>
+                <h6><%= template.name %></h6>
+              </div>
+
+              <!--<div class="price pull-right"><h3>$</h3><h2>5</h2></div>-->
+            </div>
+          </div>
+      <% end %>
+    </div>
+
+    <div class="col-lg-3 col-sm-3 col-md-3 hidden-xs"></div>
+
+    <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ads">-->
+    <!--<a href="javascript:void(0);"><img alt="" class="img-responsive pull-right" src="/assets/logistics-745552207c3c73c1016b03c7c41e9345.png" /></a>-->
+    <!--<a href="javascript:void(0);"><img alt="" class="img-responsive pull-right" src="/assets/logistics-745552207c3c73c1016b03c7c41e9345.png" /></a>-->
+    <!--<a href="javascript:void(0);"><img alt="" class="img-responsive pull-right" src="/assets/logistics-745552207c3c73c1016b03c7c41e9345.png" /></a>-->
+    <!--</div>-->
+  </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("[rel='tooltip']").tooltip();
+
+        $('.thumbnail').hover(
+                function () {
+                    $(this).find('.caption').fadeIn(250); //.fadeIn(250)
+                },
+                function () {
+                    $(this).find('.caption').fadeOut(250); //.fadeOut(205)
+                }
+        );
+    });
+
+    $(window).ready(function () {
+        $('.image-thumbnails').mediaPreview({
+            loading_text: 'Loading, please wait...',
+            flvplayer: 'http://www.mewsoft.com/jquery/media-preview/flvplayer.swf',
+            offset: 20
+        });
+    });
+</script>

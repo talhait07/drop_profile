@@ -1,0 +1,54 @@
+<div id="contact_us_modal">
+
+    <%= form_for AdminContact.new, class: 'well span8', remote: true do |f| %>
+        <div class="field-areas">
+          <div class="form">
+            <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+              <div class="form-group">
+                <%#= f.label :name %>
+                <%= f.text_field :name, class: 'form-control pull-left fd-tht-size', required: true, placeholder: 'Name', title: 'Name', rel: 'tooltip' %>
+              </div>
+            </div>
+            <span class="clearfix"></span>
+
+            <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+              <div class="form-group">
+                <%#= f.label :email %>
+                <%= f.email_field :email, class: 'form-control pull-left fd-tht-size', required: true, placeholder: 'Email', title: 'Email', rel: 'tooltip' %>
+              </div>
+            </div>
+            <span class="clearfix"></span>
+
+            <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+              <div class="form-group">
+                <%#= f.label :category %>
+                <%= f.select :category, AdminContact::CATEGORIES.map { |cat| [cat.last, cat.last] }, {prompt: 'Select a category'}, {class: 'form-control pull-left fd-tht-size', required: true, placeholder: 'Select Category', title: 'Category', rel: 'tooltip'} %>
+              </div>
+            </div>
+            <span class="clearfix"></span>
+
+            <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+              <div class="form-group">
+                <%#= f.label :title %>
+                <%= f.text_field :title, class: 'form-control pull-left fd-tht-size', required: true, placeholder: 'Title', title: 'Title', rel: 'tooltip' %>
+              </div>
+            </div>
+            <span class="clearfix"></span>
+
+            <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+              <div class="form-group">
+                <%#= f.label :body, 'Contact Body:' %>
+                <%= f.text_area :body, placeholder: 'Write Contact Body Here', class: 'form-control', title: 'Body', rel: 'tooltip' %>
+              </div>
+            </div>
+            <span class="clearfix"></span>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    <% end %>
+  </div>
+

@@ -1,0 +1,40 @@
+<%= form_for current_user.overview, remote: true, authenticity_token: true do |f| %>
+  <div class="field-areas">
+    <div class="form">
+      <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <div class="form-group">
+          <%= f.text_area :objective, placeholder: 'Write Objective Here', class: 'form-control', title: 'Objective', rel: 'tooltip', id: 'objective--rte', rows: 10, style: 'height: auto' %>
+        </div>
+      </div>
+
+      <!--<div class="col-sm-12 col-md-12 col-xs-12">-->
+        <!--<div class="form-group">-->
+          <%#= f.text_area :cover_letter, placeholder: 'Write Cover Letter Here', class: 'form-control', title: 'Cover Letter', rel: 'tooltip', id: 'cover-letter-rte' %>
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+  </div>
+  <span class="clearfix"></span>
+
+  <div class="btn-group pull-right center-xs">
+    <%= button_tag type: 'submit', class: 'btn btn-large default-button' do %>
+      <i class="fa fa-floppy-o"></i> Save
+    <% end %>
+
+    <%= button_tag type: 'reset', class: 'btn btn-large default-button' do %>
+      <i class="fa fa-floppy-o"></i> Reset
+    <% end %>
+  </div>
+  <span class="clearfix"></span>
+<% end %>
+
+<br>
+
+<span class="clearfix"></span>
+
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+  <div id="objective_suggestion">
+    <%= render 'sample_objective' %>
+  </div>
+</div>
+<span class="clearfix"></span>

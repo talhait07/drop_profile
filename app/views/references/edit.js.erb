@@ -1,0 +1,6 @@
+$('#reference-form-container').html('<%=j render partial: 'references/form', locals: {reference: @reference} %>');
+$('#add-new-reference').hide();
+
+$("html, body").animate({ scrollTop: $('#reference-form-container').offset().top }, 1000);
+
+$("[rel='tooltip']").tooltip();

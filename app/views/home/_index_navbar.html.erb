@@ -1,0 +1,40 @@
+<!-- BEGIN DIV #TOP-NAVBAR -->
+<nav id="top-navbar" class="navbar navbar-default navbar-fixed-top fade out" role="navigation">
+
+  <!-- Navbar header contains logo-navbar and toggle button -->
+  <div class="navbar-header">
+
+    <!-- Button .navbar-toggle -->
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button><!-- end of Button .navbar-toggle -->
+
+    <!-- Navbar logo -->
+    <%= link_to image_tag(t("#{site_name}.header_logo"), alt: 'logo', class: 'navbar-logo'), user_signed_in? ? user_root_path : root_path, class: 'navbar-brand' %>
+    <!--<a class="navbar-brand" href="#home"><img class="navbar-logo" src="img/navbar-logo.png" alt="Navbar logo"></a>-->
+
+  </div><!-- end of div .navbar-header -->
+
+  <!-- Div .navbar-collapse contains the list items, it collapse when you resize to mobile size -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+    <!-- Ul .nav contains the menu list such as home, features, ect. -->
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-home">Home</li>
+      <li class="nav-feat">Features</li>
+      <li class="nav-acti">Templates</li>
+      <li class="nav-why">About</li>
+      <li class="nav-desc">Describe</li>
+      <li class="nav-resu"><%= t("#{site_name}.main_key") %></li>
+      <li class="nav-scre">Blog</li>
+      <li class="nav-cont">Contact</li>
+    </ul>
+    <!-- end of ul .nav -->
+
+  </div><!-- end of div .navbar-collapse -->
+
+</nav>
+<!-- END OF DIV #TOP-NAVBAR -->

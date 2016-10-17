@@ -1,0 +1,425 @@
+<% content_for :head do %>
+    <script type="text/javascript">
+        window.ayboll=(function(d,s,id){
+            var js,fjs=d.getElementsByTagName(s)[0],t=window.ayboll||{};
+            if(d.getElementById(id))return;js=d.createElement(s);
+            js.id=id;
+            js.src="//edge.ayboll.com/ayboll/js/widget.js";
+            fjs.parentNode.insertBefore(js,fjs);
+            t._e=[];
+            t.ready=function(f){
+                t._e.push(f);
+            }; return t;
+        }(document,"script","ayboll-wjs"));
+    </script>
+<% end %>
+<div class="container-fluid ds-bg">
+  <div class="container">
+    <%= flash_message %>
+    <!--<div class="col-lg-3 col-sm-3 col-md-3 hidden-xs"></div>-->
+    <!--<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">-->
+      <!--<div class="pull-left look-for">-->
+        <!--<h1>looking for job?</h1>-->
+      <!--</div>-->
+      <!--<div class="pull-right">-->
+        <!--<%#= link_to 'SEARCH JOBS', 'http://jobsflyer.com', class: 'btn-search' %>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-lg-3 col-sm-3 col-md-3 hidden-xs"></div>-->
+	<span class="clearfix"></span>
+
+    <div class="col-lg-10 col-md-10 col-sm-10  col-xs-12 mg-tp">
+
+
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+
+        <div class="photo-main">
+        <%= link_to image_tag(current_user.profile_photo_link, alt: '', class: 'img-responsive img-circle'), 'javascript:void(0);', id: 'profile_photo' %>
+          <div class="cap-my-photo">
+          <div class="caption-off">
+            <%= link_to image_tag('camera-photo.png') %>
+          </div>
+          <a href="javascript:void(0);"  class="caption-on" id="profile_photo">
+
+            <%= image_tag('camera-photo.png') %> Change Photo
+
+          </a>
+         </div>
+      </div>
+      </div>
+
+
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <h2 class="name">
+          <%= current_user.full_name %>
+          <!--<span class="pull-right status">-->
+            <!--<i class="fa green fa-circle"></i> Active-->
+          <!--</span>-->
+          <!--<br/>-->
+
+        </h2>
+
+        <div class="sc-icon">
+          <% if current_profile.facebook_link.present? %>
+            <span>
+              <%= link_to "https://#{current_profile.facebook_link}" do %>
+                <i class="fa fa-facebook"></i>
+              <% end %>
+            </span>
+          <% end %>
+
+          <% if current_profile.google_plus_link.present? %>
+            <span>
+              <%= link_to "https://#{current_profile.google_plus_link}" do %>
+                <i class="fa fa-google-plus"></i>
+              <% end %>
+            </span>
+          <% end %>
+
+          <% if current_profile.linkedin_link.present? %>
+            <span>
+              <%= link_to "https://#{current_profile.linkedin_link}" do %>
+                <i class="fa fa-linkedin"></i>
+              <% end %>
+            </span>
+          <% end %>
+
+          <% if current_profile.twitter_link.present? %>
+            <span>
+              <%= link_to "https://#{current_profile.twitter_link}" do %>
+                <i class="fa fa-twitter"></i>
+              <% end %>
+            </span>
+          <% end %>
+        </div>
+        <span class="clearfix"></span>
+        <% if current_profile.title.present? %>
+        <div class="info-box">
+          <div class="pull-left label-name">
+            Designation :
+          </div>
+          <div class="pull-left info">
+            <%= current_profile.title.present? ? current_profile.title : '' %>
+          </div>
+        </div>
+        <% end %>
+
+
+        <% if current_profile.phone.present? %>
+        <div class="info-box">
+          <div class="pull-left label-name">
+            Contact Number :
+          </div>
+          <div class="pull-left info">
+            <%= current_profile.phone %>
+          </div>
+        </div>
+        <% end %>
+
+        <% if current_user.email.present? %>
+        <div class="info-box">
+          <div class="pull-left label-name">
+            Email :
+          </div>
+          <div class="pull-left info">
+            <%= current_user.email %>
+          </div>
+        </div>
+        <% end %>
+
+        <% if current_profile.location.present? %>
+        <div class="info-box">
+          <div class="pull-left label-name">
+            Location :
+          </div>
+          <div class="pull-left info">
+            <%= current_profile.location %>
+          </div>
+        </div>
+        <% end %>
+
+        <% if current_user.current_experience_education.present? %>
+        <div class="info-box">
+          <div class="pull-left label-name">
+            Current :
+          </div>
+          <div class="pull-left info">
+            <%= current_user.current_experience_education %>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="pull-left label-name">
+            Previous :
+          </div>
+          <div class="pull-left info">
+            <%= current_user.previous_experience_education %>
+          </div>
+        </div>
+        <% end %>
+
+        <% if current_user.last_education %>
+        <div class="info-box">
+          <div class="pull-left label-name">
+            Education :
+          </div>
+          <div class="pull-left info">
+            <%= current_user.last_education %>
+          </div>
+        </div>
+
+            <!--<button type="button" class="btn btn-success btn-sm cus-temp-btn" data-toggle="modal" data-target="#template_customise">Customise Template</button>-->
+        <% end %>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <h3 class="com-percent">
+          Profile Completed
+          <div class="border-center"></div>
+        </h3>
+        <div id="profile-progress-show" class="progress-show"></div>
+        <div class="profile-progress-percent"><%= "#{(current_user.profile.completeness)}%" %></div>
+        <%= link_to "UPDATE #{t("#{site_name}.main_key").upcase}", edit_profile_path(current_profile), class: 'up-btn btn-success', :data => { :no_turbolink => true } %>
+        <%= link_to "VIEW #{t("#{site_name}.main_key").upcase}", profile_path(current_profile), class: 'up-btn view-button', :data => { :no_turbolink => true } %>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="white-bar">
+        <div class="public-profile-editable-link">
+        <div class="url-info pull-left">
+          <i class="fa fa-globe"></i>
+          <%= link_to profile_path(current_profile), id: 'user_public_url', target: '_blank' do %>
+              <%= root_url %><div id="u-name-show"><%= current_user.username %></div>
+          <% end %>
+        </div>
+
+        <div id="user-name-edit" style="display:none;">
+          <%= text_field_tag 'profile[username]', current_user.username, class: 'ch-username' %>
+          <button type="submit" id="username-update-btn" class="btn btn-success btn-xs edit-na ">Save</button>
+          <span id="username-error-msg"></span>
+        </div>
+        <button type="button" id="username-edit-btn" style="display: inline-block;" class="btn btn-xs edit-na username-edit-btn btn-info" title="Edit">Edit</button>
+        </div>
+
+        <div class="url-option pull-right" style="overflow: visible">
+          <span>
+            <%= link_to 'EMAIL <i class="fa fa-envelope-o"></i>'.html_safe, email_resume_path, id: 'email_resume', :data => { :no_turbolink => true } %>
+          </span>
+
+          <span class="dropdown fa-fight">
+            <%= link_to 'javascript:void(0);', data: {toggle: 'dropdown'}, class: 'dropdown-toggle' do %>
+                SHARE <i class="fa fa-share"></i>
+            <% end %>
+            <ul class="dropdown-menu" style="left: -90px; top: 20px;">
+              <li>
+                <%= link_to "https://www.facebook.com/dialog/feed?app_id=1456591877929410&display=popup&caption=#{current_user.full_name}&picture=#{URI.encode current_user.photo.present? ? full_url(current_user.photo.url(:large)) : ''}&link=#{URI.encode profile_url(current_profile)}&redirect_uri=#{URI.encode profile_url(current_profile)}&description=Find out resume templates and create yours from Dropresume", class: 'link_share' do %>
+                  <i class="fa fa-facebook-square c-blue"></i> Facebook
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "https://twitter.com/intent/tweet?text=#{URI.encode('I find a awesome resume template in Dropresume. You can also see the template from')}&url=#{URI.encode profile_url(current_profile)}", class: 'link_share' do %>
+                  <i class="fa fa-twitter-square c-sky"></i> Twitter
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "https://www.linkedin.com/shareArticle?mini=true&url=#{URI.encode profile_url(current_profile)}&title=#{URI.encode current_user.full_name}&summary=#{URI.encode 'I find a awesome resume template in Dropresume.'}&source=#{URI.encode profile_url(current_profile)}", class: 'link_share' do %>
+                  <i class="fa fa-linkedin-square c-in"></i> Linkedin
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "https://plus.google.com/share?url=#{URI.encode profile_url(current_profile)}", class: 'link_share' do %>
+                  <i class="fa fa-google-plus-square c-red"></i> Google Plus
+                <% end %>
+              </li>
+            </ul>
+          </span>
+
+          <span>
+            <%= link_to profile_path(current_profile, format: 'pdf'), title: 'Print', target: '_blank' do %>
+                PRINT <i class="fa fa-print"></i>
+            <% end %>
+          </span>
+
+          <span>
+            <%= link_to profile_path(current_profile, format: 'pdf'), title: 'Download Pdf', target: '_blank' do %>
+                DOWNLOAD <i class="fa fa-download"></i>
+            <% end %>
+          </span>
+        </div>
+      </div>
+
+      <%= render partial: 'dashboard/my_templates' %>
+
+      <%#= link_to (image_tag 'banner.png', alt: '', class: 'img-responsives'), 'javascript:void(0);' %>
+
+      <!--<div id="ayboll-w-900"></div>-->
+      <script type="text/javascript">
+//          window._aybollw=window._aybollw||[];
+//          _aybollw.push(["id", "900"]);
+      </script>
+
+      <!--<h1 class="title-line">ENDORSE</h1>-->
+      <!--<div class="border-btm"></div>-->
+      <!--<span class="clearfix"></span>-->
+
+      <%= render partial: 'dashboard/blog_posts', locals: { blog_posts: @blog_posts } %>
+
+      <h1 class="title-line">
+        <span class="pre">MY</span> VISITOR
+      </h1>
+      <div class="border-btm"></div>
+
+      <div id="visitor-world-map" class="mar-r20"></div>
+      <span class="clearfix"></span>
+    </div>
+
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ads mg-tp">
+      <% (1..10).each do |module_number| %>
+      <div id="<%= "module#{module_number}" %>" class="organization_module">
+        <% @add_modules[module_number].each_with_index do |add, index| %>
+            <%= link_to image_tag(add.image.url, alt: '', class: 'img-responsive pull-right'), add.url, style: "display: #{ index != 0 ? 'none' : 'block' }", target: '_blank' %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render partial: 'modals/change_profile_photo' %>
+<%#= render partial: 'modals/send_resume_by_email' %>
+
+<script>
+    $("[rel='tooltip']").tooltip();
+
+    $('.photo-main').hover(
+            function(){
+                $(this).find('.caption-on').fadeIn(250); //.fadeIn(250)
+                $(this).find('.caption-off').fadeOut(250); //.fadeIn(250)
+            },
+            function(){
+                $(this).find('.caption-on').fadeOut(250); //.fadeOut(205)
+                $(this).find('.caption-off').fadeIn(250); //.fadeOut(205)
+            }
+    );
+
+</script>
+<script>
+  function show_username_box() {
+    if(document.getElementById('user-name-edit').style.display=='none') {
+      document.getElementById('user-name-edit').style.display='inline-block';
+      document.getElementById('username-edit-btn').style.display='none';
+      document.getElementById('u-name-show').style.display='none';
+    }
+    return false;
+  }
+  function hide_username_box() {
+    if(document.getElementById('user-name-edit').style.display=='inline-block') {
+      document.getElementById('username-edit-btn').style.display='inline-block';
+      document.getElementById('user-name-edit').style.display='none';
+      document.getElementById('u-name-show').style.display='inline';
+    }
+    return false;
+  }
+
+  function change_ad_img($parent){
+      var visible_img = $parent.find('a:visible');
+
+      if(visible_img.length > 0) {
+          var next_child = visible_img.next();
+          visible_img.css('display', 'none');
+          if(next_child.length > 0) {
+              next_child.css('display', 'block');
+          } else {
+              $parent.find('a:first').css('display', 'block');
+          }
+      }
+  }
+
+  setInterval(function(){
+      <% (1..10).each do |module_number| %>
+        change_ad_img($('<%= "#module#{module_number}" %>'));
+      <% end %>
+  }, 10000);
+
+  $(document).ready(function () {
+    $("[rel='tooltip']").tooltip();
+
+    $('.thumbnail').hover(
+      function () {
+        $(this).find('.caption').fadeIn(250); //.fadeIn(250)
+      },
+      function () {
+        $(this).find('.caption').fadeOut(250); //.fadeOut(205)
+      }
+    );
+
+    $(document).on('click', '#username-update-btn', function(){
+        var new_username = $('#profile_username').val();
+        console.log(new_username);
+        if(new_username != $('#u-name-show').html()){
+            $.ajax({
+                dataType: "json",
+                type: "PUT",
+                url: "<%= update_username_profile_url(current_profile) %>",
+                data: { profile: { username: new_username } },
+                success: function(data){
+                    if(data.hasOwnProperty('error')){
+                        $('#username-error-msg').html(data.error);
+                    } else {
+                        $('#profile_username').val(data.username);
+                        $('#u-name-show').html(data.username);
+                        $('#user_public_url').attr('href', data.public_url);
+                        hide_username_box();
+                        $('#username-error-msg').html('');
+                    }
+                },
+                fail: function(){
+                    hide_username_box();
+                }
+            });
+        } else {
+            hide_username_box();
+        }
+    });
+
+    $(document).on('click', '#username-edit-btn', function(){
+        show_username_box();
+    });
+
+    $(document).on('click', '#profile_photo', function(){
+        $('#change_profile_photo_modal').modal('show');
+    });
+
+
+
+    $('#profile-progress-show').circleProgress({
+        value: <%= (current_user.profile_completeness.to_f/100.to_f).to_f %>,
+        size: 70,
+        thickness: 7,
+        fill: {
+            color: "#<%= site_name == 'hubcv' ? '33aa8c' : '029cdc' %>"
+        }
+    });
+
+    var visitorData = {
+        <% separator = '' %>
+        <% @unique_visitors.each do |country_code, visitors| %>
+            <%= "#{separator}'#{country_code}': #{visitors.count}".html_safe %>
+            <% separator = ',' %>
+        <% end %>
+    };
+
+    $('#visitor-world-map').vectorMap({
+      map: 'world_mill_en',
+      series: {
+        regions: [{
+          values: visitorData,
+          scale: ['#C8EEFF', '#0071A4'],
+          normalizeFunction: 'polynomial'
+        }]
+      },
+      onRegionTipShow: function(e, el, code){
+        el.html(el.html()+' (Visitor - ' + visitorData[code]+')');
+      }
+    });
+  });
+</script>

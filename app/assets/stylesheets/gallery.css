@@ -1,0 +1,198 @@
+.filter-search {
+  min-height: 50px;
+  background: #25272a;
+}
+
+.filter-nav {
+  border-bottom: none;
+  margin-top: 13px;
+}
+
+.filter-nav a {
+  background: none repeat scroll 0 0 #25272a !important;
+  color: #fff;
+  font-family: raleway;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0 !important;
+}
+
+.filter-nav li > a, .filter-nav li > a:hover, .filter-nav li > a:focus {
+  border: none;
+  background: none;
+}
+
+.filter-nav li ul {
+  margin-top: 13px !important;
+  background: #25272a;
+  font-family: raleway;
+  font-weight: bold;
+}
+
+.filter-nav li ul li a {
+  color: #fff;
+  text-indent: 14px;
+  font-family: raleway;
+  font-weight: bold;
+}
+
+.filter-nav li ul li a:hover {
+  color: #eee;
+  background: #029cdc !important;
+}
+
+.banner-top {
+  margin-top: 15px;
+  margin-bottom: 30px;
+  display: block;
+}
+
+.cen {
+  text-align: center;
+}
+
+.center-bdr {
+  border-top: 4px solid #029cdc;
+  margin: auto;
+  width: 10%;
+}
+
+.no-any {
+  padding: 0px !important;
+  margin: 0px;
+  background: none !important;
+}
+
+.template-box {
+  max-width: 266px;
+  overflow: hidden;
+  margin-right: 25px;
+  margin-bottom: 25px;
+}
+
+.template-box:nth-child(4n+2) {
+  margin-right: 0;
+}
+
+.tem-info {
+  background: none repeat scroll 0 0 rgba(37, 39, 42, 0.5);
+  display: block;
+  padding: 5px;
+  margin-top: -50px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  z-index: 1000;
+}
+
+.full-cp {
+  height: 100%;
+  border-top: 3px solid #029cdc;
+}
+
+.cv-name h6 {
+  color: #fff;
+  font-family: raleway;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.cv-name span {
+  color: #fff;
+  margin-left: 10px;
+}
+
+.cv-name .cv-color {
+  margin-top: 5px;
+}
+
+.price {
+  color: #fff;
+  margin-top: 7px;
+  overflow: hidden;
+  width: 20%;
+}
+
+.price h2 {
+  margin: 0px;
+  float: right;
+}
+
+.price h3 {
+  margin: 7px 9px 0 0;
+  float: right;
+}
+
+.cv-name i {
+  font-size: 17px;
+  text-indent: 2px;
+}
+
+.black {
+  color: black;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
+
+@media screen and (width: 1024px) {
+  .template-box {
+    max-width: 215px;
+  }
+}
+
+@media screen and (width: 980px) {
+  .template-box {
+    max-width: 161px;
+  }
+}
+
+@media screen and (width: 800px) {
+  .template-box {
+    max-width: 161px;
+  }
+}
+
+@media screen and (width: 768px) {
+  .template-box {
+    max-width: 161px;
+  }
+}
+
+@media screen and (width: 640px) {
+  .template-box {
+    margin-right: 39px;
+  }
+}
+
+@media screen and (width: 480px) {
+  .template-box {
+    max-width: 199px;
+  }
+}
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+   
+   
+   
+   
+   
+   
+   

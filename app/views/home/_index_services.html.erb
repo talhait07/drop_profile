@@ -1,0 +1,73 @@
+<!-- BEGIN DIV #SERVICES -->
+<div id="services">
+
+  <!-- Div #services title -->
+  <h1 class="wow bounceIn" data-wow-offset="100">Our - <strong>Blog</strong></h1>
+
+  <!-- Container colored line -->
+  <div class="container-colored-line wow bounceIn" data-wow-offset="200">
+
+    <!-- Colored line -->
+    <hr class="colored-line">
+
+    <!-- Additional colored line -->
+    <div class="add-colored-line"></div>
+
+  </div><!-- end of div .container-colored-line -->
+
+  <!-- Div #screenshot description -->
+  <em class="wow fadeInDown" data-wow-offset="200">Keep updated with our career blog!</em>
+
+  <div class="container-services row">
+
+    <% blog_posts.each_with_index do |blog, i| %>
+      <% if i == 3
+           break
+         end
+      %>
+      <div class="col-md-4">
+        <div class="services-icon blog-image wow bounceIn" data-wow-offset="300">
+          <%= image_tag blog['feature_image'] %>
+        </div>
+        <p class="services-detail wow fadeInLeft" data-wow-offset="300">
+          <%= link_to truncate(blog['title'].html_safe, :length => 43), blog['post_link'], target: '_blank' %><br>
+          <%= truncate(blog['description'].html_safe, :length => 140) %>
+        </p>
+      </div>
+    <% end %>
+
+    <!--<div class="col-md-4">-->
+      <!--<div class="services-icon icon-heart wow bounceIn" data-wow-offset="300">-->
+      <!--</div>-->
+      <!--<p class="services-detail wow fadeInLeft" data-wow-offset="300">-->
+        <!--Just little description.<br>-->
+        <!--Excepteur sint occaecat cupidatat non-->
+        <!--proident<br> sunt in culpa qui officia.-->
+      <!--</p>-->
+    <!--</div>-->
+
+    <!--<div class="col-md-4">-->
+      <!--<div class="services-icon icon-eye wow bounceIn" data-wow-offset="350">-->
+      <!--</div>-->
+      <!--<p class="services-detail wow fadeInLeft" data-wow-offset="350">-->
+        <!--Just little description.<br>-->
+        <!--Ut enim ad minim veniam,-->
+        <!--quis nostrud<br> exercitation ullamco laboris.-->
+      <!--</p>-->
+    <!--</div>-->
+
+    <!--<div class="col-md-4">-->
+      <!--<div class="services-icon icon-sun2 wow bounceIn" data-wow-offset="400">-->
+        <!--<div class="effect"></div>-->
+      <!--</div>-->
+      <!--<p class="services-detail wow fadeInLeft" data-wow-offset="400">-->
+        <!--Oh look! You also got this lovely effect!<br>-->
+        <!--Duis aute irure dolor in-->
+        <!--cillum dolore<br> eu fugiat nulla pariatur.-->
+      <!--</p>-->
+    <!--</div>-->
+
+  </div>
+
+</div>
+<!-- END OF DIV #SERVICES -->

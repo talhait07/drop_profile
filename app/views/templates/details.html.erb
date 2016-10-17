@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User Name:</strong>
+  <%= @template.user.full_name %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @template.name %>
+</p>
+<p>
+  <strong>Style:</strong>
+  <%= @template.style %>
+</p>
+<p>
+  <strong>Price:</strong>
+  <%= @template.price %>
+</p>
+<p>
+  <strong>Colors:</strong>
+  <%= @template.colors %>
+</p>
+<!--<p>-->
+  <!--<strong>Approved:</strong>-->
+  <!--<%#= @template.is_approved %>-->
+<!--</p>-->
+<p>
+  <strong>Published:</strong>
+  <%= @template.is_published %>
+</p>
+<p>
+  <strong>Partial Name:</strong>
+  <%= @template.formatted_file %>
+</p>
+<!--<p>-->
+  <!--<strong>Status:</strong>-->
+  <!--<%#= @template.status %>-->
+<!--</p>-->
+<p>
+  <strong>Image:</strong><br/>
+  <%= image_tag @template.image.url(:thumb) %>
+</p>
+
+<%#= link_to 'Download uploaded file', @template.uploaded_file.url %>
+<%= link_to 'Print', template_path(@template, format: :pdf), target: '_blank' %> |
+<%= link_to 'Edit', edit_template_path(@template) %> |
+<%= link_to 'Back', templates_path %>

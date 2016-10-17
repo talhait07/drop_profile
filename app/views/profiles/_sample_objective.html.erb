@@ -1,0 +1,48 @@
+<div class="heading heading-v1">
+  <h1><span>Sample Objective Statements</span></h1>
+
+</div>
+
+<ul class="timeline-v2" id="myList">
+  <% @sample_objective.each do |objective| %>
+      <li>
+        <time class="cbp_tmtime" datetime="">
+            <%=raw objective.tag_list.map { |t| link_to "<span class='badge   badge-u'>#{t}</span>".html_safe, tag_path(t), remote: true }.join(' ') %>
+        </time>
+        <i class="cbp_tmicon rounded-x hidden-xs"></i>
+        <div class="cbp_tmlabel">
+          <h2><%= link_to "Use this", set_objective_profiles_path(:oid => objective), class: 'btn btn-info  btn-sm', remote: true %></h2>
+
+          <p> <%= objective.objective %></p>
+        </div>
+      </li>
+  <% end %>
+
+</ul>
+
+<div class="text-center">
+  <div id="loadMore" class="btn  btn-info btn-sm">Show More</div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var usedObjective;
+        size_li = $("#myList li").size();
+        x = 3;
+        $('#myList li:lt(' + x + ')').show();
+        $('#loadMore').click(function () {
+            x = (x + 3 <= size_li) ? x + 3 : size_li;
+            $('#myList li:lt(' + x + ')').show();
+        });
+
+        $('#loadMore').on('click', function(){
+            $.ajax({
+                url: "<%= url_for  set_objective_profiles_path() %>",
+                dataType: "script"
+            });
+
+        });
+    });
+</script>
+
+

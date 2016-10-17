@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<div class="col-lg-8 col-lg-offset-2 ">
+  <div class="panel custom-panel">
+    <div class="panel-heading drop-bg">
+      <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <span>Item</span>
+      </div>
+      <div class="col-lg-5  col-sm-5 col-md-5 col-xs-5">
+        <span>Name</span>
+      </div>
+      <div class="col-lg-4  col-sm-4 col-md-4 col-xs-4">
+        <span>Price</span>
+      </div>
+    </div>
+
+    <div class="panel-body cart-product ">
+      <% @cart.line_items.each do |item| %>
+        <div class="col-lg-12 each-cart-box clearfix">
+          <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+            <%= image_tag item.template.image.url(:thumb), class: 'img-responsive img-thumbnail' %>
+          </div>
+          <div class="col-lg-5 col-sm-5 col-md-5 col-xs-5">
+            <span><%= item.template.name %></span>
+          </div>
+          <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
+            <span class="cart-product-price "><%= "$#{item.unit_price}" %></span>
+          </div>
+      </div>
+      <% end %>
+
+      <div class="col-lg-12 clearfix">
+        <div class="col-lg-8 col-sm-8 col-md-8 col-xs-8">
+          <span class="to-text">Cart Total:</span>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
+          <p class="total-amount">  <b><%= "$#{@cart.total_price}" %></b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+  <div class="modal-footer cart-footer">
+    <%= button_to 'Delete Product', { action: 'destroy', id: @cart.id }, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-warning btn-sm' %>
+    <!--<button type="button" class=""></button>-->
+    <button type="submit" class="btn btn-success   btn-sm">Go To Check Out</button>
+  </div>
+</div>
+<div class="clearfix"></div>

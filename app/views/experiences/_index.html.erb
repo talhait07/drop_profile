@@ -1,0 +1,15 @@
+<div id="show_experiences">
+  <% if current_user.experiences.present? %>
+    <% current_user.experiences.each do |experience| %>
+      <%= render partial: 'experiences/experience_template', locals: { experience: experience } %>
+    <% end %>
+    <div class="btn-group center-xs mar-t20" id="add-new-experience">
+      <%= link_to new_experience_path, class: 'btn btn-large default-button', remote: true do %>
+        <i class="fa fa-plus-square"></i> Add New
+      <% end %>
+    </div>
+    <div id="experience-form-container" style="clear: both"></div>
+  <% else %>
+    <div id="experience-form-container" style="clear: both"><%= render partial: 'experiences/form', locals: {experience: Experience.new} %></div>
+  <% end %>
+</div>

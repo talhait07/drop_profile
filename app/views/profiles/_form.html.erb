@@ -1,0 +1,194 @@
+<!--<div class="bg-file-inputs pull-left">-->
+  <!--&lt;!&ndash;<div class="size-box">&ndash;&gt;-->
+    <!--<%#= link_to image_tag(current_user.profile_photo_link, class: 'profile-photo'), 'javascript:void(0);', class: 'size-box change-profile-photo' %>-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="up-text">-->
+  <!--<h4><%#= link_to current_user.photo.present? ? 'Change your profile photo' : 'Add your profile photo', 'javascript:void(0);', class: 'change-profile-photo' %></h4>-->
+<!--</div>-->
+<span class="clearfix"></span>
+
+<%= form_for @profile, remote: true, authenticity_token: true do |f| %>
+  <div class="field-areas">
+    <div class="form">
+      <%= fields_for @profile.user do |u| %>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= u.text_field :first_name, class: 'form-control pull-left fd-size', placeholder: 'First Name', title: 'First Name', rel: 'tooltip' %>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= u.text_field :last_name, class: 'form-control pull-right fd-size', placeholder: 'Last Name', title: 'Last Name', rel: 'tooltip' %>
+        </div>
+      </div>
+      <% end %>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :title, class: 'form-control pull-left fd-size', placeholder: 'Professional Headline', title: 'Professional Headline', rel: 'tooltip' %>
+          <!--<span class="help-block pull-left txt-left">Help text if necessary.</span>-->
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="date-form dates pull-right">
+          <div class="control-group">
+            <div class="controls">
+              <div class="input-group">
+                <%= f.text_field :date_of_birth, value: @profile.date_of_birth.try(:strftime, '%d-%m-%Y'), class: 'date-picker form-control txt-sze', placeholder: 'Date of Birth', title: 'Date of Birth', rel: 'tooltip' %>
+                <label for="education_start_date" class="input-group-addon btn">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.phone_field :phone, class: 'form-control pull-left fd-size', placeholder: 'Phone Number', title: 'Phone Number', rel: 'tooltip' %>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :web_link, class: 'form-control pull-right fd-size', placeholder: 'Your Website (Ex: http://example.com)', title: 'Your Website Link', rel: 'tooltip' %>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="options fd-size pull-left">
+          <label>Gender</label>
+          <%= f.radio_button :gender, 'male' %>
+          <label for="profile_gender_male"><span></span>Male</label>
+          <%= f.radio_button :gender, 'female' %>
+          <label for="profile_gender_female"><span></span>Female</label>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="options fd-size pull-right">
+          <label>Status</label>
+          <%= f.radio_button :status, 'married' %>
+          <label for="profile_status_married"><span></span>Married</label>
+          <%= f.radio_button :status, 'unmarried' %>
+          <label for="profile_status_unmarried"><span></span>UnMarried</label>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :address, class: 'form-control pull-left fd-size', placeholder: 'Address', title: 'Address', rel: 'tooltip', required: true %>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.country_select :country, { include_blank: 'Select Country'}, class: 'form-control pull-right fd-size', title: 'Country', rel: 'tooltip' %>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group" id="profile_state_wrapper">
+          <% if current_profile.country.present? %>
+              <%= f.subregion_select :state, current_profile.country, {prompt: 'Select State/Province'}, class: 'form-control pull-left fd-size', title: 'State', rel: 'tooltip' %>
+          <% else %>
+              <%= f.select :state, [[]], {include_blank: 'Select State'}, disabled: true, class: 'form-control pull-left fd-size', title: 'State', rel: 'tooltip' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :city, class: 'form-control pull-right fd-size', placeholder: 'Type City', title: 'City', rel: 'tooltip' %>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="date-form dates pull-left">
+          <div class="control-group">
+            <div class="controls">
+              <div class="input-group">
+                <%= f.label :facebook_link, 'https://', class: 'input-group-addon btn' %>
+                <%= f.text_field :facebook_link, class: 'form-control txt-sze', placeholder: 'Facebook Link', title: 'Facebook Link', rel: 'tooltip' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="date-form dates pull-right">
+          <div class="control-group">
+            <div class="controls">
+              <div class="input-group">
+                <%= f.label :twitter_link, 'https://', class: 'input-group-addon btn' %>
+                <%= f.text_field :twitter_link, class: 'form-control txt-sze', placeholder: 'Twitter Link', title: 'Twitter Link', rel: 'tooltip' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="date-form dates pull-left">
+          <div class="control-group">
+            <div class="controls">
+              <div class="input-group">
+                <%= f.label :linkedin_link, 'https://', class: 'input-group-addon btn' %>
+                <%= f.text_field :linkedin_link, class: 'form-control txt-sze', placeholder: 'Linkedin Link', title: 'Linkedin Link', rel: 'tooltip' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="date-form dates pull-right">
+          <div class="control-group">
+            <div class="controls">
+              <div class="input-group">
+                <%= f.label :google_plus_link, 'https://', class: 'input-group-addon btn' %>
+                <%= f.text_field :google_plus_link, class: 'form-control txt-sze', placeholder: 'Google Plus Link', title: 'Google Plus Link', rel: 'tooltip' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="btn-group pull-right center-xs mar-t20">
+        <%= button_tag type: 'submit', class: 'btn btn-large default-button' do %>
+          <i class="fa fa-floppy-o"></i> Save
+        <% end %>
+
+        <%= button_tag type: 'reset', class: 'btn btn-large default-button' do %>
+          <i class="fa fa-floppy-o"></i> Reset
+        <% end %>
+      </div>
+      <span class="clearfix"></span>
+    </div>
+  </div>
+<% end %>
+
+<%= render partial: 'modals/change_profile_photo' %>
+
+<script type="application/javascript">
+  $(document).ready(function(){
+      $(document).on('change', '#profile_country', function(){
+          var url = "/home/load_states?country_code=" + $(this).val();
+
+          $.ajax({
+              dataType: "script",
+              type: "GET",
+              url: url
+          });
+          return false;
+      });
+
+      $(document).on('click', '.change-profile-photo', function(){
+          $('#change_profile_photo_modal').modal('show');
+      });
+  });
+</script>

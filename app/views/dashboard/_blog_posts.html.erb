@@ -1,0 +1,20 @@
+<%# locals: blog_posts %>
+<% if blog_posts.present? %>
+    <h1 class="title-line">Blog</h1>
+    <div class="border-btm"></div>
+    <span class="clearfix"></span>
+
+    <% blog_posts.each_with_index do |post, i| %>
+      <% if i == 2
+           break
+         end
+      %>
+        <div class="blog_posts rig-size <%= cycle('pull-left', 'pull-right mar-r20') %>">
+          <h4 class="title normal-font"><%= link_to truncate(post['title'].html_safe, :length => 50), post['post_link'], target: '_blank' %></h4>
+          <%= image_tag post['feature_image'], class: 'img-responsive img-thumbnail' %>
+          <p class="excrtp description"><%= truncate(post['description'].html_safe, :length => 400) %></p>
+          <%= link_to 'Read More', post['post_link'], class: 'btn btn-small btn-info pull-right', target: '_blank' %>
+        </div>
+    <% end %>
+    <span class="clearfix"></span>
+<% end %>

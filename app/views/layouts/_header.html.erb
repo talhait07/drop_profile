@@ -1,0 +1,176 @@
+<div class="container-fluid">
+<!--  <header>
+    <div class="container">
+      <div class="col-lg-4 col-sm-4 col-md-4  col-xs-12">
+        <div class="logo">
+          <%#= link_to image_tag(t("#{site_name}.header_logo"), alt: 'logo', class: 'logo-img img-responsive'), root_path %>
+        </div>
+      </div>
+      <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
+        <div class="control-info">
+          <ul class="pull-right navbar-right top-bar">
+            <li>
+              <%#= link_to 'http://jobsflyer.com', class: 'btn btn-t-search active', target: '_blank' do %>
+                  <i class="fa fa-search"></i> Start A Talent Search
+              <%# end %>
+            </li>
+            <li class="dropdown">
+              <%= link_to 'JOBS', 'http://jobsflyer.com', class: 'dropdown-toggle for-hv', target: '_blank' %>
+            </li>
+            <li class="dropdown">
+              <%#= link_to "#{t("#{site_name}.main_key").upcase} TEMPLATES", templates_path, class: 'dropdown-toggle for-hv' %>
+            </li>
+            <%# if user_signed_in? %>
+                <li class="dropdown">
+                  <%#= link_to 'javascript:void(0);', class: 'dropdown-toggle for-hv', data: { toggle: 'dropdown' }, aria_expanded: true do %>
+                      <%#= image_tag current_user.profile_photo_link(:thumb), height: 32, width: 32 %>
+                      <span class="user-name"><%#= current_user.first_name %></span>
+                  <%# end %>
+
+                  <ul class="dropdown-menu top-spce">
+                    <%# if admin_signed_in? %>
+                        <li class="dropdown">
+                          <%#= link_to advertisements_path, class: 'dropdown-toggle for-hv' do %>
+                              <i class="fa fa-bullhorn"></i> ADVERTISEMENTS
+                          <%# end %>
+                        </li>
+                        <li class="dropdown">
+                          <%#= link_to new_template_path, class: 'dropdown-toggle for-hv' do %>
+                              <i class="fa fa-file-text"></i> NEW TEMPLATE
+                          <%# end %>
+                        </li>
+                    <%# end %>
+                    <li>
+                      <%#= link_to user_root_path, class: 'dropdown-toggle for-hv' do %>
+                          <i class="fa fa-tachometer"></i> DASHBOARD
+                      <%# end %>
+                    </li>
+                    <li>
+                      <%#= link_to edit_user_registration_path, class: 'dropdown-toggle for-hv' do %>
+                          <i class="fa fa-wrench"></i> SETTINGS
+                      <%# end %>
+                    </li>
+                    <li>
+                      <%#= link_to destroy_user_session_path, method: :delete, class: 'dropdown-toggle for-hv' do %>
+                          <i class="fa fa-sign-out"></i> SIGN OUT
+                      <%# end %>
+                    </li>
+                  </ul>
+                </li>
+            <%# else %>
+                <li>
+                  <%#= link_to 'LOG IN', new_user_session_path, class: 'for-hv' %>
+                  <%#= render partial: 'layouts/signin_dropdown' unless params[:controller] == 'devise/sessions' %>
+                </li>
+                <li class="f-sign-us">
+                  <%#= link_to 'SIGN UP', new_user_registration_path, class: 'for-hv' %>
+                </li>
+            <%# end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>-->
+  <header>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+<div class="col-xs-12">
+      <div class="navbar-header">
+
+        <%= link_to image_tag(t("#{site_name}.header_logo"), alt: 'logo', class: 'logo-img img-responsive'), user_signed_in? ? user_root_path : root_path %>
+        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle" type="button">
+          <span class="sr-only"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      </div>
+
+
+      <div class="navbar-collapse collapse" id="navbar" aria-expanded="false" style="">
+        <!--<ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Help</a></li>
+        </ul>-->
+
+        <ul class="nav navbar-nav navbar-right top-bar">
+          <li>
+            <a target="_blank" href="http://jobsflyer.com" class="btn btn-t-search active">
+              <i class="fa fa-search"></i> Start A Talent Search
+            </a>            </li>
+          <li>
+            <a target="_blank" href="http://jobsflyer.com" class="for-hv">JOBS</a>
+          </li>
+          <li>
+            <%= link_to "#{t("#{site_name}.main_key").upcase} TEMPLATES", templates_path, class: 'for-hv' %>
+          </li>
+
+          <li>
+            <%= link_to "BLOG", "http://blog.#{t("#{site_name}.site_name").downcase}.com", class: 'for-hv' %>
+          </li>
+          <li class="dropdown cart-icon">
+            <%= link_to (@total_count.present? && @total_count > 0) ? cart_path(session[:cart_id]) : 'javascript:void(0);' do %>
+              <i class="fa fa-shopping-cart"></i><span id="cart_count" ><%= @total_count > 0 ? @total_count : '' %></span>
+            <% end %>
+          </li>
+
+          <% if user_signed_in? %>
+          <li class="dropdown">
+            <%= link_to 'javascript:void(0);', class: 'dropdown-toggle for-hv', data: { toggle: 'dropdown' }, aria_expanded: true do %>
+            <%= image_tag current_user.profile_photo_link(:thumb), height: 32, width: 32 %>
+            <span class="user-name"><%= current_user.first_name %></span>
+            <% end %>
+
+            <ul class="dropdown-menu top-spce">
+              <% if admin_signed_in? %>
+              <li class="dropdown">
+                <%= link_to advertisements_path, class: 'dropdown-toggle for-hv' do %>
+                <i class="fa fa-bullhorn"></i> ADVERTISEMENTS
+                <% end %>
+              </li>
+              <li class="dropdown">
+                <%= link_to new_template_path, class: 'dropdown-toggle for-hv' do %>
+                <i class="fa fa-file-text"></i> NEW TEMPLATE
+                <% end %>
+              </li>
+              <% end %>
+              <li>
+                <%= link_to user_root_path, class: 'dropdown-toggle for-hv' do %>
+                <i class="fa fa-tachometer"></i> DASHBOARD
+                <% end %>
+              </li>
+              <li>
+                <%= link_to edit_user_registration_path, class: 'dropdown-toggle for-hv' do %>
+                <i class="fa fa-wrench"></i> SETTINGS
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-toggle for-hv' do %>
+                <i class="fa fa-sign-out"></i> SIGN OUT
+                <% end %>
+              </li>
+            </ul>
+          </li>
+          <% else %>
+          <li>
+            <%= link_to 'LOG IN', new_user_session_path, class: 'for-hv' %>
+            <%= render partial: 'layouts/signin_dropdown' unless params[:controller] == 'devise/sessions' %>
+          </li>
+          <li class="f-sign-us">
+            <%= link_to 'SIGN UP', new_user_registration_path, class: 'for-hv' %>
+          </li>
+          <% end %>
+        </ul>
+        <!--<form class="navbar-form navbar-right">
+          <input type="text" placeholder="Search..." class="form-control">
+        </form>-->
+      </div>
+</div>
+    </div>
+  </nav>
+  </header>
+</div>

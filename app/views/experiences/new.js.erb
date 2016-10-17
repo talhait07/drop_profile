@@ -1,0 +1,12 @@
+$('#experience-form-container').html('<%=j render partial: 'experiences/form', locals: {experience: @experience} %>');
+$('#add-new-experience').hide();
+
+$(".date-picker").datepicker({
+    dateFormat: "dd-mm-yy",
+    maxDate: 0,
+    changeMonth: true,
+    changeYear: true,
+    showOtherMonths: true,
+    selectOtherMonths: true
+});
+$("[rel='tooltip']").tooltip();

@@ -1,0 +1,50 @@
+<!-- BEGIN DIV #SCREENSHOT -->
+<div id="screenshot">
+
+  <!-- Div #screenshot title -->
+  <h1 class="wow bounceIn" data-wow-offset="100">Free <%= t("#{site_name}.main_key") %> Templates</h1>
+
+  <!-- Container colored line -->
+  <div class="container-colored-line wow bounceIn" data-wow-offset="200">
+
+    <!-- Colored line -->
+    <hr class="colored-line">
+
+    <!-- Additional colored line -->
+    <div class="add-colored-line"></div>
+
+  </div><!-- end of div .container-colored-line -->
+
+  <!-- Div #screenshot description -->
+  <em class="wow fadeInDown" data-wow-offset="200">Numerous modern, functional and creative <%= t("#{site_name}.main_keyword") %> templates</em>
+
+  <div class="container">
+
+    <!-- Screenshot main container, using owl carousel and nivo lightbox -->
+    <div id="owl-container-screenshot" class="owl-carousel">
+      <!-- Div #screenshot item -->
+
+      <!--show templates on home page-->
+      <% UserTemplate.select(:template_id).uniq.collect{|t| t.template}.each do |template| %>
+        <!--<div class="item">-->
+        <div class="itemofcarousel">
+          <%= link_to image_tag(template.image.url(:thumb), alt: 'Screenshot Image'), template_path(template) %>
+        </div>
+      <% end %>
+      <!--show templates on home page-->
+
+      <!--<div class="item">-->
+        <%#= link_to image_tag('ss/1.png', alt: 'Screenshot Image'), image_path('ss/1.png'), class: 'item', data: { lightbox_gallery: 'gallery1' } %>
+      <!--</div>-->
+
+
+    </div><!-- end of div ."owl-container-screenshot -->
+  </div>
+ <br/>
+  <div class="text-center">
+    <a href="<%= templates_path %>" class="get"><%= t("#{site_name}.main_key") %> Templates + </a>
+
+
+  </div>
+</div>
+<!-- END OF DIV #SCREENSHOT -->

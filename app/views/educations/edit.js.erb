@@ -1,0 +1,15 @@
+$('#education-form-container').html('<%=j render partial: 'educations/form', locals: {education: @education} %>');
+$('#add-new-education').hide();
+
+$("html, body").animate({ scrollTop: $('#education-form-container').offset().top }, 1000);
+
+$(".date-picker").datepicker({
+    dateFormat: "dd-mm-yy",
+    maxDate: 0,
+    yearRange: '1970:'+(new Date).getFullYear(),
+    changeMonth: true,
+    changeYear: true,
+    showOtherMonths: true,
+    selectOtherMonths: true
+});
+$("[rel='tooltip']").tooltip();

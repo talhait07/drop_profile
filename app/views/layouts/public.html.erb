@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= tag :meta, property: 'fb:app_id', content: CONFIG[:fb_app_id] %>
+  <%= tag :meta, property: 'og:site_name', content: 'Dropresume' %>
+  <%= tag :meta, property: 'og:type', content: 'dropresume:resume' %>
+  <%= tag :meta, property: 'og:title', content: 'Drop Resume :: Free Resume Builder | Free Resume Templates' %>
+  <%= tag :meta, property: 'og:url', content: root_url %>
+  <%= tag :meta, property: 'og:image', content: image_url('dropresume-cover-blue.png') %>
+  <%= tag :meta, property: 'og:description', content: "Drop resume - World's resume hub. Online free resume builder having lots of free resume templates." %>
+
+  <% if Rails.env.production? %>
+    <meta name="google-site-verification" content="QVKfOTF-hm_h1GiBL0FDg2OLTJK7Q67vaCUicCmvZzo" />
+  <% end %>
+
+  <title><%= t("#{site_name}.title") %></title>
+  <%= favicon_link_tag "#{site_name}.ico" %>
+  <%= stylesheet_link_tag 'public', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' %>
+  <%= stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Roboto:400,300' %>
+  <%= stylesheet_link_tag "public-#{site_name}", media: 'all', 'data-turbolinks-track' => true %>
+
+  <!--[if lt IE 9]>
+  <%= javascript_include_tag 'https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv' %>
+  <%= javascript_include_tag 'https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min' %>
+  <![endif]-->
+  <%= javascript_include_tag 'public', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= yield %>
+<%= render partial: 'layouts/public_footer' %>
+<%= render partial: 'layouts/google_tracker' if Rails.env.production? %>
+</body>
+</html>

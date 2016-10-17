@@ -1,0 +1,133 @@
+a{outline: none;}
+.right-column.wow.fadeInUp.animated{
+  .flash-message-div{
+    width: 72%;
+    margin-top: 5px;
+    .alert.alert-success.alert-dismissible{
+      .close{ margin-top: -18.8px; right: 20px;}
+    }
+  }
+  .signup-fl-names{
+    .col-lg-6{ padding-left: 0px}
+    .col-lg-6:last-of-type{
+      padding-right: 0;
+    }
+  }
+
+  .login-social-media-btn{
+    .col-lg-7{padding-left: 0}
+    .col-lg-5{padding-right: 0}
+    .n-social-signin {
+      display: block;
+      font-size: 16px;
+      line-height: 14px;
+      margin: 20px auto;
+      overflow: hidden;
+      text-align: center;
+    }
+    .lato-font {
+      font-family: "Lato",sans-serif;
+    }
+    .n-social-signin .fa-facebook-square {
+      color: #1f69b3;
+    }
+    .n-social-signin i {
+      font-size: 40px;
+      margin-left: 8px;
+    }
+    .n-social-signin a:hover{text-decoration: none;}
+    .n-social-signin .fa-facebook-square:hover {
+      color: #2c83da;
+    }
+    .n-social-signin .fa-twitter-square {
+      color: #017bb7;
+    }
+    .n-social-signin .fa-twitter-square:hover {
+      color: #0d9ce2;
+    }
+    .n-social-signin .fa-linkedin-square {
+      color: #90c9dc;
+    }
+    .n-social-signin .fa-linkedin-square:hover {
+      color: #6eb7cf;
+    }
+    .n-social-signin .fa-google_oauth2-square {
+      color: #fb201c;
+    }
+    .n-social-signin .fa-google_oauth2-square:hover {
+      color: #c20f0c;
+    }
+  }
+}
+.download-button-container{
+  h3 a{
+    color: #fff;
+    text-decoration: none;
+  }
+}
+.container-services{
+  .services-icon.blog-image.wow.bounceIn.animated > img, .effect > img{
+    width: auto;
+    height: 100px;
+  }
+  .services-icon{
+    border-radius: 0;
+    padding: 0;
+  }
+}
+.container-socmed.wow.fadeInUp.animated{
+  .fa > img {
+    height: 35px;
+    width: 35px;
+  }
+}
+#testimonials{
+  .most-viewed-resumes{
+    h1{color: #ffffff}
+
+    .container-other-download{margin-top: 10px}
+  }
+  .profile{
+    cursor: pointer;
+  }
+}
+.details-container-description .why-description.wow.fadeInRight{
+  text-align: justify;
+}
+#video{
+  .details.right-column{
+    padding-top: 40px;
+  }
+}
+.popover{
+  border-bottom: none;
+  background: #ffffff;
+  .popover-title{ font-weight: bold}
+  .popover-content{text-align: center}
+}
+.top-column .fa, .bottom-column .fa {
+  color: #777 !important;
+  font-size: 35px;
+  text-align: center;
+  display: block;
+}
+.background-solid h2{
+  color: white;
+  font-size: 3rem;
+  line-height: 5.1rem;
+  margin: 0;
+  opacity: 0.9;
+  text-align: left;
+}
+.signup{
+  height: 490px;
+}
+.download-button-container .centering{
+  a:hover{
+    color: #f1f1f1;
+  }
+}
+.login-description{
+  font-size: 16px;
+  span{font-size: 16px;}
+}

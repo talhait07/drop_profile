@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @overview.user_id %>
+</p>
+
+<p>
+  <strong>Objective:</strong>
+  <%= @overview.objective %>
+</p>
+
+<p>
+  <strong>Cover letter:</strong>
+  <%= @overview.cover_letter %>
+</p>
+
+<%= link_to 'Edit', edit_overview_path(@overview) %> |
+<%= link_to 'Back', overviews_path %>

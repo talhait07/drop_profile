@@ -1,0 +1,4 @@
+<% if @exist %>
+$('#message_container').html('<%=j render partial: 'shared/flash_message' %>');
+<% end %>
+$('#cart_count').html('<%= @total_count %>');

@@ -1,0 +1,38 @@
+<div class="media mar-b50">
+  <div class="media-body">
+    <% if current_user.skills.present? %>
+      <table class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <tr>
+          <th class="col-lg-3 col-sm-3 col-md-3 col-xs-3">Skill Name</th>
+          <th class="col-lg-5 col-sm-5 col-md-5 col-xs-5">Skill Level</th>
+          <th class="col-lg-1 col-sm-1 col-md-1 col-xs-1">Match</th>
+          <th class="col-lg-3 col-sm-3 col-md-3 col-xs-3">Actions</th>
+        </tr>
+
+        <% current_user.skills.each do |skill| %>
+          <tr>
+            <td><%= skill.name %></td>
+            <td><div class="raty-level-view" data-level="<%= skill.level %>"></div></td>
+            <td><%= skill.match %></td>
+            <td class="edit-delete">
+              <%= link_to edit_skill_path(skill), remote: true do %>
+                <i class="fa fa-pencil-square-o"></i> <span>Edit</span>
+              <% end %> |
+              <%= link_to skill_path(skill), class:'delete', method: :delete, remote: true do %>
+                <i class="fa fa-times"></i> <span>Delete</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+
+      <div class="btn-group center-xs mar-t20" id="add-new-skill">
+        <%= link_to new_skill_path, class: 'btn btn-large default-button', remote: true do %>
+          <i class="fa fa-plus-square"></i> Add New
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div id="skill-form-container"><%= render partial: 'skills/form', locals: {skill: Skill.new}  unless current_user.skills.present? %></div>

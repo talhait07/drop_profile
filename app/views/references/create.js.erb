@@ -1,0 +1,6 @@
+$('#message_container').html('<%=j render partial: 'shared/flash_message' %>');
+//$('html, body').animate({scrollTop: 0}, 500);
+
+<% if @reference.errors.blank? %>
+  $('#references_tab').html('<%=j render partial: 'references/index' %>');
+<% end %>

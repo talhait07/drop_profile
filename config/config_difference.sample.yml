@@ -1,0 +1,15 @@
+omniauth:
+  facebook:
+    APP_ID: '1456591877929410'
+    APP_SECRET: '7dd4ed3357bc66268240a399ba9e90bc'
+  twitter:
+    APP_ID: '6TeYQSaxCEjR2vLOvXMnX4RJI'
+    APP_SECRET: '4lgilXtgXMLnfvz98aQ2TaJmHNsxRt9AFchbp64RoYywVJOgvZ'
+  linkedin:
+    APP_ID: '75ngd1bhb7b6a8'
+    APP_SECRET: 'LKlCV4QmEmH5kqVj'
+  google_oauth2:
+    APP_ID: '507575606670-ulae31egijtdfhs45bssanm3godj2tt8.apps.googleusercontent.com'
+    APP_SECRET: 'KS1rXZ9jolKGp4zo0Mc6W8JA'
+blog:
+  recent_posts: 'http://localhost:3001/blog_api'

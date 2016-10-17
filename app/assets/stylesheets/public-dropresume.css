@@ -1,0 +1,97 @@
+#home .background-solid,
+#testimonials .background-solid,
+#downloads .background-solid,
+.righting input[type="submit"],
+.indicator,
+.indicator-right,
+.pricing h3,
+.check,
+.order {
+    background: #3498db;
+}
+
+.nav-active:after,
+.screen,
+.add-colored-line,
+.add-colored-line-two,
+.get,
+#nprogress .bar, 
+#contact p input,
+.subscribe,
+.owl-theme .owl-controls .owl-page.active span,
+.price-container {
+    background: #5FA9E3;
+}
+
+@media (min-width: 992px) {
+    
+    .top-column > div em,
+    .bottom-column > div em {
+        background: #5FA9E3;
+    }
+    
+}
+
+.colored-line, .colored-line-two {
+	border: 4px solid #5FA9E3;
+}
+
+
+.top-column > div:hover h4,
+.bottom-column > div:hover h4,
+.top-column > div:hover .icon,
+.bottom-column > div:hover .icon,
+.item-title, #nprogress .spinner:before,
+.login-button {
+    color:#5FA9E3 !important;
+
+}
+.icon,
+.nav-active{color: #fff;}
+
+#nprogress .spinner-icon {
+  border-top-color: #5FA9E3;
+  border-left-color: #5FA9E3;
+}
+
+#contact div input:focus,
+#contact div textarea:focus,
+.email:focus,
+.signup > input:focus,
+.login > input:focus {
+    border: 2px solid #5FA9E3;
+}
+
+.top-column > div em:before {
+    border-top: 14px solid #5FA9E3;
+}
+
+.bottom-column > div em:before {
+    border-bottom: 14px solid #5FA9E3;
+}
+
+.services-icon,
+.services-detail:first-line {
+    color: #3498db;
+}
+
+.services-icon .effect {
+    border: 1px solid #3498db;
+}
+.top-column > div:hover .fa, .bottom-column > div:hover .fa{
+  color: #5fa9e3 !important;
+}
+
+/*my custom css  monir for  home page */
+
+#top-navbar{background: #029cdc;}
+#top-navbar .navbar-logo{width: 41%;margin-left: 74px;}
+
+.navbar-default .navbar-nav > li{color: #fff;}
+.nav-active::after{
+    background: #fff;
+}
+.navbar-default .navbar-nav > li:hover, .navbar-default .navbar-nav > li:focus{color: #fff !important;}
+.priv-pol {
+    color: #777;
+}

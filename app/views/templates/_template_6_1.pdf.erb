@@ -1,0 +1,260 @@
+<%# locals: {template: Template object, color: string} %>
+<% profile = @user.profile %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title><%= "Resume | #{@user.full_name}" %></title>
+  <link href="<%= "#{CONFIG[:cdn_server_url]}/shared_files/css/bootstrap.min.css" %>" type="text/css" rel="stylesheet"/>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+  <link href="<%= "#{CONFIG[:cdn_server_url]}/template_6_1/css/style.css" %>" type="text/css" rel="stylesheet"/>
+  <link href="<%= "#{CONFIG[:cdn_server_url]}/template_6_1/css/style-pdf.css" %>" type="text/css" rel="stylesheet"/>
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+
+<body class="<%= "color-#{color}" %>">
+<div class="container">
+  <div class="page-header">
+    <div class="row">
+      <div class="col-xs-2">
+        <div class="logo">
+          <%= image_tag @user.profile_photo_link, alt: @user.full_name %>
+        </div>
+      </div>
+      <div class="col-xs-10 profile-owner">
+        <h1><%= @user.full_name %></h1>
+        <label><%= profile.title %></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="contacts">
+    <div class="row">
+      <div class="col-xs-4 online">
+        <div class="globe"><i class="fa fa-envelope-o"></i></div>
+
+        <div class="email"><%= @user.email %></div>
+      </div>
+      <div class="col-xs-3 phone">
+        <div class="mobile"></div>
+        <div class="home"><%= profile.phone %></div>
+        <!--<div class="office">+012478563</div>-->
+      </div>
+      <div class="col-xs-5 mail">
+        <div class="marker"></div>
+        <div class="address-line-1"><%= profile.address %></div>
+        <div class="address-line-2"><%= profile.location %></div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="profile">
+    <h2>
+      <div class="icon fo-icons"><i class="fa fa-user"></i></div>
+      <label>Objective</label> <span class="disk"></span>
+      <hr>
+    </h2>
+    <p><%= @user.overview.try(:objective) %></p>
+  </div>
+  <div class="row">
+    <div class="col-xs-6 no-padding" >
+      <div class="col-xs-12">
+        <div class="experiences">
+          <h2>
+            <div class="icon fo-icons"><i class="fa fa-briefcase"></i></div>
+            <label>Experience</label> <span class="disk"></span>
+            <hr>
+          </h2>
+          <% @user.experiences.sort{|a,b| b.start_date <=> a.start_date}.each do |experience| %>
+              <div class="experience">
+                <h3>
+                  <span class="edu-title"> <%= experience.company %></span>
+            <span class="duration">
+              <%= date_format experience.start_date, '%Y' %> -
+              <%= experience.current? ? 'Current' : date_format(experience.end_date, '%Y') %>
+            </span>
+                </h3>
+                <h4><%= "#{experience.designation}" %></h4>
+                <h5><i class="fa fa-globe"></i> <%= "#{experience.location}" %></h5>
+                <p><%= experience.description %></p>
+              </div>
+          <% end %>
+        </div>
+
+
+      </div>
+      <div class="col-xs-12">
+        <div class="educations">
+          <h2>
+            <div class="icon fo-icons"><i class="fa fa-graduation-cap"></i></div>
+            <label>Education</label> <span class="disk"></span>
+            <hr>
+          </h2>
+          <% @user.educations.each do |education| %>
+              <div class="education">
+                <h3>
+                  <span class="edu-title"><%= education.title %></span>
+            <span class="duration">
+              <%= date_format(education.end_date, '%Y') %> -
+              <%= education.current? ? 'Coutinue' : date_format(education.end_date, '%Y') %>
+            </span>
+                </h3>
+
+                <h4><%= education.major %> </h4>
+                <h5><%= education.institute %></h5>
+                <h6 class="ex-location">
+                  <i class="fa fa-map-marker globes pull-left"></i>
+                  <%= education.location %>
+                </h6>
+                <span class="clearfix"></span>
+                <span class="ex-score  "><%= "Score #{education.result}" %></span>
+                <p class="ex-description"><%= education.description %></p>
+              </div>
+          <% end %>
+        </div>
+
+
+      </div>
+      <div class="col-xs-12">
+        <div class="hobbies">
+          <h2>
+            <div class="icon fo-icons"><i class="fa fa-heartbeat"></i></div>
+            <label>Hobbies</label> <span class="disk"></span>
+            <hr>
+          </h2>
+
+          <div class="mention hobby col-xs-12  ">
+            <ul>
+              <% @user.hobbies_interests.each do |hobbies_interest| %>
+                  <li class="badge"><%= hobbies_interest.title %></li>
+              <% end %>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      <span class="clearfix"></span>
+    </div>
+    <div class="col-xs-6  no-padding">
+      <div class="professional skills">
+        <h2>
+          <div class="icon fo-icons"><i class="fa fa-wrench"></i></div>
+          <label>Professional Skills</label> <span class="disk"></span>
+          <hr>
+        </h2>
+        <% @user.skills.each do |skill| %>
+            <div class="skill">
+              <span class="disk"></span>
+              <label><%= skill.name %></label>
+              <div class="progress">
+                <div class="eraser"></div>
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= (skill.level || 0) * 20 %>"
+                     aria-valuemin="0" aria-valuemax="100" style="width: <%= "#{(skill.level || 0) * 20}%" %>">
+                  <span class="sr-only"><%= "#{(skill.level || 0) * 20}%" %> Complete</span>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+        <% end %>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-xs-12 no-padding">
+        <% if @user.languages.present? %>
+            <div class="languages skills">
+              <h2>
+                <div class="icon fo-icons"><i class="fa fa-language"></i></div>
+                <label>Languages</label> <span class="disk"></span>
+                <hr>
+              </h2>
+              <% @user.languages.each do |language| %>
+                  <div class="language col-xs-6 no-padding">
+                    <h3><%= language.name %></h3>
+
+                    <div class="skill">
+                      <span class="disk"></span>
+                      <label>Speaking</label>
+                      <ul  class="lan-skill-show">
+                        <% (1..language.speaking_level).each do %>
+                            <li><i class="fa fa-star"></i></li>
+                        <% end %>
+                        <% (1..(5-language.speaking_level)).each do %>
+                            <li><i class="fa fa-star-o"></i></li>
+                        <% end %>
+
+                      </ul>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="skill">
+                      <span class="disk"></span>
+                      <label>Writing</label>
+                      <ul  class="lan-skill-show">
+                        <% (1..language.writing_level).each do %>
+                            <li><i class="fa fa-star"></i></li>
+                        <% end %>
+                        <% (1..(5-language.writing_level)).each do %>
+                            <li><i class="fa fa-star-o"></i></li>
+                        <% end %>
+
+                      </ul>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="skill">
+                      <span class="disk"></span>
+                      <label>Listening</label>
+                      <ul  class="lan-skill-show">
+                        <% (1..language.listening_level).each do %>
+                            <li><i class="fa fa-star"></i></li>
+                        <% end %>
+                        <% (1..(5-language.listening_level)).each do %>
+                            <li><i class="fa fa-star-o"></i></li>
+                        <% end %>
+
+                      </ul>
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                  </div>
+              <% end %>
+            </div>
+        <% end %>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-xs-12 no-padding">
+
+        <div class="references">
+          <h2>
+            <div class="icon fo-icons"><i class="fa fa-user-plus"></i></div>
+            <label>References</label> <span class="disk"></span>
+            <hr>
+          </h2>
+          <% @user.references.each do |reference| %>
+              <div class="reference col-xs-12 col-xs-12 no-padding">
+                <h4><%= reference.name %></h4>
+                <h5><%= reference.company %></h5>
+                <h6><%= reference.designation %></h6>
+                <p  class="my_loc"><span aria-hidden="true" class="glyphicon glyphicon-map-marker"></span><%= reference.location %></p>
+                <p><span aria-hidden="true" class="glyphicon glyphicon-envelope"></span><%= reference.email %></p>
+                <p><span aria-hidden="true" class="glyphicon glyphicon-earphone"></span><%= reference.phone %></p>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+
+
+</div>
+</body>
+</html>

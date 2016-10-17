@@ -1,0 +1,5 @@
+<% if @user.errors.present? %>
+$('#user-info-container').html('<%=j render partial: 'dashboard/profile_form' %>');
+<% else %>
+$('#user-info-container').html('<%=j render partial: 'dashboard/profile_view' %>');
+<% end %>

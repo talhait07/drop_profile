@@ -1,0 +1,15 @@
+<div class="col-lg-12 flash-message-div">
+  <% flash.each do |key, msg| %>
+    <% if key == 'error' %>
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <%= msg.html_safe %>
+      </div>
+    <% else %>
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <%= msg %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

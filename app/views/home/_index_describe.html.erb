@@ -1,0 +1,89 @@
+<!-- BEGIN DIV #DESCRIBE -->
+<div class="brief" id="describe">
+
+  <!-- Begin div .row -->
+  <div class="row">
+
+    <!-- Div #why - left column -->
+    <div class="col-md-6 col-lg-6 left-column">
+      <h1 class="title wow fadeInLeft" data-wow-offset="150"><strong>Let</strong> the smart career start with the smart <%= t("#{site_name}.main_keyword") %></h1>
+
+      <!-- Container colored line two -->
+      <div class="container-colored-line-two wow bounceInLeft" data-wow-offset="170">
+
+        <!-- colored line two -->
+        <hr class="colored-line-two">
+
+        <!-- additional colored line two -->
+        <div class="add-colored-line-two"></div>
+      </div><!-- end of container colored line two -->
+
+      <!-- Div #describe description -->
+      <em class="description wow fadeInDown" data-wow-delay=".2s" data-wow-offset="150">Present your <%= t("#{site_name}.main_keyword") %> with <%= t("#{site_name}.site_name") %><br></em>
+
+      <!-- Div .container-item wraps 3 items, contains icon and text description -->
+      <div class="container-item">
+        <!-- First item of div #why -->
+        <div class="item">
+          <div class="icon icon-heart wow bounceIn" data-wow-offset="150"></div>
+          <p class="item-description wow fadeInRight" data-wow-offset="150">
+            Build <%= t("#{site_name}.main_keyword") %><br>
+            A catchy <%= t("#{site_name}.main_keyword") %> in just 5 minutes<br>
+          </p>
+        </div><!-- end of first item -->
+
+        <!-- Second item -->
+        <div class="item">
+          <div class="icon icon-thumbsup wow bounceIn" data-wow-offset="150"></div>
+          <p class="item-description wow fadeInRight" data-wow-offset="150">
+            Choose your free <%= t("#{site_name}.main_keyword") %> template<br>
+            We provide creative and modern <%= t("#{site_name}.main_keyword") %> templates that can make a difference
+          </p>
+        </div><!-- end of second item -->
+
+        <!-- Third item -->
+        <div class="item">
+          <div class="icon icon-help wow bounceIn" data-wow-offset="150"></div>
+          <p class="item-description wow fadeInRight" data-wow-offset="150">
+            Share <%= t("#{site_name}.main_keyword") %> easily<br>
+            Have a handy <%= t("#{site_name}.main_keyword") %> URL and share it across the World Wide Web
+          </p>
+        </div><!-- end of third item -->
+
+        <!-- Fourth item -->
+        <div class="item">
+          <div class="icon icon-arrow wow bounceIn" data-wow-offset="150"></div>
+          <p class="item-description wow fadeInRight" data-wow-offset="150">
+            Grow smart career<br>
+            Connect with others through the <%= t("#{site_name}.main_keyword") %> URL!
+          </p>
+        </div><!-- end of fourth item -->
+
+        <div class="container-other-download  wow bounceInLeft" data-wow-offset="150">
+          <a href="<%= templates_path %>" class="learn"><%= t("#{site_name}.main_key") %> Templates + </a>
+          <a href="<%= new_user_session_path %>" class="get">Make <%= t("#{site_name}.main_key") %></a>
+        </div>
+
+      </div><!-- end of div .container-item -->
+
+    </div><!-- end of div #describe - right column -->
+
+    <!-- Container why phone wraps two mockup phones -->
+    <div class="col-md-6 col-lg-6 container-phones right-column">
+
+      <!-- The second phone mockup -->
+      <div class="wow bounceInRight" data-wow-offset="150" data-wow-delay=".35s" data-wow-duration="1.2s">
+        <%= image_tag 'mockup/third-phone.png', alt: 'Apps mockup', class: 'second-phone', id: 'describe-second-phone' %>
+      </div>
+
+      <!-- The first phone mockup -->
+      <div class="wow bounceInRight" data-wow-offset="150" data-wow-duration="1.2s">
+        <%= image_tag 'mockup/third-phone.png', alt: 'Apps mockup', class: 'first-phone', id: 'describe-first-phone' %>
+      </div>
+
+    </div><!-- end of container-phones -->
+
+  </div><!-- end of div .row -->
+
+</div>
+<!-- END OF DIV #DESCRIBE -->

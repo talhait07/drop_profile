@@ -1,0 +1,89 @@
+* {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fade {
+  transition: all 300ms linear 700ms;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  opacity: 1;
+}
+
+.fade.out {
+  opacity: 0;
+}
+
+/* Make clicks pass-through */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  opacity: 1.0;
+  -webkit-transform: rotate(3deg) translate(0px, -4px);
+      -ms-transform: rotate(3deg) translate(0px, -4px);
+          transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+  position: fixed;
+  z-index: 1031;
+  top:50%;
+  left: 50% !important;
+  margin-top: -12.5px;
+  margin-left: -12.5px;
+}
+
+#nprogress .spinner:before {
+    content: "Please wait...";
+    position: absolute;
+    color: #5FA9E3;
+    font-family: 'Roboto';
+    font-weight: 300;
+    top: 35px;;
+    left: -25px;
+    right: 0;
+    bottom: 0;
+    width: 400px;
+}
+
+#nprogress .spinner-icon {
+  width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  border: solid 2px transparent;
+  border-top-color: #5FA9E3;
+  border-left-color: #5FA9E3;
+  border-radius: 50%;
+  -webkit-animation: nprogress-spinner 400ms linear infinite;
+          animation: nprogress-spinner 400ms linear infinite;
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0%   { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes nprogress-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

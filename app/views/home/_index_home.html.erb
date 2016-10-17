@@ -1,0 +1,162 @@
+<!-- BEGIN DIV #HOME -->
+<div id="home">
+
+  <!-- div .row wraps thes col-md, col-lg from bootstrap -->
+  <div class="row background-solid">
+
+    <!-- Big logo -->
+    <%= image_tag t("#{site_name}.logo"), alt: 'Big logo', class: 'big-logo' %>
+
+    <!-- Div #home .left-column -->
+    <div class="col-md-6 col-lg-6 left-column">
+
+      <!-- #Home title -->
+      <h1>Welcome to <strong><%= t("#{site_name}.home_main_title") %> </strong></h1>
+      <h2>Standing out with <%= t("#{site_name}.main_key") %> is easy now.</h2>
+
+      <!-- #Home description -->
+      <h5>Drop your <%= t("#{site_name}.main_keyword") %> here & Let your dream job find you.</h5>
+
+      <!-- The download button container makes the download button to be centered -->
+      <div class="download-button-container">
+
+        <!-- Download button -->
+        <h3 class="centering">
+          <%= link_to new_user_registration_path, id: 'make_resume' do %>
+            Make <%= t("#{site_name}.main_key") %> <i class='fa fa-arrow-right'></i>
+          <% end %>
+        </h3>
+
+        <h5 class="centering">It's FREE</h5>
+
+      </div><!-- End of download button container -->
+
+    </div>
+
+    <!-- Div #home .right-column -->
+    <div class="col-md-6 col-lg-6 right-column" data-wow-delay="2s">
+      <%#= devise_error_messages %>
+      <%#= flash_message %>
+      <%= form_for resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'login'} do |f| %>
+        <label>Email</label>
+        <!--<input class="username" type="text" placeholder="Username">-->
+        <%= f.email_field :email, placeholder: 'Email Address', required: true, class: 'username', id: 'login-email' %>
+
+        <label>Password</label>
+        <!--<input class="password" type="password" placeholder="Password">-->
+        <%= f.password_field :password, placeholder: 'Password', required: true, autocomplete: false, class: 'password' %>
+
+        <div class="row login-social-media-btn">
+          <div class="col-lg-7">
+            <%- if devise_mapping.omniauthable? %>
+              <div class="n-social-signin lato-font pull-left">
+
+                <%- resource_class.omniauth_providers.each do |provider| %>
+                  <%= link_to omniauth_authorize_path(resource_name, provider) do %>
+                    <i class="fa <%= "fa-#{provider}-square" %>"></i>
+                  <% end -%>
+                <% end -%>
+              </div>
+            <% end -%>
+          </div>
+          <div class="col-lg-5">
+            <p class="righting">
+              <input type="submit" value="Login">
+            </p>
+          </div>
+        </div>
+
+        <p class="login-description" style="float: left;">Need an account?
+          <span id="signup-button" class="login-button">Sign up</span>
+        </p>
+
+        <p class="login-description" style="float: right;">
+          <%= link_to 'Forgot Password?', new_password_path(resource_name), style: 'color: #999999' %>
+        </p>
+      <% end %>
+
+      <% users = User.all.collect{|u| u.username}.flatten.to_a %>
+      <%= form_for resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'signup'} do |f| %>
+        <p class="login-description">Already have an account?
+          <span class="login-button">Login</span>
+        </p>
+
+        <%= f.email_field :email, placeholder: 'Email Address', required: true, class: 'fullname', id: 'signup-email' %>
+
+        <!--<label>First Name</label>-->
+        <!--<input class="username" type="text" placeholder="Username">-->
+        <div class="row signup-fl-names">
+          <div class="col-lg-6">
+            <%= f.text_field :first_name, placeholder: 'First name', class: 'fullname fl-name', required: true %>
+          </div>
+          <div class="col-lg-6">
+            <%= f.text_field :last_name, placeholder: 'Last name', class: 'fullname fl-name', required: true %>
+          </div>
+        </div>
+
+        <!--<label>Username</label>-->
+        <!--<input class="password" type="password" placeholder="Password">-->
+        <%= f.text_field :username, placeholder: 'pick a unique username', required: true, class: 'username n-username', autocomplete: 'off' %>
+
+        <div id="username-uniqueness" data-users="<%= users %>"></div>
+
+        <!--<label>Password</label>-->
+        <!--<input class="password" type="password" placeholder="Password">-->
+        <%= f.password_field :password, placeholder: 'Password', required: true, autocomplete: 'off', class: 'password' %>
+
+        <!--<label>Password confirmation</label>-->
+        <!--<input class="password" type="password" placeholder="Password">-->
+        <%= f.password_field :password_confirmation, placeholder: 'Confirm Password', required: true, autocomplete: 'off', class: 'password' %>
+
+
+        <div class="row login-social-media-btn">
+          <div class="col-lg-7">
+            <%- if devise_mapping.omniauthable? %>
+              <div class="n-social-signin lato-font pull-left">
+
+                <%- resource_class.omniauth_providers.each do |provider| %>
+                  <%= link_to omniauth_authorize_path(resource_name, provider) do %>
+                    <i class="fa <%= "fa-#{provider}-square" %>"></i>
+                  <% end -%>
+                <% end -%>
+              </div>
+            <% end -%>
+          </div>
+          <div class="col-lg-5">
+            <p class="righting">
+              <input type="submit" value="Sign up">
+            </p>
+          </div>
+        </div>
+
+
+
+      <% end %>
+
+    </div><!-- end of div #home .right-column -->
+
+  </div><!-- end of div .background-solid -->
+
+
+</div><!-- end of div .row -->
+
+<!-- END OF DIV #HOME -->
+
+<script>
+  $(document).ready(function(){
+    var usernames = $('#username-uniqueness').data('users');
+
+    $( ".n-username" ).keyup(function() {
+      if( usernames.indexOf($('.n-username').val()) > -1 ){
+        document.getElementById('username-uniqueness').innerHTML = '<i class="fa fa-warning" style="margin-bottom: 15px;"></i> Username taken!'
+      }
+      else{
+        document.getElementById('username-uniqueness').innerHTML = '<i class="fa fa-check" style="margin-bottom: 15px;"></i> Username available!'
+      }
+      if ($('.n-username').val().length <= 0){
+        document.getElementById('username-uniqueness').innerHTML = ''
+      }
+    });
+
+  })
+</script>

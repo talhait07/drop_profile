@@ -1,0 +1,17 @@
+<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 n-area-bg">
+  <legend class="login-now lato-font">Resend confirmation instructions</legend>
+  <%= devise_error_messages %>
+  <%= flash_message %>
+  <%= form_for resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post } do |f| %>
+      <div class="control-group n-field lato-font">
+        <div class="controls">
+          <div class="input-prepend">
+            <%= f.email_field :email, placeholder: 'Email Address', required: true, autofocus: true %>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions n-field lato-font">
+        <%= f.submit 'Resend Email' %>
+      </div>
+  <% end %>
+</div>

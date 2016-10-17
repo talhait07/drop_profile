@@ -1,0 +1,31 @@
+<div id="change_profile_photo_modal" class="modal fade">
+  <div class="modal-dialog" style="width: 400px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title ch-title-ph">Change Profile Photo</h4>
+      </div>
+      <%= form_for current_profile, {url: update_profile_photo_profile_url(current_profile), method: :put} do |f| %>
+          <div class="modal-body text-center">
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+              <div class="fileinput-new thumbnail" style="width: 180px; height: 180px; background-image: url('<%= current_user.profile_photo_link %>') !important;"></div>
+              <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 180px; max-height: 180px;"></div>
+              <div>
+            <span class="btn btn-info btn-sm btn-file">
+              <span class="fileinput-new">Select image</span>
+              <span class="fileinput-exists">Change</span>
+              <%= f.file_field :photo, class: 'file_upload' %>
+            </span>
+                <a href="#" class="btn btn-warning btn-sm fileinput-exists" data-dismiss="fileinput">Remove</a>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-sm btn-success">Save changes</button>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

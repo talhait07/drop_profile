@@ -1,0 +1,5 @@
+<% if @resource_updated %>
+$('#user-info-container').html('<%=j render partial: 'dashboard/profile_view' %>');
+<% else %>
+$('#user-info-container').html('<%=j render partial: 'dashboard/profile_form' %>');
+<% end %>

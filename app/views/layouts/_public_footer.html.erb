@@ -1,0 +1,64 @@
+<!-- BEGIN FOOTER -->
+<footer>
+
+  <div class="col-m-12 col-lg-12">
+
+    <!-- Div #subscribe title -->
+    <h1 class="wow bounceIn" data-wow-offset="100">Subscribe <strong>now</strong>!</h1>
+
+    <!-- Container colored line -->
+    <div class="container-colored-line wow bounceIn">
+
+      <!-- colored line -->
+      <hr class="colored-line">
+
+      <!-- Additional line -->
+      <div class="add-colored-line white-line"></div>
+
+    </div><!-- end of Container colored line -->
+
+    <!-- Div #subscribe description -->
+    <em class="wow fadeInDown">Subscribe with us to get<br>special offers and updates.</em>
+
+    <!--  This is form tag. You can change the action attribute to your PHP file name
+            This tag also wrapper the email input and send button.
+    -->
+
+    <%= form_tag subscribe_path, method: :post, id: 'subscribe', class: 'input-wrapper wow bounceIn', remote: true do %>
+      <em class="subscribe-success">Thank you, we'll be in touch. <span class="icon-checkmark"></span></em>
+
+      <%= email_field_tag 'email', nil, class: 'email', placeholder: 'Your email address', required: true %>
+      <%= submit_tag 'Notify Me', class: 'subscribe' %>
+    <% end %>
+  </div>
+
+  <!-- Form description -->
+  <p class="promise wow fadeInDown">We promise we won't spam you</p>
+
+  <div class="container-socmed wow fadeInUp" data-wow-offset="50">
+    <ul class="socmed">
+      <li><a href="http://facebook.com/dropresumenow" class="fa fa-facebook" title="Facebook"></a></li>
+     <!--
+      <li><a href="#" class="fa fa-twitter" title="Twtitter"></a></li>
+      <li><a href="#" class="fa fa-github-alt" title="Github"></a></li>
+      <li><a href="#" class="fa fa-linkedin" title="Linkedin"></a></li>
+      -->
+      <li><%= link_to image_tag('digitalocean.png'), "https://www.digitalocean.com/?refcode=4bcf8686da15", :class => "fa", :title=>"Hosted in DigitalOcean" %></li>
+    </ul>
+
+    <p class="footer-detail">
+      <a href="http://dropresume.com/privacy-policy" class="priv-pol">Privacy Policy</a>
+      <span>|</span>
+      <a href="http://dropresume.com/terms-of-use" class="priv-pol">Terms of use</a>
+
+      <br/> <br/>
+      &copy;  <%= DateTime.now.year %>, <%= link_to site_name.capitalize, root_url %> &bull;
+
+       All Rights Reserved &bull; Powered By <a href="http://www.cybersolutions.io/" target="_blank">Cyber Solutions</a>
+    </p>
+
+
+  </div>
+
+</footer>
+<!-- END OF FOOTER -->

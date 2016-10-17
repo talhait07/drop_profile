@@ -1,0 +1,15 @@
+<div id="show_educations">
+  <% if current_user.educations.present? %>
+    <% current_user.educations.each do |education| %>
+      <%= render partial: 'educations/education_template', locals: { education: education } %>
+    <% end %>
+    <div class="btn-group center-xs mar-t20" id="add-new-education">
+      <%= link_to new_education_path, class: 'btn btn-large default-button', remote: true do %>
+        <i class="fa fa-plus-square"></i> Add New
+      <% end %>
+    </div>
+    <div id="education-form-container" style="clear: both"></div>
+  <% else %>
+    <div id="education-form-container" style="clear: both"><%= render partial: 'educations/form', locals: {education: Education.new} %></div>
+  <% end %>
+</div>

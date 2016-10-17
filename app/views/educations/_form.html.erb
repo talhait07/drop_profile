@@ -1,0 +1,90 @@
+<%# locals: {education: Education.new or Education.find params[:id]} %>
+<%= form_for education, remote: true, authenticity_token: true do |f| %>
+  <div class="field-areas">
+    <div class="form">
+      <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :title, class: 'form-control pull-left fd-tht-size', placeholder: 'Title', required: true,  title: 'Title', rel: 'tooltip' %>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :institute, class: 'form-control pull-left fd-size', placeholder: 'Institute', required: true,  title: 'Institute', rel: 'tooltip' %>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :location, class: 'form-control pull-right fd-size', placeholder: 'Location', required: true,  title: 'Location', rel: 'tooltip' %>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :major, class: 'form-control pull-left fd-size', placeholder: 'Major', required: true,  title: 'Major', rel: 'tooltip' %>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :result, class: 'form-control pull-right fd-size', placeholder: 'Result',  title: 'Result', rel: 'tooltip' %>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="date-form dates">
+          <div class="control-group">
+            <div class="controls ">
+              <div class="input-group">
+                <%= f.text_field :start_date, value: education.start_date.try(:strftime, '%d-%m-%Y'), class: 'date-picker form-control txt-sze', placeholder: 'Start Date', required: true,  title: 'Start Date', rel: 'tooltip' %>
+                <label for="education_start_date" class="input-group-addon btn">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="date-form dates pull-right">
+          <div class="control-group ">
+            <div class="controls">
+              <div class="input-group">
+                <%= f.text_field :end_date, value: education.end_date.try(:strftime, '%d-%m-%Y'), class: 'date-picker form-control txt-sze', placeholder: 'End Date',  title: 'End Date keep blank if continue', rel: 'tooltip' %>
+                <label for="education_end_date" class="input-group-addon btn">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </label>
+                <div class="pull-right till-today">
+                  <%= f.check_box :current %>
+                  <%= f.label :current, nil, class: 'current-checkbox-label' do %>
+                    <span></span> Current
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <div class="form-group">
+          <%= f.text_area :description, placeholder: 'Write Description Here (Optional)', class: 'form-control',  title: 'Description (Optional)', rel: 'tooltip' %>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="btn-group pull-right center-xs">
+        <%= button_tag type: 'submit', class: 'btn btn-large default-button' do %>
+            <i class="fa fa-floppy-o"></i> Save
+        <% end %>
+        <%= button_tag type: 'reset', class: 'btn btn-large default-button' do %>
+            <i class="fa fa-refresh"></i> Reset
+        <% end %>
+      </div>
+      <span class="clearfix"></span>
+    </div>
+  </div>
+<% end %>

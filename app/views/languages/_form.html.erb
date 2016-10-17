@@ -1,0 +1,40 @@
+<%# locals: language %>
+<%= form_for language, remote: true, authenticity_token: true do |f| %>
+  <div class="field-areas" style="min-height: 400px;">
+    <div class="form">
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :name, class: 'form-control pull-left fd-size', placeholder: 'Language Name', title: 'Language Name', rel: 'tooltip', required: true %>
+          <span class="help-block pull-left  txt-left">Ex - English</span>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-12">
+        <div class="col-lg-4">
+          <label>Speaking level: </label>
+          <div class="raty-level-input" data-name="language[speaking_level]" data-level="<%= language.speaking_level %>"></div>
+        </div>
+        <div class="col-lg-4">
+          <label>Writing level: </label>
+          <div class="raty-level-input" data-name="language[writing_level]" data-level="<%= language.writing_level %>"></div>
+        </div>
+        <div class="col-lg-4">
+          <label>Listening level: </label>
+          <div class="raty-level-input" data-name="language[listening_level]" data-level="<%= language.listening_level %>"></div>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="btn-group pull-right center-xs mar-t20">
+        <%= button_tag type: 'submit', class: 'btn btn-large default-button' do %>
+            <i class="fa fa-floppy-o"></i> Save
+        <% end %>
+        <%= button_tag type: 'reset', class: 'btn btn-large default-button reset-form' do %>
+            <i class="fa fa-refresh"></i> Reset
+        <% end %>
+      </div>
+      <span class="clearfix"></span>
+    </div>
+  </div>
+<% end %>

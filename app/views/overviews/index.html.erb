@@ -1,0 +1,29 @@
+<h1>Listing overviews</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Objective</th>
+      <th>Cover letter</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @overviews.each do |overview| %>
+      <tr>
+        <td><%= overview.user_id %></td>
+        <td><%= overview.objective %></td>
+        <td><%= overview.cover_letter %></td>
+        <td><%= link_to 'Show', overview %></td>
+        <td><%= link_to 'Edit', edit_overview_path(overview) %></td>
+        <td><%= link_to 'Destroy', overview, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Overview', new_overview_path %>

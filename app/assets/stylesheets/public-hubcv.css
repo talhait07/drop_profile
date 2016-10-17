@@ -1,0 +1,94 @@
+#home .background-solid,
+#testimonials .background-solid,
+#downloads .background-solid,
+.righting input[type="submit"],
+.indicator,
+.indicator-right,
+.pricing h3,
+.check,
+.order {
+    background: #2ab27b;
+}
+
+.nav-active:after,
+.screen,
+.add-colored-line,
+.add-colored-line-two,
+.get,
+#nprogress .bar, 
+#contact p input,
+.subscribe,
+.owl-theme .owl-controls .owl-page.active span,
+.price-container {
+    background: #2ab27b;
+}
+
+@media (min-width: 992px) {
+    
+    .top-column > div em,
+    .bottom-column > div em {
+        background: #2ab27b;
+    }
+    
+}
+
+.colored-line, .colored-line-two {
+	border: 4px solid #2ab27b;
+}
+
+
+.top-column > div:hover h4,
+.bottom-column > div:hover h4,
+.top-column > div:hover .icon,
+.bottom-column > div:hover .icon,
+.item-title, #nprogress .spinner:before,
+.login-button {
+    color:#2ab27b !important;
+}
+.icon,
+.nav-active{color: #fff;}
+.top-column > div:hover .fa, .bottom-column > div:hover .fa{
+  color:#2ab27b !important;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: #2ab27b;
+  border-left-color: #2ab27b;
+}
+
+#contact div input:focus,
+#contact div textarea:focus,
+.email:focus,
+.signup > input:focus,
+.login > input:focus {
+    border: 2px solid #2ab27b;
+}
+
+.top-column > div em:before {
+    border-top: 14px solid #2ab27b;
+}
+
+.bottom-column > div em:before {
+    border-bottom: 14px solid #2ab27b;
+}
+
+.services-icon,
+.services-detail:first-line {
+    color: #2ecc71;
+}
+
+.services-icon .effect {
+    border: 1px solid #2ecc71;
+}
+.services-detail.wow.fadeInLeft.animated > a{
+  color: #2ab27b;
+}
+/*my custom css  monir for  home page */
+
+#top-navbar{background: #2ecc71;}
+#top-navbar .navbar-logo{width: 35%;}
+.navbar-default .navbar-nav > li{color: #fff;}
+.nav-active::after{
+    background: #fff;
+}
+.navbar-default .navbar-nav > li:hover, .navbar-default .navbar-nav > li:focus{color: #fff !important;}

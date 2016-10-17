@@ -1,0 +1,23 @@
+<%# locals: { reference: Reference object } %>
+<div class="col-lg-12 a-bdr">
+  <div class="col-lg-12  bar-bg">
+    <div class="col-lg-10 tp-title">
+      <h3><%= reference.name %></h3>
+    </div>
+    <div class="col-lg-2 text-right edit-btn">
+      <%= link_to edit_reference_path(reference), remote: true do %>
+          <i class="fa fa-pencil-square"></i>
+      <% end %>
+      <%= link_to reference_path(reference), method: :delete, remote: true do %>
+          <i class="fa fa-times"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-lg-12 pd-area">
+    <h4 class="title"><%= reference.company %></h4>
+    <h5 class="sub-title"><%= reference.designation %></h5>
+    <p>Location: <%= reference.location %></p>
+    <p>Email: <%= reference.email %></p>
+    <p>Phone: <%= reference.phone %></p>
+  </div>
+</div>

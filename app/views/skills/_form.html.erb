@@ -1,0 +1,35 @@
+<%# locals: skill %>
+<%= form_for skill, remote: true, authenticity_token: true do |f| %>
+  <div class="field-areas" style="min-height: 400px;">
+    <div class="form">
+      <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div class="form-group">
+          <%= f.text_field :name, class: 'form-control pull-left fd-size', placeholder: 'Skill Name', title: 'Skill Name', rel: 'tooltip', required: true %>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-12">
+        <div class="col-lg-4">
+          <label>Skill level: </label>
+          <div class="raty-level-input" data-name="skill[level]" data-level="<%= skill.level %>"></div>
+        </div>
+        <div class="col-lg-4">
+          <%= f.check_box :match %>
+          <label for="skill_match"><span></span>Job Match</label>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="btn-group pull-right center-xs mar-t20">
+        <%= button_tag type: 'submit', class: 'btn btn-large default-button' do %>
+            <i class="fa fa-floppy-o"></i> Save
+        <% end %>
+        <%= button_tag type: 'reset', class: 'btn btn-large default-button reset-form' do %>
+            <i class="fa fa-refresh"></i> Reset
+        <% end %>
+      </div>
+      <span class="clearfix"></span>
+    </div>
+  </div>
+<% end %>

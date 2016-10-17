@@ -1,0 +1,299 @@
+$hub_cv_color: #33aa8c;
+$text-color: #3eddb5;
+
+body.hubcv {
+  // START: Overwrite bootstrap.css
+  .form-control:focus {
+    border-color: $hub_cv_color;
+  }
+  // END: Overwrite bootstrap.css
+
+  // START: gallery.css
+  .filter-nav li ul li a:hover {
+    background: #029cdc !important;
+  }
+  .center-bdr {
+    border-top: 4px solid $hub_cv_color;
+  }
+  .full-cp {
+    border-top: 3px solid $hub_cv_color;
+  }
+  // END: gallery.css
+
+  // START: home.css
+  a {
+    color: $text-color;
+  }
+  header {
+    background: none repeat scroll 0 0 $hub_cv_color;
+//    background-color: $hub_cv_color;
+  }
+  .top-bar li a {
+    color: #ffffff;
+  }
+  .top-bar li a:hover {
+    color: $text-color;
+  }
+  .f-sign-us {
+    border: 1px solid $hub_cv_color;
+  }
+  .f-sign-us:hover {
+    background: none repeat scroll 0 0 $hub_cv_color;
+    color: #fff;
+  }
+  .f-sign-us a:hover {
+    color: #fff !important;
+  }
+  .btn-t-search {
+    background: none repeat scroll 0 0 $hub_cv_color !important;
+    border: 1px solid $hub_cv_color !important;
+  }
+  .top-bar li .sign_in_form a:hover {
+    color: $hub_cv_color;
+  }
+  .line-two, .clor, .clors, .clor-rs, .res-link, .blu, .time, .blck span {
+    color: $hub_cv_color;
+  }
+  .btn-s-up {
+    background: none repeat scroll 0 0 $hub_cv_color;
+    border-bottom: 2px solid $hub_cv_color;
+    color: #fff;
+  }
+  .btn-s-up:hover {
+    background: none repeat scroll 0 0 $text-color;
+    border-bottom: 2px solid $text-color;
+  }
+  //Dashboard css
+  .cv-btn, .btn-help, .bgg-col > div button, .default-button, .default-button:active, .btn-info-color {
+    background-color: $hub_cv_color;
+  }
+  .add-skills, .btn-t-search {
+    background-color: $hub_cv_color !important;
+  }
+  .name, .com-percent, .url-info, .url-option a:hover, .up-text h4, .tp-title h3, .edit-btn a:hover, .hv-sub li a,
+  .for-fld h4, .for-fld form label, .text-centered {
+    color: $hub_cv_color;
+  }
+  .add-more a, .top-spce li a {
+    color: $hub_cv_color !important;
+  }
+  .blu-bdr, .border-btm, .field-ares, .field-ares input, .u-nser-n {
+    border-color: $hub_cv_color;
+  }
+  .menu-left li:hover, .menu-left li.active {
+    background-color: $hub_cv_color;
+  }
+  .menu-left li:hover .carets, .menu-left li.active a i {
+    color: $hub_cv_color;
+  }
+  .btn-search {
+    background-color: $hub_cv_color;
+    border-bottom: 2px solid $hub_cv_color ;
+  }
+  .form-group > input.form-control:focus {
+    border: 2px solid $hub_cv_color !important;
+    overflow: hidden;
+  }
+  .form-group > textarea.form-control:focus {
+    border: 2px solid $hub_cv_color;
+  }
+  .tp-spc {
+    border-bottom: 3px solid $hub_cv_color;
+  }
+  .lin-signup {
+    border-bottom: 1px solid $hub_cv_color;
+    color: $hub_cv_color;
+  }
+  .up-btn {
+    color: #ffffff;
+  }
+  .view-button {
+    background-color: $hub_cv_color;
+    color: #ffffff;
+  }
+  .view-button:hover {
+    background-color: $text-color;
+  }
+  // END: home.css
+
+  // START: login.css
+  .n-field input[type="email"], .n-field input[type="password"] {margin: 10px auto;}
+  .n-signup-field input[type="submit"]{background: none repeat scroll 0 0 $hub_cv_color;}
+  .n-signup-field input[type="submit"]:hover{background: none repeat scroll 0 0 #15806d;}
+  .n-field input[type="submit"]{background: none repeat scroll 0 0 $hub_cv_color;}
+  .n-field input[type="submit"]:hover{background: none repeat scroll 0 0 #15806d;}
+  // END: login.css
+
+  // START: custom.css
+  .form-control:focus {
+    border-color: $hub_cv_color;
+  }
+  .filter-nav li ul li a:hover {
+    background: $hub_cv_color !important;
+  }
+  .center-bdr {
+    border-top: 4px solid $hub_cv_color;
+  }
+  .full-cp {
+    border-top: 3px solid $hub_cv_color;
+  }
+  // END: custom.css
+}
+body.hubcv.n-blu-bg {background: none repeat scroll 0 0 $hub_cv_color;}
+
+
+.tab-pane {
+  border: none;
+  height: auto;
+}
+
+.edit_profile {
+  .form-group {
+    position: relative;
+    .url-suggester {
+      color: #333333;
+      font-family: raleway;
+      font-size: 17px;
+      font-weight: normal;
+      text-indent: 10px;
+      position: absolute;
+      left: 0;
+      top: 8px;
+    }
+
+    &.twitter {
+      .url-suggester {
+        left: 25px;
+      }
+
+      input {
+        padding-left: 148px;
+      }
+    }
+
+    &.linkedin {
+      .url-suggester {
+        left: 0px;
+      }
+
+      input {
+        padding-left: 44px;
+      }
+    }
+
+    &.google-plus {
+      .url-suggester {
+        left: 25px;
+      }
+
+      input {
+        padding-left: 191px;
+      }
+    }
+
+    &.facebook {
+      input {
+        padding-left: 169px;
+      }
+    }
+  }
+}
+
+.navbar-inverse {
+  background-color: transparent;
+  border-color: transparent;
+  .navbar-nav > li > a{
+    color: #fff;
+  }
+  :hover{color:#b4e1f5 !important;}
+  :focus{color:#b4e1f5 !important;}
+
+}
+
+.navbar-brand {
+  width: auto;
+}
+
+.btn-t-search {
+  max-width: 200px;
+}
+
+.f-sign-us{
+  max-width: 90px;
+}
+
+.top-bar li a {
+ padding: 4px;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background: transparent;
+}
+
+.timeline-v2 > li .cbp_tmicon {
+  background: #72c02c none repeat scroll 0 0;
+
+}
+.timeline-v2 > li .cbp_tmtime span {
+  color: #72c02c;
+  position: relative;
+  text-align: center;
+  top: 9px;
+}
+
+.dropdown-toggle {
+  margin-top: -5px;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+  .top-bar li {
+    display: inline-block;
+    width: 90%;
+  }
+
+  .navbar-brand {
+    width: 209px;
+  }
+
+  .edit_profile .form-group.twitter .url-suggester,
+  .edit_profile .form-group.google-plus .url-suggester{
+    left: 0;
+  }
+
+
+}
+
+@media (max-width: 459px) {
+  h4.line-three {
+    font-size: 21px;
+  }
+}
+
+
+
+@media (min-width: 768px) {
+  .edit_profile .form-group.twitter .url-suggester,
+  .edit_profile .form-group.google-plus .url-suggester{
+    left: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .f-sign-us {
+    margin-top: -2px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .navbar-right {
+    margin-top: 25px;
+  }
+}
+
+
+
+

@@ -1,0 +1,238 @@
+<div class="container-fluid ds-bg">
+  <div class="container ">
+    <div id="message_container">
+      <%= render partial: 'shared/flash_message' %>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="input-area-bg edit-profile">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 txt-center">
+        <h3 class="my-cv">Update Resume</h3>
+      </div>
+      <div class="col-lg-10 col-sm-10 col-md-10 col-xs-12 ">
+        <div class="text-right">
+          <div class="btn-group sp-all">
+            <%= link_to 'My Resume', profile_path(current_profile), class: 'btn my-cv-btn' %>
+          </div>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 center-xs">
+        <!-- tabs left -->
+        <div class="tabbable tabs-left">
+          <ul class="nav menu-left">
+            <li class="active">
+              <%= link_to '#personal_info_tab', data: {toggle: 'tab'} do %>
+                  <i class="fa fa-bars"></i>
+                  &nbsp;Personal data
+                  <i class="fa fa-caret-right carets active pull-right"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to '#overview_tab', data: {toggle: 'tab'} do %>
+                  <i class="fa fa-bars"></i>
+                  &nbsp;Objective
+                  <i class="fa fa-caret-right carets pull-right"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to '#experiences_tab', data: {toggle: 'tab'} do %>
+                  <i class="fa fa-bars"></i>
+                  &nbsp;Work Experience
+                  <i class="fa fa-caret-right carets pull-right"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to '#educations_tab', data: {toggle: 'tab'} do %>
+                  <i class="fa fa-bars"></i>
+                  &nbsp;Education
+                  <i class="fa fa-caret-right carets pull-right"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to '#skills_tab', data: {toggle: 'tab'} do %>
+                  <i class="fa fa-bars"></i>
+                  &nbsp;Skill
+                  <i class="fa fa-caret-right carets pull-right"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to '#references_tab', data: {toggle: 'tab'} do %>
+                  <i class="fa fa-bars"></i>
+                  &nbsp;Reference
+                  <i class="fa fa-caret-right carets pull-right"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to '#languages_tab', data: {toggle: 'tab'} do %>
+                  <i class="fa fa-bars"></i>
+                  &nbsp;Language
+                  <i class="fa fa-caret-right carets pull-right"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to '#hobbies_interests_tab', data: {toggle: 'tab'} do %>
+                  <i class="fa fa-bars"></i>
+                  &nbsp;Hobbies/Interest
+                  <i class="fa fa-caret-right carets pull-right"></i>
+              <% end %>
+            </li>
+            <li class="add-more">
+              <a href="javascript:void(0);"><i class="fa fa-bars"></i> &nbsp;Add More +</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /tabs -->
+      </div>
+      <div class="col-lg-10 col-sm-10 col-md-10 col-xs-12 white-bg">
+        <div class="tab-content">
+          <div class="tab-pane active" id="personal_info_tab">
+            <%= render partial: 'profiles/form' %>
+          </div>
+          <div class="tab-pane" id="overview_tab">
+            <%= render partial: 'overviews/form' %>
+          </div>
+          <div class="tab-pane" id="experiences_tab">
+            <%= render partial: 'experiences/index' %>
+          </div>
+          <div class="tab-pane" id="educations_tab">
+            <%= render partial: 'educations/index' %>
+          </div>
+          <div class="tab-pane" id="skills_tab">
+            <%= render partial: 'skills/index' %>
+          </div>
+          <div class="tab-pane" id="references_tab">
+            <%= render partial: 'references/index' %>
+          </div>
+          <div class="tab-pane" id="languages_tab">
+            <%= render partial: 'languages/index' %>
+          </div>
+          <div class="tab-pane" id="hobbies_interests_tab">
+            <%= render partial: 'hobbies_interests/index' %>
+          </div>
+        </div>
+
+        <!--<div class="col-lg-12 bgg-col">-->
+          <!--<div class="btn-group pull-right center-xs ">-->
+            <!--<button type="button" class="btn btn-large ">-->
+              <!--<i class="fa fa-search"></i>-->
+              <!--Quick Preview-->
+            <!--</button>-->
+            <!--<button type="button" class="btn btn-large">-->
+              <!--<i class="fa fa-cloud-download"></i>-->
+              <!--Download-->
+            <!--</button>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<style>-->
+    <!--.ui-datepicker-calendar {-->
+        <!--display: none;-->
+    <!--}-->
+<!--</style>-->
+
+<script>
+    $(document).ready(function() {
+        $("[rel='tooltip']").tooltip();
+        $(".date-picker").datepicker({
+            dateFormat: "dd-mm-yy",
+            maxDate: 0,
+            minDate: "-60Y",
+            changeMonth: true,
+            changeYear: true,
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            yearRange: "-60Y:+0Y"
+        });
+
+//        $('.date-picker').datepicker({
+//            dateFormat: "mm/yy",
+//            changeMonth: true,
+//            changeYear: true,
+//            showButtonPanel: true,
+//            onClose: function(dateText, inst) {
+//                function isDonePressed(){
+//                    return ($('#ui-datepicker-div').html().indexOf('ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all ui-state-hover') > -1);
+//                }
+//                if (isDonePressed()){
+//                    var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+//                    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+//                    $(this).datepicker('setDate', new Date(year, month, 1)).trigger('change');
+//
+//                    $('.date-picker').focusout()//Added to remove focus from datepicker input box on selecting date
+//                }
+//            },
+//            beforeShow : function(input, inst) {
+//                inst.dpDiv.addClass('month_year_datepicker')
+//                if ((datestr = $(this).val()).length > 0) {
+//                    year = datestr.substring(datestr.length-4, datestr.length);
+//                    month = datestr.substring(0, 2);
+//                    $(this).datepicker('option', 'defaultDate', new Date(year, month-1, 1));
+//                    $(this).datepicker('setDate', new Date(year, month-1, 1));
+//                    $(".ui-datepicker-calendar").hide();
+//                }
+//            }
+//        });
+
+        $('.raty-level-input').raty({
+            scoreName: function() { return $(this).attr('data-name'); },
+            score: function() { return $(this).attr('data-level'); },
+            starHalf: '<%= asset_path('raty/star-half.png') %>',
+            starOff: '<%= asset_path('raty/star-off.png') %>',
+            starOn: '<%= asset_path('raty/star-on.png') %>'
+        });
+
+        $('.raty-level-view').raty({
+            readOnly: true,
+            score: function() { return $(this).attr('data-level'); },
+            starHalf: '<%= asset_path('raty/star-half.png') %>',
+            starOff: '<%= asset_path('raty/star-off.png') %>',
+            starOn: '<%= asset_path('raty/star-on.png') %>'
+        });
+
+        $(document).on("change", ".date-picker", function () {
+            var id = $(this).attr("id");
+            var val = $("label[for='" + id + "']").text();
+            $("#msg").text(val + " changed");
+        });
+
+        $('.thumbnail').hover(
+                function(){
+                    $(this).find('.caption').slideDown(250); //.fadeIn(250)
+                },
+                function(){
+                    $(this).find('.caption').slideUp(250); //.fadeOut(205)
+                }
+        );
+    });
+
+    $(function() {
+        $('#menuBarDiv>div.btn-group:first-child').addClass("firstChild");
+        $('#menuBarDiv>div.btn-group:nth-child(2)').addClass("secondChild ");
+        $('#menuBarDiv>div.btn-group:nth-child(3)').addClass("thirdChild ");
+        $('#menuBarDiv>div.btn-group:nth-child(4)').addClass("fourthChild ");
+        $('#menuBarDiv>div.btn-group:nth-child(5)').addClass("fifthChild ");
+        $('#menuBarDiv>div.btn-group:nth-child(6)').addClass("sixChild ");
+        $('#menuBarDiv>div.btn-group:nth-child(7)').addClass("seventhChild ");
+        $('#menuBarDiv>div.btn-group:nth-child(8)').addClass("eightChild ");
+        $('#menuBarDiv>div.btn-group:nth-child(9)').addClass("ninthChild ");
+    });
+
+    bkLib.onDomLoaded(function() {
+//      nicEditors.editors.push(
+//          new nicEditor().panelInstance(
+//              document.getElementById('objective--rte')
+//          )
+//      );
+      nicEditors.editors.push(
+          new nicEditor().panelInstance(
+              document.getElementById('cover-letter-rte')
+          )
+      );
+    });
+</script>

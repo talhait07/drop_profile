@@ -1,0 +1,276 @@
+<%# locals: {template: Template object, color: string} %>
+<% profile = @user.profile %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <link href="<%= "#{CONFIG[:cdn_server_url]}/shared_files/css/offcanvas.css" %>" type="text/css" rel="stylesheet"/>
+  <script src="<%= "#{CONFIG[:cdn_server_url]}/shared_files/js/offcanvas.js" %>"></script>
+  <%= render partial: 'templates/shared_head', locals: { template: template, color: color } %>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<%= render partial: 'templates/header', locals: {template: template, profile: profile, color: color} %>
+
+<div class="container main-container"  >
+  <div class="row row-offcanvas row-offcanvas-right">
+    <div id="sidebar" class="col-lg-3 col-sm-12  col-md-3 col-xs-12 sidebar-offcanvas">
+      <div class="list-group">
+        <div class="user-avater">
+          <div class="hex">
+            <%= image_tag @user.profile_photo_link, alt: @user.full_name %>
+          </div>
+        </div>
+
+        <h1>
+          <label><%= @user.first_name %></label>
+          <span><%= @user.last_name %></span>
+
+        </h1>
+        <span class="clearfix"></span>
+        <h2 class="designation"><%= profile.title %></h2>
+
+        <div class="social-links">
+          <ul>
+            <% if @user.email.present? %>
+                <li>
+                  <div class="hexagon"></div>
+                  <span aria-hidden="true" class="glyphicon glyphicon-envelope"></span>
+                  <label><%= @user.email %></label>
+                </li>
+            <% end %>
+
+            <% if profile.phone.present? %>
+                <li>
+                  <div class="hexagon"></div>
+                  <span aria-hidden="true" class="glyphicon glyphicon-earphone"></span>
+                  <label><%= profile.phone %></label>
+                </li>
+            <% end %>
+
+
+            <% if profile.location.present? %>
+                <li>
+                  <div class="hexagon"></div>
+                  <span aria-hidden="true" class="glyphicon glyphicon-map-marker"></span>
+                  <label><%= profile.location %></label>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!--/.sidebar-offcanvas-->
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 wide-content">
+      <div class="objective">
+        <% if @user.overview.try(:objective).present? %>
+        <h2><span aria-hidden="true" class="glyphicon glyphicon-plus"></span>Objective</h2>
+        <div class="mention objective">
+          <div class="row">
+            <div class="col-xs-11 col-lg-11 col-lg-offset-1 col-xs-offset-1">
+              <p><%= @user.overview.try(:objective) %></p>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <% if @user.experiences.present? %>
+          <div class="experiences">
+            <h2><span aria-hidden="true" class="glyphicon glyphicon-plus"></span>Experiences</h2>
+            <% @user.experiences.sort{|a,b| b.start_date <=> a.start_date}.each do |experience| %>
+                <div class="mention experience">
+                  <div class="row">
+                    <div class="col-xs-11 col-lg-11 col-lg-offset-1 col-xs-offset-1">
+                      <h3>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 no-padding"> <%= experience.company %></div>
+                        <div class="col-lg-4  col-md-4 col-sm-4 col-xs-12 no-padding">
+                      <span class="pull-right duration">
+                         <%= date_format experience.start_date, '%B %Y' %> -
+                        <%= experience.current? ? 'Current' : date_format(experience.end_date, '%B %Y') %>
+                      </span>
+                        </div>
+                      </h3>
+                      <span class="clearfix"></span>
+
+                      <h4><%= experience.designation %></h4>
+                      <h5><i class="fa fa-map-marker globes "></i>  <%= experience.location %></h5>
+
+
+                      <p class="ex-description"><%= experience.description %></p>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+      <% end %>
+
+
+      <% if @user.educations.present? %>
+      <div class="educations">
+        <h2><span aria-hidden="true" class="glyphicon glyphicon-plus"></span>Education</h2>
+        <% @user.educations.each do |education| %>
+          <div class="mention education">
+            <div class="row">
+              <div class="col-xs-11 col-lg-11 col-lg-offset-1 col-xs-offset-1">
+                <h3>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 no-padding"><%= education.title %></div>
+                  <div class="col-lg-4  col-md-4 col-sm-4 col-xs-12 no-padding">
+                      <span class="pull-right duration">
+                        <%= date_format education.start_date, '%B %Y' %> -
+                        <%= education.current? ? 'Current' : date_format(education.end_date, '%B %Y') %>
+                      </span>
+                  </div>
+                </h3>
+
+                <span class="clearfix"></span>
+
+                <h4><%= education.major %></h4>
+                <h5><%= education.institute %></h5>
+
+                <h6><i class="fa fa-map-marker globes "></i> <%= education.location %></h6>
+                <p class="score"><i class="fa fa-trophy"></i> <%= "Score #{education.result}" %></p>
+
+                <p class="ex-description"><%= education.description %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% end %>
+
+      <% if @user.skills.present? %>
+      <div class="skills">
+        <h2><span aria-hidden="true" class="glyphicon glyphicon-plus"></span>Skills</h2>
+        <div class="row">
+          <div class="col-xs-11 col-lg-11 col-lg-offset-1 col-xs-offset-1">
+            <div class="row">
+              <% @user.skills.each do |skill| %>
+              <div class="mention skill col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                <div class="row">
+                  <div class="col-lg-5 col-xs-12">
+                    <label><%= skill.name %></label>
+                  </div>
+                  <div class="col-lg-7 col-xs-12">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="<%= (skill.level || 0) * 20 %>" aria-valuemin="0"
+                           aria-valuemax="100" style="width: <%= "#{(skill.level || 0) * 20}%" %>">
+                        <%= "#{(skill.level || 0) * 20}%" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+
+
+      <% if @user.languages.present? %>
+      <div class="languages">
+        <h2><span aria-hidden="true" class="glyphicon glyphicon-plus"></span>Languages</h2>
+        <div class="row">
+          <div class="col-lg-11 col-lg-offset-1 col-xs-11 col-xs-offset-1">
+            <div class="row">
+              <% @user.languages.each do |language| %>
+                <div class="mention language col-lg-4 col-sm-4 col-md-4  col-xs-12">
+                  <h3><%= language.name %></h3>
+                  <ul>
+                    <li>Speaking: </li>
+                    <% ratting = language.speaking_level || 0 %>
+                    <% ratting.times do %>
+                      <li><span aria-hidden="true" class="glyphicon glyphicon-star bright"></span></li>
+                    <% end %>
+                    <% (5 - ratting).times do %>
+                      <li><span aria-hidden="true" class="glyphicon glyphicon-star"></span></li>
+                    <% end %>
+                  </ul>
+                  <ul>
+                    <li>Writing: </li>
+                    <% ratting = language.writing_level || 0 %>
+                    <% ratting.times do %>
+                        <li><span aria-hidden="true" class="glyphicon glyphicon-star bright"></span></li>
+                    <% end %>
+                    <% (5 - ratting).times do %>
+                        <li><span aria-hidden="true" class="glyphicon glyphicon-star"></span></li>
+                    <% end %>
+                  </ul>
+                  <ul>
+                    <li>Listening: </li>
+                    <% ratting = language.listening_level || 0 %>
+                    <% ratting.times do %>
+                        <li><span aria-hidden="true" class="glyphicon glyphicon-star bright"></span></li>
+                    <% end %>
+                    <% (5 - ratting).times do %>
+                        <li><span aria-hidden="true" class="glyphicon glyphicon-star"></span></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+      <% if @user.hobbies_interests.present? %>
+      <div class="hobbies">
+        <h2><span aria-hidden="true" class="glyphicon glyphicon-plus"></span>Hobbies and Interests</h2>
+        <div class="row">
+          <div class="col-lg-11 col-lg-offset-1 col-xs-11 col-xs-offset-1">
+            <div class="row">
+              <div class="mention hobby col-lg-12 col-xs-12">
+                <ul>
+                  <% @user.hobbies_interests.each do |hobbies_interest| %>
+                    <li><%= hobbies_interest.title %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <span class="clearfix"></span>
+      <% if @user.references.present? %>
+      <div class="references">
+        <h2><span aria-hidden="true" class="glyphicon glyphicon-plus"></span>References</h2>
+        <div class="row">
+          <div class="col-lg-11 col-lg-offset-1 col-xs-11 col-xs-offset-1">
+            <div class="row">
+              <% @user.references.each do |reference| %>
+                <div class="mention reference col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                  <h4><%= reference.name %></h4>
+                  <h5><%= reference.company %></h5>
+                  <p><label><%= reference.designation %></label></p>
+                  <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><%= reference.location %></p>
+
+                  <p class="ref-email"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><%= reference.email %></p>
+                  <p><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span><%= reference.phone %></p>
+                </div>
+              <% end %>
+            </div>
+          </div></div>
+      </div>
+      <% end %>
+
+
+      <!--/row-->
+    </div>
+    <!--/.col-xs-12.col-sm-9-->
+  </div>
+  <!--/row-->
+</div>
+<!--/.container-->
+<%= render partial: 'layouts/google_tracker' %>
+</body>
+</html>

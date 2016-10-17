@@ -1,0 +1,20 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log
+/tmp
+/.idea
+/.git
+/public/uploads
+/test
+
+# Ignore database config file
+/config/database.yml
+/db/schema.rb
+/config/secrets.yml
+/config/application.yml
+/config/config_difference.yml
+
+# Ignore site files
+/public/sitemaps

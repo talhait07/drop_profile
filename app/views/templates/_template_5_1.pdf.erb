@@ -1,0 +1,274 @@
+<%# locals: {template: Template object, color: string} %>
+<% profile = @user.profile %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title><%= "Resume | #{@user.full_name}" %></title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+  <link href="<%= "#{CONFIG[:cdn_server_url]}/template_5_1/css/style-#{color}.css" %>" type="text/css" rel="stylesheet"/>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+  <link href="<%= "#{CONFIG[:cdn_server_url]}/template_5_1/css/style-pdf.css" %>" type="text/css" rel="stylesheet"/>
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="container obj-area">
+    <div class="objective-box">
+      <div class="col-lg-12  no-pd ">
+        <h4 class="u-name"><%= @user.full_name %></h4>
+        <span class="designation"><%= profile.title %></span>
+        <p class="obj-info"><%= @user.overview.try(:objective) %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container max-width">
+    <div class="full-section">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 no-pd">
+        <div class="left-areas">
+          <div class="main-title pull-left">
+            <div class="pull-left main-icon">
+              <i class="fa fa-suitcase"></i>
+            </div>
+            <div class="pull-left"><%= wicked_pdf_image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-left.png" %></div>
+            <div class="pull-left mid-bg" style="background: url('<%= "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-middle.png" %>') repeat-x;">
+              <h3>Experience</h3>
+            </div>
+            <div class="pull-left"><%= wicked_pdf_image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-right.png" %></div>
+          </div>
+          <span class="clearfix"></span>
+
+          <% @user.experiences.sort{|a,b| b.start_date <=> a.start_date}.each do |experience| %>
+            <div class="small-box pull-left">
+              <div class="each-info-box pull-left">
+                <div class="ex-info pull-left">
+                  <div class="ex-info-box pull-left">
+                    <h4 class="ex-name"><%= experience.company %></h4>
+                    <span class="ex-title"><%= experience.designation %></span>
+                    <span class="ex-title">
+                      <%= date_format experience.start_date, '%b %Y' %> -
+                      <%= experience.current? ? 'Current' : date_format(experience.end_date, '%b %Y') %>
+                    </span>
+                    <span class="ex-location pull-left">
+                      <i class="fa fa-map-marker"></i>
+                      <%= experience.location %>
+                    </span>
+                    <p class="ex-description"><%= experience.description %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <span class="clear_fix"></span>
+
+          <div class="main-title pull-left">
+            <div class="pull-left main-icon">
+              <i class="fa fa-graduation-cap"></i>
+            </div>
+            <div class="pull-left"><%= wicked_pdf_image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-left.png" %></div>
+            <div class="pull-left mid-bg" style="background: url('<%= "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-middle.png" %>') repeat-x;">
+              <h3>Education</h3>
+            </div>
+            <div class="pull-left"><%= wicked_pdf_image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-right.png" %></div>
+          </div>
+          <span class="clearfix"></span>
+
+          <% @user.educations.each do |education| %>
+            <div class="small-box pull-left">
+              <div class="each-info-box pull-left">
+                <div class="ex-info pull-left">
+                  <div class="ex-info-box pull-left">
+                    <h4 class="ex-name"><%= education.title %></h4>
+                    <span class="ex-title"><%= education.major %></span>
+                    <span class="from-to"><%= education.institute %></span>
+                    <span class="ex-title">
+                      <%= date_format education.start_date, '%b %Y' %> -
+                      <%= education.current? ? 'Current' : date_format(education.end_date, '%b %Y') %>
+                    </span>
+                    <span class="ex-location pull-left">
+                      <i class="fa fa-map-marker"></i>
+                      <%= education.location %>
+                    </span>
+                    <span class="clearfix"></span><br/>
+                    <span class="ex-score pull-left"><%= "Score #{education.result}" %></span>
+                    <span class="ex-year pull-right"><%= education.current? ? 'Coutinue' : "Passed Year #{date_format education.end_date, '%Y'}" %></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <div class="main-title pull-left">
+            <div class="pull-left main-icon">
+              <i class="fa fa-heartbeat"></i>
+            </div>
+            <div class="pull-left"><%= wicked_pdf_image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-left.png" %></div>
+            <div class="pull-left mid-bg" style="background: url('<%= "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-middle.png" %>') repeat-x;">
+              <h3>Hobbies & Interest</h3>
+            </div>
+            <div class="pull-left"><%= wicked_pdf_image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-right.png" %></div>
+          </div>
+
+          <div class="small-box pull-left">
+            <div class="each-info-box pull-left">
+              <div class="ex-info pull-left">
+                <span class="hobies">
+                  <% @user.hobbies_interests.each do |hobbies_interest| %>
+                    <div class="badge"><%= hobbies_interest.title %></div>
+                  <% end %>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12   no-pd ">
+        <div class="right-areas">
+          <div class="main-title pull-left">
+            <div class="pull-left main-icon">
+              <i class="fa fa-wrench"></i>
+            </div>
+            <div class="pull-left"><%= wicked_pdf_image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-left.png" %></div>
+            <div class="pull-left mid-bg" style="background: url('<%= "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-middle.png" %>') repeat-x;">
+              <h3>Skills</h3>
+            </div>
+            <div class="pull-left"><%= wicked_pdf_image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-right.png" %></div>
+          </div>
+          <div class="small-box pull-left">
+            <div class="each-skill-box pull-left">
+              <div class="ex-info pull-left">
+                <% @user.skills.each do |skill| %>
+                  <h4 class="skill-name pull-left"><%= skill.name %></h4>
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%= (skill.level || 0) * 20 %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= "#{(skill.level || 0) * 20}%" %>">
+                      <%= "#{(skill.level || 0) * 20}%" %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <span class="clear_fix"></span>
+
+          <div class="main-title pull-left">
+            <div class="pull-left main-icon">
+              <i class="fa fa-language"></i>
+            </div>
+            <div class="pull-left"><%= wicked_pdf_image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-left.png" %></div>
+            <div class="pull-left mid-bg" style="background: url('<%= "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-middle.png" %>') repeat-x;">
+              <h3>Languages</h3>
+            </div>
+            <div class="pull-left"><%= wicked_pdf_image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-right.png" %></div>
+          </div>
+          <div class="small-box pull-left">
+            <div class="each-skill-box pull-left">
+              <% @user.languages.each do |language| %>
+                <div class="ex-info pull-left">
+                  <h4 class="skill-name pull-left"><%= language.name %></h4>
+                  <div class="progress lan-lvl">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%= (language.speaking_level || 0) * 20 %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= "#{(language.speaking_level || 0) * 20}%" %>">
+                      <span>Speaking <%= (language.speaking_level || 0) * 20 %>%</span>
+                    </div>
+                  </div>
+                  <div class="progress lan-lvl">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%= (language.writing_level || 0) * 20 %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= "#{(language.writing_level || 0) * 20}%" %>">
+                      <span>Writing <%= (language.writing_level || 0) * 20 %>%</span>
+                    </div>
+                  </div>
+                  <div class="progress lan-lvl">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%= (language.listening_level || 0) * 20 %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= "#{(language.listening_level || 0) * 20}%" %>">
+                      <span>Listening <%= (language.listening_level || 0) * 20 %>%</span>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="main-title pull-left">
+            <div class="pull-left main-icon">
+              <i class="fa fa-user-plus"></i>
+            </div>
+            <div class="pull-left"><%= wicked_pdf_image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-left.png" %></div>
+            <div class="pull-left mid-bg" style="background: url('<%= "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-middle.png" %>') repeat-x;">
+              <h3>References</h3>
+            </div>
+            <div class="pull-left"><%= wicked_pdf_image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-right.png" %></div>
+          </div>
+          <% @user.references.each do |reference| %>
+            <div class="small-box pull-left">
+              <div class="each-info-box pull-left ">
+                <div class="ex-info pull-left">
+                  <div class="ex-info-box-full pull-left">
+                    <h4 class="ex-name text-left"><%= reference.name %></h4>
+                    <span class="ex-title text-left"><%= reference.company %></span>
+                    <span class="from-to text-left"><%= reference.designation %></span>
+                    <span class="ex-location text-left pull-left">
+                      <i class="fa fa-map-marker"></i>
+                      <%= reference.location %>
+                    </span>
+                    <span class="clearfix"></span>
+                    <br/>
+                    <span class="ex-score pull-right text-left">
+                      <i class="fa fa-envelope-square"></i>
+                      <%= reference.email %>
+                    </span>
+                    <span class="ex-year pull-left text-left">
+                      <i class="fa fa-phone"></i>
+                      <%= reference.phone %>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <div class="main-title pull-left">
+            <div class="pull-left main-icon">
+              <i class="fa fa-map-marker"></i>
+            </div>
+            <div class="pull-left"><%= wicked_pdf_image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-left.png" %></div>
+            <div class="pull-left mid-bg" style="background: url('<%= "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-middle.png" %>') repeat-x;">
+              <h3>Contact</h3>
+            </div>
+            <div class="pull-left"><%= wicked_pdf_image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-right.png" %></div>
+          </div>
+          <div class="small-box pull-left">
+            <div class="each-info-box pull-left ">
+              <div class="ex-info pull-left">
+                <div class="ex-info-box-full pull-left">
+                  <span class="ex-title text-left">
+                    <i class="fa fa-envelope-square"></i>
+                    <%= @user.email %>
+                  </span>
+                  <span class="ex-title text-left">
+                    <i class="fa fa-phone"></i>
+                    <%= profile.phone %>
+                  </span>
+                  <span class="ex-title text-left">
+                    <i class="fa fa-map-marker"></i>
+                    <%= profile.location %>
+                  </span>
+                  <span class="ex-title text-left">
+                    <i class="fa fa-globe"></i>
+                    <%= web_address profile %>
+                  </span>
+                  <span class="clearfix"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="clearfix"></span>
+  </div>
+  <div class="fb-col container"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Drop resume - World's resume hub. Online free resume builder having lots of free resume templates."/>
+  <meta name="keywords" content="resume, resume builder, free resume builder, resume template, resume templates, free resume templates,
+    creative resume, modern resume, optimal resume, resume tips, modern resume template, cover letter for resume, functional resume,
+    college resume, student resume, entry level resume, one page resume, creative resume templates, resume layouts, good resume,
+    resume layout, resume styles, how to make a good resume, perfect resume, best resume format, resume outline" />
+
+  <% if Rails.env.production? %>
+      <meta name="google-site-verification" content="QVKfOTF-hm_h1GiBL0FDg2OLTJK7Q67vaCUicCmvZzo" />
+  <% end %>
+
+  <title><%= t("#{site_name}.title") %></title>
+  <%= favicon_link_tag "#{site_name}.ico" %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link href="http://fonts.googleapis.com/css?family=Raleway:800,700,600" media="screen" rel="stylesheet" />
+  <link href="http://fonts.googleapis.com/css?family=Lato:300" media="screen" rel="stylesheet" />
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</head>
+<body class="<%= "n-blu-bg #{site_name}" %>">
+<div id="wrapper" class="login-wrapper">
+  <div class="container-fluid ">
+    <div class="container">
+      <div class="col-lg-4 col-lg-offset-4  ">
+        <div class="center-logo">
+          <%= link_to image_tag(t("#{site_name}.logo"), class: 'img-responsive'), root_url %>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+
+      <%= yield %>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<div id="languages-container" class="mar-b50">
+<div class="media">
+  <div class="media-body">
+    <% if current_user.languages.present? %>
+      <table  class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <tr>
+          <th class="col-lg-2 col-sm-2 col-md-2 col-xs-2">Language</th>
+          <th class="col-lg-2 col-sm-2 col-md-2 col-xs-2">Speaking Level</th>
+          <th class="col-lg-2 col-sm-2 col-md-2 col-xs-2">Writing Level</th>
+          <th class="col-lg-2 col-sm-2 col-md-2 col-xs-2">Listening Level</th>
+          <th class="col-lg-2 col-sm-2 col-md-2 col-xs-2">Actions</th>
+        </tr>
+
+        <% current_user.languages.each do |language| %>
+          <tr>
+            <td><%= language.name %></td>
+            <td><div class="raty-level-view" data-level="<%= language.speaking_level %>"></div></td>
+            <td><div class="raty-level-view" data-level="<%= language.writing_level %>"></div></td>
+            <td><div class="raty-level-view" data-level="<%= language.listening_level %>"></div></td>
+            <td>
+              <%= link_to edit_language_path(language), remote: true do %>
+                <i class="fa fa-pencil-square-o"></i> Edit
+              <% end %>|
+              <%= link_to language_path(language), method: :delete, remote: true do %>
+                <i class="fa fa-times"></i> Delete
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+
+      <div class="btn-group center-xs mar-t20" id="add-new-language">
+        <%= link_to new_language_path, class: 'btn btn-large default-button', remote: true do %>
+          <i class="fa fa-plus-square"></i> Add New
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+<div id="language-form-container"><%= render partial: 'languages/form', locals: {language: Language.new}  unless current_user.languages.present? %></div>

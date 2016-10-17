@@ -1,0 +1,29 @@
+<h1>Listing countries</h1>
+
+<table cellpadding="5px">
+  <thead>
+    <tr>
+      <th width="50px">Code</th>
+      <th width="150px">Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @countries.each do |country| %>
+      <tr style="background-color: <%= cycle('#c9e2b3', '#ce8483') %>">
+        <td><%= country.code %></td>
+        <td><%= Carmen::Country.coded(country.code).try(:name) %></td>
+        <td><%= link_to 'Show', country, style: 'color: #000000' %></td>
+        <td><%= link_to 'Edit', edit_country_path(country), style: 'color: #000000' %></td>
+        <td><%= link_to 'Destroy', country, method: :delete, data: { confirm: 'Are you sure?' }, style: 'color: #000000' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Country', new_country_path %>
+
+<br><br>

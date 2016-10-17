@@ -1,0 +1,53 @@
+<!-- BEGIN DIV #CONTACT -->
+<div id="contact">
+
+  <!-- Div #contact title -->
+  <h1 class="wow bounceIn" data-wow-offset="100">Get in <strong>touch</strong> with us</h1>
+
+  <!-- Container colored line -->
+  <div class="container-colored-line wow bounceIn" data-wow-offset="200">
+
+    <!-- Colored line -->
+    <hr class="colored-line">
+
+    <!-- Additional line -->
+    <div class="add-colored-line"></div>
+
+  </div><!-- end of div .container-colored-line -->
+
+  <!-- Div #contact description -->
+  <em class="wow fadeInDown" data-wow-offset="200">Any feedback? Sure! Just fill the form and let us hear you.</em>
+
+  <!-- Begin form. You can change the action attribute to your PHP file name -->
+  <%= form_for AdminContact.new, html: { id: 'contact-form', class: 'contact-form wow bounceIn', data: { wow_offset: 200 } }, remote: true do |f| %>
+
+    <!-- Input name -->
+    <div class="col-md-6 col-lg-6">
+      <%= f.text_field :name, required: true, placeholder: 'Name' %>
+    </div>
+
+    <!-- Input email -->
+    <div class="col-md-6 col-lg-6">
+      <%= f.email_field :email, required: true, placeholder: 'Email Address' %>
+    </div>
+
+    <!-- Input subject -->
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <%= f.text_field :title, required: true, placeholder: 'Subject' %>
+    </div>
+
+    <!-- Input message -->
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <%= f.text_area :body, required: true, placeholder: 'Your message' %>
+    </div>
+
+    <!-- Input submit -->
+    <p>
+      <%= f.submit 'Send Message' %>
+    </p>
+    <%= f.hidden_field :category, value: AdminContact::CATEGORIES[:other] %>
+  <% end %>
+  <!-- end of form -->
+
+</div>
+<!-- END OF DIV #CONTACT -->

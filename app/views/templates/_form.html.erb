@@ -1,0 +1,73 @@
+<div class="mar-l20 col-sm-4 col-lg-4 col-md-4 col-xs-4">
+  <div class="form">
+    <%= form_for(@template) do |f| %>
+    <% if @template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@template.errors.count, "error") %> prohibited this template from being saved:</h2>
+
+      <ul>
+      <% @template.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 mar-t20">
+      <div class="form-group">
+        <%= f.label :name %><br>
+        <%= f.text_field :name, class: 'form-control pull-left fd-size' %>
+      </div>
+    </div>
+
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 mar-t20">
+      <div class="form-group">
+        <%= f.label :style %><br>
+        <%= f.text_field :style, class: 'form-control pull-left fd-size' %>
+      </div>
+    </div>
+
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 mar-t20">
+      <div class="form-group">
+        <%= f.label :price %><br>
+        <%= f.text_field :price, class: 'form-control pull-left fd-size' %>
+      </div>
+    </div>
+
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 mar-t20">
+      <div class="form-group">
+        <%= f.label :colors %><br>
+        <%= f.text_field :colors, class: 'form-control pull-left fd-size' %>
+      </div>
+    </div>
+
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 mar-t20">
+      <div class="form-group">
+        <%= f.label :formatted_file, 'Partial Name' %><br>
+        <%= f.text_field :formatted_file, class: 'form-control pull-left fd-size' %>
+      </div>
+    </div>
+
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 mar-t20">
+      <div class="form-group">
+        <%= f.label :image %><br>
+        <%= f.file_field :image, class: 'form-control pull-left fd-size' %>
+      </div>
+    </div>
+
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 mar-t20">
+      <div class="form-group">
+        <%= f.check_box :is_published, class: 'pull-left' %>
+        <%= f.label :is_published, style: 'width: 120px !important; margin-left: 8px' do %>
+            <span></span> Published
+        <% end %>
+      </div>
+    </div>
+
+    <div class="btn-group pull-right center-xs mar-b20">
+      <%= f.submit 'Submit', class: 'btn btn-large default-button' %>
+    </div>
+<% end %>
+</div>
+</div>
+<div class="clearfix"></div>

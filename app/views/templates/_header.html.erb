@@ -1,0 +1,243 @@
+<%# locals: {template: current Template object, profile: Profile object, color: current template color string} %>
+
+<div class="sc-links-my pull-left left-sc-box">
+  <% if profile.facebook_link.present? %>
+      <div>
+        <%= link_to "https://#{profile.facebook_link}" do %>
+            <i class="fa fa-facebook-square c-blue"></i>
+        <% end %>
+      </div>
+  <% end %>
+
+  <% if profile.twitter_link.present? %>
+      <div>
+        <%= link_to "https://#{profile.twitter_link}" do %>
+            <i class="fa fa-twitter-square c-sky"></i>
+        <% end %>
+      </div>
+  <% end %>
+
+  <% if profile.linkedin_link.present? %>
+      <div>
+        <%= link_to "https://#{profile.linkedin_link}" do %>
+            <i class="fa fa-linkedin-square c-in"></i>
+        <% end %>
+      </div>
+  <% end %>
+
+  <% if profile.google_plus_link.present? %>
+      <div>
+        <%= link_to "https://#{profile.google_plus_link}" do %>
+            <i class="fa fa-google-plus-square c-red"></i>
+        <% end %>
+      </div>
+  <% end %>
+</div>
+
+<div class="container-fluid top-new-head <%= site_name %>">
+  <% if params[:controller] == 'templates' %>
+      <div id="close-area">
+
+
+
+        <div class="hidden-xs">
+          <button type="button" class="btn btn-sm pull-right right-btns" id="close">
+            <i class="fa fa-times fa-cs"></i>
+            Remove Frame
+          </button>
+        </div>
+        <div class="visible-xs">
+          <button type="button" class="btn btn-sm pull-right right-btns " id="close-small">
+            <i class="fa fa-times fa-cs"></i>
+            Remove
+          </button>
+        </div>
+        <% if my_template? template %>
+            <button type="button" class="btn btn-sm pull-right btn-success right-btns" disabled="disabled">My Template
+            </button>
+        <% else %>
+            <%= link_to add_to_my_template_path(id: template.id, color: color), data: {template_id: template.id, colors: template.color_codes.join(',')} do %>
+                <button type="button" class="btn btn-sm pull-right btn-success right-btns hidden-xs">Add Template
+                </button>
+                <button type="button" class="btn btn-sm pull-right btn-success right-btns visible-xs">
+                  <i class="fa fa-plus"></i>
+                  Add
+                </button>
+            <% end %>
+        <% end %>
+
+        <a href="<%= templates_path %>">
+          <button type="button" class="btn btn-sm pull-right right-btns hidden-xs btn-warning">
+            <i class="fa fa-archive fa-cs"></i>
+            Template gallery
+          </button>
+          <button type="button" class="btn btn-sm pull-right right-btns visible-xs btn-warning">
+            <i class="fa fa-archive fa-cs"></i>
+            Gallery
+          </button>
+        </a>
+
+      </div>
+  <% end %>
+  <% unless params[:controller] == 'profiles' && params[:action] == 'show' %>
+      <div class="pull-left pick-color  ">
+        <div class="btn-view"><i class="fa fa-cogs"></i></div>
+        <div class="Switcher">
+          <div class="clearfix opt-bar-top">
+            <span class="top-text pull-right">Choose Color</span>
+            <span class="pull-left close-setting"><i class="fa fa-times"></i></span>
+          </div>
+          <% template.color_codes.each do |color| %>
+
+              <%= link_to '&nbsp;&nbsp;'.html_safe, "?color=#{color}", class: 'btn btn-sm', style: "background: ##{color}" %>
+
+          <% end %>
+
+        </div>
+      </div>
+  <% end %>
+
+  <div class="container-fluid bg-share-blog">
+    <div class="pull-left">
+      <%= link_to image_tag(t("#{site_name}.logo"), class: 'img-responsive hidden-xs'), root_path %>
+      <%= link_to image_tag(t("#{site_name}.small_logo"), class: 'img-responsive visible-xs'), root_path %>
+    </div>
+
+
+    <div>
+      <% caption = (params[:controller] == 'templates') ? template.name : @user.full_name %>
+      <% picture_url = (params[:controller] == 'templates') ? template.image.url(:square) : @user.profile_photo_link(:large) %>
+
+      <div class="pull-right dropdown" id="fa-fight">
+        <a href="#" id="shows"><i class="fa fa-share-square-o"></i></a>
+        <ul class="dropdown-menu open" id="menu1">
+          <li>
+            <%= link_to "https://www.facebook.com/dialog/feed?app_id=1456591877929410&display=popup&caption=#{caption}&picture=#{URI.encode(full_url(picture_url))}&link=#{URI.encode request.url}&redirect_uri=#{URI.encode request.url}&description=Find out resume templates and create yours from Dropresume" do %>
+                <i class="fa fa-facebook-square c-blue"></i> Facebook
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "https://twitter.com/intent/tweet?text=#{URI.encode('I find a awesome resume template in Dropresume. You can also see the template from')}&url=#{URI.encode request.url}" do %>
+                <i class="fa fa-twitter-square c-sky"></i> Twitter
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "https://www.linkedin.com/shareArticle?mini=true&url=#{URI.encode request.url}&title=#{URI.encode caption}&summary=#{URI.encode 'I find a awesome resume template in Dropresume.'}&source=#{URI.encode request.url}" do %>
+                <i class="fa fa-linkedin-square c-in"></i> Linkedin
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "https://plus.google.com/share?url=#{URI.encode request.url}" do %>
+                <i class="fa fa-google-plus-square c-red"></i> Google Plus
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+      <% pdf_url = params[:controller] == 'templates' ? template_path(template, format: 'pdf', color: params[:color] || template.default_color) : profile_path(profile, format: 'pdf') %>
+      <div class="pull-right ">
+        <%= link_to pdf_url, title: 'Print', target: '_blank' do %>
+            <i class="fa fa-print"></i>
+        <% end %>
+      </div>
+      <div class="pull-right ">
+        <%= link_to pdf_url, title: 'Download Pdf', target: '_blank' do %>
+            <i class="fa fa-cloud-download"></i>
+        <% end %>
+      </div>
+      <div class="pull-right ">
+        <%= link_to '<i class="fa fa-envelope-o"></i>'.html_safe, email_resume_path, id: 'email_resume', title: "Send resume by email" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="for-event" class="top-spc-show"></div>
+
+<%#= render partial: 'modals/send_resume_by_email' %>
+
+<script>
+    $(document).ready(function () {
+        $("#close").click(function () {
+            $("#close-area").hide();
+            $('#for-event').addClass('top-spc-hide');
+            $('#for-event').removeClass('top-spc-show');
+        });
+
+        $("#shows").click(function () {
+            $("#fa-fight").toggleClass("open");
+        });
+
+    });
+
+    $(document).ready(function () {
+        $("#close-small").click(function () {
+            $("#close-area").hide();
+            $('#for-event').addClass('top-spc-hide');
+            $('#for-event').removeClass('top-spc-show');
+        });
+    });
+    $('.btn-view').click(function () {
+        $('.Switcher').toggle();
+    });
+    $('.close-setting').click(function () {
+        $('.Switcher').toggle();
+    });
+
+</script>
+<style>
+    .top-text {
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        color: #fff;
+    }
+
+    .btn-view {
+        background: #222 none repeat scroll 0 0;
+        border-radius: 3px 0 0 3px !important;
+        color: #fff;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 5px 10px;
+        position: fixed;
+        right: 0;
+        top: 174px;
+        z-index: 555555;
+    }
+
+    .Switcher {
+        display: none;
+        background: #333 none repeat scroll 0 0;
+        border-radius: 3px 0 0 3px !important;
+        padding: 9px 10px;
+        position: fixed;
+        right: 0;
+        top: 160px;
+        z-index: 555555;
+
+    }
+
+    .close-setting {
+        border: 1px solid #000000;
+        border-radius: 50%;
+        height: 23px;
+        margin-right: 7px;
+        text-align: center;
+        width: 23px;
+        color: #fff;;
+        cursor: pointer;
+    }
+
+    .opt-bar-top {
+        border-bottom: 1px solid #666;
+        padding-bottom: 3px;
+        margin-bottom: 5px;
+    }
+
+    .bg-share-blog .fa-envelope-o {
+        color: #fff;
+        font-size: 24px;
+        line-height: 35px;
+        margin-right: 10px;
+    }
+</style>
+

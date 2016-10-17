@@ -1,0 +1,6 @@
+<% country = Carmen::Country.coded(@country_code) %>
+<% if country.nil? == false and country.subregions? == true %>
+  $('#profile_state_wrapper').html('<%=j subregion_select :profile, :state, @country_code, {prompt: 'Select State/Province'}, class: 'form-control pull-left fd-size', title: 'State', rel: 'tooltip' %>');
+<% else %>
+  $('#profile_state_wrapper').html('<%=j text_field :profile, :state, { class: 'form-control pull-left fd-size', placeholder: 'TYPE STATE/PROVINCE', title: 'State', rel: 'tooltip' } %>');
+<% end %>

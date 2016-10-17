@@ -1,0 +1,311 @@
+<%# locals: {template: Template object, color: string} %>
+<% profile = @user.profile %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= render partial: 'templates/shared_head', locals: {template: template, color: color} %>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+</head>
+<body>
+<%= render partial: 'templates/header', locals: {template: template, profile: profile, color: color} %>
+
+<div class="container-fluid">
+  <div class="container no-padding max-width">
+
+    <div class="objective-box">
+
+      <h1 class="u-name"><%= @user.full_name %></h1>
+      <span class="designation"><%= profile.title %></span>
+
+      <p class="obj-info"><%= @user.overview.try(:objective) %></p>
+
+    </div>
+
+    <div class="full-section">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+
+        <% if @user.educations.present? %>
+            <div class="user-section">
+              <div class="section-name">
+                <div class="pull-left sec-icon"><i class="fa fa-graduation-cap"></i></div>
+                <div class="pull-left"><%= image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-left.png" %></div>
+                <div class="pull-left mid-bg" style="background: url('<%= "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-middle.png" %>') repeat-x;">
+                  <h1>Education</h1>
+                </div>
+                <div class="pull-left"><%= image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-right.png" %></div>
+              </div>
+              <% @user.educations.each do |education| %>
+                  <div class="section-info">
+                    <h2><%= education.title %></h2>
+
+                    <h3><%= education.major %></h3>
+                    <h4><%= education.institute %></h4>
+                    <h5><i class="fa fa-map-marker"></i>  <%= education.location %></h5>
+                    <h6><%= date_format education.start_date, '%b %Y' %> -
+                      <%= education.current? ? 'Current' : date_format(education.end_date, '%b %Y') %></h6>
+
+
+                    <p class="score"><i class="fa fa-trophy"></i> <%= "Score #{education.result}" %></p>
+
+
+                    <P class="info-desc"><%= education.description %></P>
+                  </div>
+              <% end %>
+            </div>
+            <!--each user-section-end-->
+
+        <% end %>
+
+        <% if @user.experiences.present? %>
+            <div class="user-section">
+              <div class="section-name">
+                <div class="pull-left sec-icon"><i class="fa fa-suitcase "></i></div>
+                <div class="pull-left"><%= image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-left.png" %></div>
+                <div class="pull-left mid-bg" style="background: url('<%= "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-middle.png" %>') repeat-x;">
+                  <h1>Experiences</h1>
+                </div>
+                <div class="pull-left"><%= image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-right.png" %></div>
+              </div>
+              <% @user.experiences.sort { |a, b| b.start_date <=> a.start_date }.each do |experience| %>
+                  <div class="section-info">
+                    <h2><%= experience.company %></h2>
+
+                    <h3><%= experience.designation %></h3>
+                    <h4><i class="fa fa-map-marker "></i>  <%= experience.location %></h4>
+                    <h5>
+                      <%= date_format experience.start_date, '%B %Y' %> -
+                      <%= experience.current? ? 'Current' : date_format(experience.end_date, '%B %Y') %>
+
+                    </h5>
+
+                    <P class="info-desc"><%= experience.description %></P>
+                  </div>
+              <% end %>
+            </div>
+            <!--each user-section-end-->
+
+        <% end %>
+
+
+      </div>
+      <!--left section end-->
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+
+        <% if @user.skills.present? %>
+            <div class="user-section">
+              <div class="section-name">
+                <div class="pull-left sec-icon"><i class="fa  fa-wrench"></i></div>
+                <div class="pull-left"><%= image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-left.png" %></div>
+                <div class="pull-left mid-bg" style="background: url('<%= "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-middle.png" %>') repeat-x;">
+                  <h1>Skills</h1>
+                </div>
+                <div class="pull-left"><%= image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-right.png" %></div>
+              </div>
+              <div class="section-info">
+
+                <% @user.skills.each do |skill| %>
+                    <div class="section-skill">
+                      <div class="col-lg-7 col-sm-7 col-md-7 col-xs-12 no-padding">
+                        <h3 class="skill-name"><%= skill.name %></h3>
+                      </div>
+                      <div class="col-lg-5 col-sm-5 col-md-5 col-xs-12 no-padding">
+
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                               aria-valuenow="40" aria-valuemin="0" aria-valuemax="<%= (skill.level || 0) * 20 %>" style="width: <%= "#{(skill.level || 0) * 20}%" %>">
+                            <%= "#{(skill.level || 0) * 20}%" %>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                <% end %>
+              </div>
+            </div>
+        <% end %>
+        <!--each user-section-end-->
+
+        <% if @user.languages.present? %>
+            <div class="user-section">
+              <div class="section-name">
+                <div class="pull-left sec-icon"><i class="fa fa-language"></i></div>
+                <div class="pull-left"><%= image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-left.png" %></div>
+                <div class="pull-left mid-bg" style="background: url('<%= "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-middle.png" %>') repeat-x;">
+                  <h1>Languages</h1>
+                </div>
+                <div class="pull-left"><%= image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-right.png" %></div>
+              </div>
+
+
+              <% @user.languages.each do |language| %>
+
+                  <div class="section-info lan-margin col-lg-6 col-sm-6 col-md-6 col-xs-12 no-padding">
+                    <h3 class="skill-name"><%= language.name %></h3>
+                    <span class="clearfix"></span>
+
+                    <div class=" lan-skill">
+                      <div class="language-name">Speaking</div>
+                      <div class="text-right">
+                        <% (1..language.speaking_level).each do %>
+                            <i class="fa fa-star"></i>
+                        <% end %>
+                        <% (1..(5-language.speaking_level)).each do %>
+                            <i class="fa fa-star-o"></i>
+                        <% end %>
+                      </div>
+                    </div>
+                    <span class="clearfix"></span>
+
+                    <div class=" lan-skill">
+                      <div class="language-name">Writing</div>
+                      <div class="text-right">
+                        <% (1..language.writing_level).each do %>
+                            <i class="fa fa-star"></i>
+                        <% end %>
+                        <% (1..(5-language.writing_level)).each do %>
+                            <i class="fa fa-star-o"></i>
+                        <% end %>
+                      </div>
+                    </div>
+                    <span class="clearfix"></span>
+
+                    <div class=" lan-skill">
+
+                      <div class="language-name">Listening</div>
+                      <div class="text-right">
+                        <% (1..language.listening_level).each do %>
+                            <i class="fa fa-star"></i>
+                        <% end %>
+                        <% (1..(5-language.listening_level)).each do %>
+                            <i class="fa fa-star-o"></i>
+                        <% end %>
+                      </div>
+                    </div>
+                    <span class="clearfix"></span>
+                  </div>
+
+
+              <% end %>
+
+            </div>
+        <% end %>
+        <!--each user-section-end-->
+
+        <% if @user.hobbies_interests.present? %>
+            <div class="user-section">
+              <div class="section-name">
+                <div class="pull-left sec-icon"><i class="fa fa-heartbeat"></i></div>
+                <div class="pull-left"><%= image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-left.png" %></div>
+                <div class="pull-left mid-bg" style="background: url('<%= "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-middle.png" %>') repeat-x;">
+                  <h1>Hobbies &amp; Interest</h1>
+                </div>
+                <div class="pull-left"><%= image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-right.png" %></div>
+              </div>
+              <div class="section-info">
+                <% @user.hobbies_interests.each do |hobbies_interest| %>
+
+                    <div class="badge"><%= hobbies_interest.title %></div>
+
+                <% end %>
+              </div>
+            </div>
+        <% end %>
+        <!--each user-section-end-->
+
+
+
+        <% if @user.references.present? %>
+            <div class="user-section">
+              <div class="section-name">
+                <div class="pull-left sec-icon"><i class="fa fa-user-plus"></i></div>
+                <div class="pull-left"><%= image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-left.png" %></div>
+                <div class="pull-left mid-bg" style="background: url('<%= "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-middle.png" %>') repeat-x;">
+                  <h1>References</h1>
+                </div>
+                <div class="pull-left"><%= image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-right.png" %></div>
+              </div>
+
+
+              <% @user.references.each do |reference| %>
+
+                  <div class="section-info col-lg-6 col-sm-6 col-md-6 col-xs-12 no-padding">
+                    <h2><%= reference.name %></h2>
+
+                    <h3><%= reference.company %></h3>
+                    <h4><%= reference.designation %></h4>
+                    <h5><i class="fa fa-map-marker"></i>
+                      <%= reference.location %></h5>
+
+
+                    <p class="score"><i class="fa fa-envelope-square"></i>
+                      <%= reference.email %></p>
+
+                    <p><i class="fa fa-phone"></i>
+                      <%= reference.phone %></p>
+
+
+                  </div>
+
+
+              <% end %>
+
+            </div>
+        <% end %>
+        <!--each user-section-end-->
+
+
+        <div class="user-section">
+          <div class="section-name">
+            <div class="pull-left sec-icon"><i class="fa fa-map-marker"></i></div>
+            <div class="pull-left"><%= image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-left.png" %></div>
+            <div class="pull-left mid-bg" style="background: url('<%= "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-middle.png" %>') repeat-x;">
+              <h1>Contact</h1>
+            </div>
+            <div class="pull-left"><%= image_tag "#{CONFIG[:cdn_server_url]}/template_5_1/img/b-#{color}-right.png" %></div>
+          </div>
+
+
+          <div class="section-info col-lg-6 col-sm-6 col-md-6 col-xs-12 no-padding">
+            <% if @user.email.present? %>
+                <h3><i class="fa fa-envelope-square"></i> <%= @user.email %></h3>
+
+            <% end %>
+
+
+
+            <% if profile.phone.present? %>
+                <h4><i class="fa fa-phone"></i>
+                  <%= profile.phone %></h4>
+
+            <% end %>
+
+            <% if profile.location.present? %>
+                <h5><i class="fa fa-map-marker"></i>
+                  <%= profile.location %></h5>
+            <% end %>
+
+
+          </div>
+
+
+        </div>
+
+        <!--each user-section-end-->
+
+
+      </div>
+      <!--right section end-->
+
+
+      <span class="clearfix"></span>
+    </div>
+
+
+  </div>
+  <%= render partial: 'layouts/google_tracker' %>
+</div>
+</body>
+</html>

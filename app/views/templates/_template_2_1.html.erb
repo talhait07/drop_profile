@@ -1,0 +1,248 @@
+<%# locals: {template: Template object, color: string} %>
+<% profile = @user.profile %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= render partial: 'templates/shared_head', locals: {template: template, color: color} %>
+  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
+</head>
+<body>
+<%= render partial: 'templates/header', locals: {template: template, profile: profile, color: color} %>
+
+<div class="container-fluid">
+  <div class="container max-width">
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12 no-padding">
+      <%= image_tag @user.profile_photo_link, alt: @user.full_name, class: 'img-responsive user-photo' %>
+      <span class="clearfix"></span>
+
+      <div class="contact-info">
+        <% if @user.email.present? %>
+            <p>
+              <b>Email :</b><br/>
+              <%= @user.email %>
+            </p>
+        <% end %>
+        <% if profile.phone.present? %>
+            <p>
+              <b>Phone :</b><br/>
+              <%= profile.phone %>
+            </p>
+        <% end %>
+        <% if profile.location.present? %>
+            <p>
+              <b>Address :</b><br/>
+              <%= profile.location %>
+            </p>
+        <% end %>
+
+
+      </div>
+
+
+      <% if @user.skills.present? %>
+
+          <div class="each-user-section">
+            <h1 class="sec-title text-right">Skills</h1>
+            <span class="clearfix"></span>
+            <% @user.skills.each do |skill| %>
+                <div class="skill-box">
+                  <h3 class="skill-name"><%= skill.name %></h3>
+
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-success progress-bar-striped" style="width: <%= "#{(skill.level || 0) * 20}%" %>" aria-valuemax="100" aria-valuemin="0" aria-valuenow="<%= "#{(skill.level || 0) * 20}" %>" role="progressbar">
+                      <%= "#{(skill.level || 0) * 20}%" %>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+
+          </div>
+
+      <% end %>
+
+      <!--end skills-->
+
+      <% if @user.languages.present? %>
+
+          <div class="each-user-section">
+            <h1 class="sec-title text-right">Languages</h1>
+            <span class="clearfix"></span>
+            <% @user.languages.each do |language| %>
+                <div class="language-box">
+                  <h3 class="skill-name"><%= language.name %></h3>
+
+                  <div class=" lan-skill">
+                    <% (1..language.speaking_level).each do %>
+                        <i class="fa fa-star"></i>
+                    <% end %>
+                    <% (1..(5-language.speaking_level)).each do %>
+                        <i class="fa fa-star-o"></i>
+                    <% end %>
+                    Speaking
+                  </div>
+                  <span class="clearfix"></span>
+
+                  <div class=" lan-skill">
+                    <% (1..language.writing_level).each do %>
+                        <i class="fa fa-star"></i>
+                    <% end %>
+                    <% (1..(5-language.writing_level)).each do %>
+                        <i class="fa fa-star-o"></i>
+                    <% end %> Writing
+                  </div>
+                  <span class="clearfix"></span>
+
+                  <div class=" lan-skill">
+                    <% (1..language.listening_level).each do %>
+                        <i class="fa fa-star"></i>
+                    <% end %>
+                    <% (1..(5-language.listening_level)).each do %>
+                        <i class="fa fa-star-o"></i>
+                    <% end %> Listening
+                  </div>
+                  <span class="clearfix"></span>
+
+                </div>
+            <% end %>
+
+          </div>
+
+      <% end %>
+
+      <!--end language-->
+      <span class="clearfix"></span>
+
+
+    </div>
+    <!--left  section-->
+    <div class="col-lg-9 col-sm-9 col-md-9 col-xs-12 no-pd">
+      <div class="col-lg-12 border-lft">
+
+        <% if @user.overview.try(:objective).present? %>
+            <div class="each-user-section">
+              <h1 class="sec-title">Objective</h1>
+
+              <p class="obj"><%= @user.overview.try(:objective) %></p>
+            </div>
+        <% end %>
+
+        <% if @user.educations.present? %>
+
+            <div class="each-user-section">
+              <h1 class="sec-title">Education</h1>
+              <% @user.educations.each do |education| %>
+                  <h2><%= education.title %></h2>
+
+                  <h3><%= education.major %></h3>
+                  <h4><%= education.institute %></h4>
+                  <h5><i class="fa fa-map-marker globes"></i> <%= education.location %></h5>
+                  <span class="clearfix"></span>
+
+                  <div class="half-area">
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 no-padding">
+                      <p><i class="fa fa-trophy"></i> <%= "Score #{education.result}" %></p>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 no-padding">
+                      <p><i class="fa fa-calendar-o"></i>
+                         <%= date_format(education.end_date, '%Y') %> -
+                        <%= education.current? ? 'Coutinue' : date_format(education.end_date, '%Y') %></p>
+                    </div>
+                  </div>
+                  <span class="clearfix"></span>
+
+                  <p class="para-info"><%= education.description %></p>
+              <% end %>
+            </div>
+
+        <% end %>
+
+        <!--end education-->
+
+
+
+
+
+
+
+
+        <% if @user.experiences.present? %>
+
+            <div class="each-user-section">
+              <h1 class="sec-title">Experience</h1>
+              <% @user.experiences.sort { |a, b| b.start_date <=> a.start_date }.each do |experience| %>
+                  <h2><%= experience.company %></h2>
+
+                  <h3><%= experience.designation %></h3>
+                  <h4><i class="fa fa-map-marker globes"></i> <%= experience.location %></h4>
+                  <h5><i class="fa fa-calendar"></i>
+                    <%= date_format experience.start_date, '%b %Y' %> -
+                    <%= experience.current? ? 'Current' : date_format(experience.end_date, '%b %Y') %></h5>
+
+                  <span class="clearfix"></span>
+
+                  <p class="para-info"><%= experience.description %></p>
+              <% end %>
+            </div>
+
+        <% end %>
+
+        <!--end education-->
+
+
+        <% if @user.hobbies_interests.present? %>
+
+            <div class="each-user-section">
+              <h1 class="sec-title">Hobbies &amp; Interest</h1>
+
+              <div class="hobby-badge">
+                <% @user.hobbies_interests.each do |hobbies_interest| %>
+
+                    <span class="badge "><%= hobbies_interest.title %></span>
+                <% end %>
+
+              </div>
+
+        <% end %>
+
+        <!--end Hobbies-->
+
+
+        <% if @user.references.present? %>
+
+            <div class="each-user-section">
+              <h1 class="sec-title">References</h1>
+              <% @user.references.each do |reference| %>
+
+
+                  <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 no-padding">
+                    <h2><%= reference.name %></h2>
+
+                    <h3><%= reference.company %></h3>
+                    <h4><%= reference.designation %></h4>
+                    <h5><i class="fa fa-map-marker globes "></i>  <%= reference.location %></h5>
+
+                    <span class="clearfix"></span>
+
+                    <p class="refer-email"><i class="fa fa-envelope-square globes  "></i>  <%= reference.email %></p>
+
+                    <p><i class="fa fa-phone globes  "></i>  <%= reference.phone %></p>
+
+                  </div>
+
+              <% end %>
+
+            </div>
+
+        <% end %>
+
+        <!--end reference-->
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render partial: 'layouts/google_tracker' %>
+    </div>
+</body>
+</html>

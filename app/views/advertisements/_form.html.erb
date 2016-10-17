@@ -1,0 +1,95 @@
+<div class="mar-l20 col-sm-4 col-lg-4 col-md-4 col-xs-4">
+<div class="form advertise_form">
+<%= form_for(@advertisement) do |f| %>
+  <% if @advertisement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@advertisement.errors.count, 'error') %> prohibited this advertisement from being saved:</h2>
+
+      <ul>
+      <% @advertisement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 mar-t20">
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, placeholder: 'Title', class: 'form-control pull-left fd-size' %>
+    </div>
+  </div>
+
+  <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 mar-t20">
+    <div class="form-group">
+      <%= f.label :image %>
+      <%= f.file_field :image, class: 'form-control pull-left fd-size' %>
+    </div>
+  </div>
+
+  <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 mar-t20">
+    <div class="form-group">
+      <%= f.label :url %>
+      <%= f.text_field :url, class: 'form-control pull-left fd-size' %>
+    </div>
+  </div>
+
+  <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 mar-t20">
+    <div class="form-group">
+      <%= f.label :third_party_name %>
+      <%= f.text_field :third_party_name, class: 'form-control pull-left fd-size' %>
+    </div>
+  </div>
+
+  <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 mar-t20">
+    <div class="form-group">
+      <%= f.label :third_party_code %>
+      <%= f.text_area :third_party_code, class: 'form-control pull-left' %>
+    </div>
+  </div>
+
+  <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 mar-t20">
+    <div class="form-group">
+      <%= f.label :category_ids, 'Categories' %>
+      <%= f.select :category_ids, options_from_collection_for_select(Category.all, :id, :title, @advertisement.category_ids), {}, class: 'form-control pull-left fd-size chosen-select', multiple: true %>
+    </div>
+  </div>
+
+  <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+    <div class="form-group">
+      <%= f.check_box :all_category, class: 'pull-left' %>
+      <%= f.label :all_category, nil, style: 'width: 120px !important; margin-left: 8px' do %>
+        <span></span> All Categories
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 mar-t20">
+    <div class="form-group">
+      <%= f.label :country_ids, 'Countries' %>
+      <%= f.select :country_ids, options_for_select(Country.all.map { |country| [Carmen::Country.coded(country.code).name, country.id] }, @advertisement.country_ids), {}, class: 'form-control pull-left fd-size chosen-select', multiple: true %>
+    </div>
+  </div>
+
+  <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+    <div class="form-group">
+      <%= f.check_box :all_country, class: 'pull-left' %>
+      <%= f.label :all_country, nil, style: 'width: 120px !important; margin-left: 8px' do %>
+        <span></span> All Countries
+      <% end %>
+    </div>
+  </div>
+
+  <div class="btn-group pull-right center-xs mar-b20">
+    <%= f.submit 'Submit', class: 'btn btn-large default-button' %>
+  </div>
+<% end %>
+</div>
+</div>
+<div class="clearfix"></div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $(".chosen-select").chosen();
+  });
+</script>
